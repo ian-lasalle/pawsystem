@@ -1521,7 +1521,7 @@ lblLogo = tk.Label(image=new_logo).pack(pady=30)
 
 btnPerros = tk.Button(ventana, text="Perros", width=20, font='Helvetica 18 bold', bg='#33ff6d' , command=lambda: [crear_ventana_perros(), abrir_ventana_perros(), ventana.iconify()]).pack(pady=30)
 btnGatos = tk.Button(ventana, text="Gatos", width=20, font='Helvetica 18 bold', bg='#33ff6d').pack(pady=30)
-btnConejos = tk.Button(ventana, text="Otros", width=20, font='Helvetica 18 bold', bg='#33ff6d').pack(pady=30)
+btnOtros = tk.Button(ventana, text="Otros", width=20, font='Helvetica 18 bold', bg='#33ff6d').pack(pady=30)
 btnCerrar = tk.Button(ventana, text="Salir", width=5, font='Helvetica 13 bold', bg='#33ff6d', command=ventana.destroy).place(relx=0.935, rely=0.015)
 
 ventana.mainloop()
