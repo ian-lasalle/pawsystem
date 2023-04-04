@@ -1501,13 +1501,13 @@ def ventanaPublicar():
     regresar.grid(row=0, column=0, padx=10, pady=10, sticky="nw")
 
     # Crear el botón de opciones
-    adopcion = tk.Button(ventana_publicar_p, text="Adopción", font=("Arial", 20), width=10, height=3, bg="#3e8ecd",command=lambda: [ventanaAdopcion(),ventana.deiconify])
+    adopcion = tk.Button(ventana_publicar_p, text="Adopción", font=("Helvetica", 20), width=10, height=3, bg="#3e8ecd",command=lambda: [ventanaAdopcion(),ventana.deiconify])
     adopcion.place(relx=0.2, rely=0.8, anchor="center")
 
-    noadop = tk.Button(ventana_publicar_p, text="No adopción", font=("Arial", 20), width=10, height=3, bg="#3e8ecd",command=lambda: [ventanaNoAdopcion(),ventana.deiconify])
+    noadop = tk.Button(ventana_publicar_p, text="No adopción", font=("Helvetica", 20), width=10, height=3, bg="#3e8ecd",command=lambda: [ventanaNoAdopcion(),ventana.deiconify])
     noadop.place(relx=0.5, rely=0.8, anchor="center")
 
-    donacion = tk.Button(ventana_publicar_p, text="Donación", font=("Arial", 20), width=10, height=3, bg="#3e8ecd",command=lambda: [ventanaDonar(),ventana.deiconify])
+    donacion = tk.Button(ventana_publicar_p, text="Donación", font=("Helvetica", 20), width=10, height=3, bg="#3e8ecd",command=lambda: [ventanaDonar(),ventana.deiconify])
     donacion.place(relx=0.8, rely=0.8, anchor="center")
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
