@@ -627,7 +627,7 @@ def abrir_ventana_perros():
     btn_vp_MenuPrincipal = tk.Button(fFooter_vp, text="Menú principal", font='Helvetica 20 bold', bg='#33ff6d', command=lambda:[ventana_perros.destroy(), ventana.deiconify()]).pack(side='right', padx=10)
     btn_vp_VerArchivados = tk.Button(fFooter_vp, text="Ver archivados", font='Helvetica 20 bold', bg='#bd95fc', command=lambda:[crear_ventana_perros_archivados(), abrir_ventana_perros_archivados(), ventana_perros.iconify()]).pack(side='right', padx=10)
     btn_vp_VerFotos = tk.Button(fFooter_vp, text="Fotos", font='Helvetica 20 bold', bg='#33ff6d', command = lambda:[ventana_perros.iconify(),crear_ventana_ver_fotos(False)]).pack(side='left', padx=10)
-    btn_vp_Publicar = tk.Button(fFooter_vp, text="Publicar", font='Helvetica 20 bold', bg='#f2925e',command=lambda: [ventanaPublicar(),ventana_perros.iconify()]).pack(side='left', padx=10)
+    btn_vp_Publicar = tk.Button(fFooter_vp, text="Publicar", font='Helvetica 20 bold', bg='#f2925e',command=lambda: [ventana_perros.iconify(),ventanaPublicar()]).pack(side='left', padx=10)
     btn_vp_Editar = tk.Button(fFooter_vp, text="Editar", font='Helvetica 20 bold', bg='#34ebc3', command=lambda: agregar_perritos(False)).pack(side='left', padx=10)
     btn_vp_Archivar = tk.Button(fFooter_vp, text="Archivar", font='Helvetica 20 bold', bg='pink', command=lambda:archivarP()).pack(side='left', padx=10)
     btn_vp_Borrar = tk.Button(fFooter_vp, text="Borrar", font='Helvetica 20 bold', bg='#f03932',command=lambda: borrarRegistroP()).pack(side='left', padx=10)
@@ -1483,6 +1483,12 @@ def ventanaDonar():
     text_box.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
 def ventanaPublicar():
+    try:
+        valuesp
+    except NameError:
+        messagebox.showwarning("Advertencia","Seleccione un perro por favor")
+        ventana_perros.deiconify()
+        return
     ventana_publicar_p = tk.Tk()
     ventana_publicar_p.geometry("1280x720")
     ventana_publicar_p.title("PawSystem")
@@ -1491,7 +1497,7 @@ def ventanaPublicar():
     ventana_publicar_p.state('zoomed')
 
     # Crear el botón de regresar
-    regresar = tk.Button(ventana_publicar_p, text="Regresar",command=lambda:[ventana_publicar_p.destroy(), ventana.deiconify()])
+    regresar = tk.Button(ventana_publicar_p, text="Regresar",command=lambda:[ventana_publicar_p.destroy(), ventana_perros.deiconify()])
     regresar.grid(row=0, column=0, padx=10, pady=10, sticky="nw")
 
     # Crear el botón de opciones
