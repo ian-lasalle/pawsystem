@@ -1497,7 +1497,7 @@ def ventanaPublicar():
     ventana_publicar_p.state('zoomed')
 
     # Crear el botón de regresar
-    regresar = tk.Button(ventana_publicar_p, text="Regresar",command=lambda:[ventana_publicar_p.destroy(), ventana_perros.deiconify()])
+    regresar = tk.Button(ventana_publicar_p, text="Regresar", bg='green',command=lambda:[ventana_publicar_p.destroy(), ventana_perros.deiconify()])
     regresar.grid(row=0, column=0, padx=10, pady=10, sticky="nw")
 
     # Crear el botón de opciones
