@@ -643,7 +643,7 @@ def abrir_ventana_perros():
         lbl_Vagregar_Perros = tk.Label(fagregar_p_header, text="Perros", font='Helvetica 30 bold', bg='#0a4369', fg='pink').pack(side='left', padx=10)
 
         fagregar_p = tk.Frame(fMainFrame2, bg = '#0a4369')
-        fagregar_p.place(relx=0.01, rely=0.12, relwidth=0.98, relheight=0.75)
+        fagregar_p.place(relx=0.01, rely=0.11, relwidth=0.98, relheight=0.77)
 
         fagregar_p_footer = tk.Frame(fMainFrame2, bg='#0a4369')
         fagregar_p_footer.place(relx=0.01, rely=0.89, relwidth=0.98, relheight=0.1)
