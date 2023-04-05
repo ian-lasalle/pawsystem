@@ -627,7 +627,7 @@ def abrir_ventana_perros():
     btn_vp_MenuPrincipal = tk.Button(fFooter_vp, text="Menú principal", font='Helvetica 20 bold', bg='#33ff6d', command=lambda:[ventana_perros.destroy(), ventana.deiconify()]).pack(side='right', padx=10)
     btn_vp_VerArchivados = tk.Button(fFooter_vp, text="Ver archivados", font='Helvetica 20 bold', bg='#bd95fc', command=lambda:[crear_ventana_perros_archivados(), abrir_ventana_perros_archivados(), ventana_perros.iconify()]).pack(side='right', padx=10)
     btn_vp_VerFotos = tk.Button(fFooter_vp, text="Fotos", font='Helvetica 20 bold', bg='#33ff6d', command = lambda:[ventana_perros.iconify(),crear_ventana_ver_fotos(False)]).pack(side='left', padx=10)
-    btn_vp_Publicar = tk.Button(fFooter_vp, text="Publicar", font='Helvetica 20 bold', bg='#f2925e',command=lambda: [ventana_perros.iconify(),ventanaPublicar()]).pack(side='left', padx=10)
+    btn_vp_Publicar = tk.Button(fFooter_vp, text="Publicar", font='Helvetica 20 bold', bg='#f2925e',command=lambda: [ventana_perros.iconify(),ventanaPublicarP()]).pack(side='left', padx=10)
     btn_vp_Editar = tk.Button(fFooter_vp, text="Editar", font='Helvetica 20 bold', bg='#34ebc3', command=lambda: agregar_perritos(False)).pack(side='left', padx=10)
     btn_vp_Archivar = tk.Button(fFooter_vp, text="Archivar", font='Helvetica 20 bold', bg='pink', command=lambda:archivarP()).pack(side='left', padx=10)
     btn_vp_Borrar = tk.Button(fFooter_vp, text="Borrar", font='Helvetica 20 bold', bg='#f03932',command=lambda: borrarRegistroP()).pack(side='left', padx=10)
@@ -973,7 +973,7 @@ def contenido_ver_fotos(fMainFrame3,archivado,slider,btn_agregarfoto_p,btn_regre
         fMainFrame3.destroy()
 
 #Textos Perros ---------------------------------------------------------------------------------------------
-def ventanaAdopcion():
+def ventanaAdopcionP():
     ventana.withdraw()
     ventana_adop_p = tk.Toplevel()
     ventana_adop_p.geometry("800x600")
@@ -1087,7 +1087,7 @@ def ventanaAdopcion():
 
     text_box.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
-def ventanaNoAdopcion():
+def ventanaNoAdopcionP():
     ventana.withdraw()
     ventana_no_adopt_p = tk.Toplevel()
     ventana_no_adopt_p.geometry("800x600")
@@ -1165,7 +1165,7 @@ def ventanaNoAdopcion():
 
     text_box.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
-def ventanaDonar():
+def ventanaDonarP():
     ventana.withdraw()
     donar_p = tk.Toplevel()
     donar_p.geometry("800x600")
@@ -1482,34 +1482,62 @@ def ventanaDonar():
 
     text_box.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
-def ventanaPublicar():
+def ventanaPublicarP():
     try:
         valuesp
     except NameError:
         messagebox.showwarning("Advertencia","Seleccione un perro por favor")
         ventana_perros.deiconify()
         return
-    ventana_publicar_p = tk.Tk()
+    ventana_publicar_p = tk.Toplevel()
     ventana_publicar_p.geometry("1280x720")
     ventana_publicar_p.title("PawSystem")
     ventana_publicar_p.iconbitmap('paw-icon.ico')
     ventana_publicar_p.configure(bg='#0a4369') 
     ventana_publicar_p.state('zoomed')
+    ventana_publicar_p.update_idletasks()
 
     # Crear el botón de regresar
-    regresar = tk.Button(ventana_publicar_p, text="Regresar", bg='green',command=lambda:[ventana_publicar_p.destroy(), ventana_perros.deiconify()])
-    regresar.grid(row=0, column=0, padx=10, pady=10, sticky="nw")
+    regresar = tk.Button(ventana_publicar_p, text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=lambda:[ventana_publicar_p.destroy(), ventana_perros.deiconify()])
+    regresar.place(relx=0.01, rely=0.02)
+
+    lbl_nombre_p = Label(ventana_publicar_p,text="",font='Helvetica 40 bold', fg='pink', bg='#0a4369')
+    lbl_nombre_p.place(relx=0.12, rely=0.05)
+    lbl_nombre_p.config(text=valuesp[0])
 
     # Crear el botón de opciones
-    adopcion = tk.Button(ventana_publicar_p, text="Adopción", font=("Helvetica", 20), width=10, height=3, bg="#3e8ecd",command=lambda: [ventanaAdopcion(),ventana.deiconify])
-    adopcion.place(relx=0.2, rely=0.8, anchor="center")
+    adopcion = tk.Button(ventana_publicar_p, text="Adopción", font='Helvetica 24 bold', bg="#33ff6d",command=lambda: [ventanaAdopcionP(),ventana.deiconify])
+    adopcion.place(relx=0.2, rely=0.75, anchor="center")
 
-    noadop = tk.Button(ventana_publicar_p, text="No adopción", font=("Helvetica", 20), width=10, height=3, bg="#3e8ecd",command=lambda: [ventanaNoAdopcion(),ventana.deiconify])
-    noadop.place(relx=0.5, rely=0.8, anchor="center")
+    noadop = tk.Button(ventana_publicar_p, text="No adopción", font='Helvetica 24 bold', bg="#33ff6d",command=lambda: [ventanaNoAdopcionP(),ventana.deiconify])
+    noadop.place(relx=0.5, rely=0.75, anchor="center")
 
-    donacion = tk.Button(ventana_publicar_p, text="Donación", font=("Helvetica", 20), width=10, height=3, bg="#3e8ecd",command=lambda: [ventanaDonar(),ventana.deiconify])
-    donacion.place(relx=0.8, rely=0.8, anchor="center")
+    donacion = tk.Button(ventana_publicar_p, text="Donación", font='Helvetica 24 bold', bg="#33ff6d",command=lambda: [ventanaDonarP(),ventana.deiconify])
+    donacion.place(relx=0.8, rely=0.75, anchor="center")
 
+    lbl_img_p = Label(ventana_publicar_p,bg = '#0a4369')
+    lbl_img_p.place(relx= 0.5, rely=0.2, anchor=N)
+
+    try:
+        dir_path_p_fotos = os.getcwd() + "/pimg/" + selectedp #Conseguir directorio de la carpeta de imagenes
+        images_files = os.listdir(dir_path_p_fotos)
+        print(images_files[0])
+        print(dir_path_p_fotos + '/' + images_files[0])
+        original_image = Image.open(dir_path_p_fotos + '/' + images_files[0])
+        width, height = original_image.size
+        aspect_ratio = height / width
+        resized_image = original_image.resize((400, 400), Image.Resampling.LANCZOS)
+        new_img = ImageTk.PhotoImage(resized_image.resize((600, int(600 * aspect_ratio)), Image.Resampling.LANCZOS))
+        lbl_img_p.config(image=new_img)
+        lbl_img_p.image = new_img   
+    except:
+        missingImg = (Image.open("noimg.jpg"))
+        resized_missingImg = missingImg.resize((300,300), Image.Resampling.LANCZOS)
+        new_missingImg = ImageTk.PhotoImage(resized_missingImg)
+        lbl_img_p.config(image=new_missingImg)
+        lbl_img_p.image = new_missingImg 
+        pass
+    
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 #Código principal
