@@ -1191,24 +1191,6 @@ def ventanaDonarP():
     donar_p.iconbitmap('paw-icon.ico')
     donar_p.configure(bg='#0a4369')
     donar_p.state('zoomed')
-    # Aquí agregas los elementos que deseas mostrar en la nueva ventana
-
-    regresar = tk.Button(donar_p, text="Regresar",command=donar_p.destroy)
-    regresar.grid(row=0, column=0, padx=10, pady=10,  sticky="nw")
-    tk.Label(donar_p, text="", bg='#0a4369').grid(row=1, column=0)
-    # Crear los botones del lado derecho
-    fotos = tk.Button(donar_p, text="Carpeta de fotos",command=contenido_ver_fotos)
-    fotos.place(x=1000, y=100)
-
-    def copy_to_clipboard():
-        text = text_box.get("1.0", "end-1c")
-        pyperclip.copy(text)
-
-    copy = tk.Button(donar_p, text="Copiar",command=copy_to_clipboard)
-    copy.place(x=1025, y=200)
-
-    otro = tk.Button(donar_p, text="Generar otro texto")
-    otro.place(x=1000, y=300)
 
     textos = [
             "¡Hola! Somos Omeyoacan un albergue de perros, gatos y conejos🐶🐱🐰 que les brinda hogar temporal y cuidado, a los omeyocanitos sin hogar y abandonados."
@@ -1485,20 +1467,42 @@ def ventanaDonarP():
             "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
     ]
 
+    def copy_to_clipboard():
+        text = text_box.get("1.0", "end-1c")
+        pyperclip.copy(text)
+
     def generar_otro_texto():
         nuevo_texto = random.choice(textos)
         text_box.delete("1.0", "end")
         text_box.insert("1.0", nuevo_texto)
 
-    otro = tk.Button(donar_p, text="Generar otro texto", command=generar_otro_texto)
-    otro.place(x=1000, y=300)
-
     text = random.choice(textos)
 
-    text_box = tk.Text(donar_p, font=("Roboto", 14), bg="#0a4369", fg="white", bd=0, highlightthickness=0, insertborderwidth=0, exportselection=False,wrap=WORD)
-    text_box.insert(tk.END, text)
+    regresar = tk.Button(donar_p,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=donar_p.destroy)
+    regresar.place(relx=0.01, rely=0.02)
+    
+    fotos = tk.Button(donar_p, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=contenido_ver_fotos)
+    fotos.place(relx=0.8, rely=0.55,anchor=N)
 
-    text_box.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
+    copy = tk.Button(donar_p, text="Copiar", font='Helvetica 22 bold', bg='#33ff6d',command=copy_to_clipboard)
+    copy.place(relx=0.8, rely=0.7,anchor=N)
+
+    otro = tk.Button(donar_p, text="Generar otro texto", font='Helvetica 22 bold', bg='#33ff6d', command=generar_otro_texto)
+    otro.place(relx=0.8, rely=0.85,anchor=N)
+
+    fr = Frame(donar_p, bg='#0a4369')
+    fr.place(relx=0.025, rely=0.11,relwidth=0.6, relheight=0.85)
+
+    text_box = tk.Text(fr, font=("Roboto", 17), bg="#0a4369", fg="white", bd=0, highlightthickness=0, insertborderwidth=0, exportselection=False,wrap=WORD)
+    text_box.insert(tk.END, text)
+    text_box.pack(side='left')
+
+    lbl_nombre_p = Label(donar_p,text="",font='Helvetica 30 bold', fg='pink', bg='#0a4369')
+    lbl_nombre_p.place(relx=0.1, rely=0.02)
+    lbl_nombre_p.config(text=valuesp[0])
+
+    lbl_img_p = Label(donar_p,bg = '#0a4369')
+    lbl_img_p.place(relx= 0.8, rely=0.1, anchor=N)
 
 def ventanaPublicarP():
     try:
