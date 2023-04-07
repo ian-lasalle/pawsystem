@@ -850,6 +850,11 @@ def crear_ventana_ver_fotos(archivado):
     ver_fotos_ven.configure(bg='#0a4369')
     ver_fotos_ven.state('zoomed')
     ver_fotos_ven.update_idletasks()
+    folder_path = os.path.join(os.getcwd(), "pimg")
+    # Verificar si la carpeta existe
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+ 
     abrir_ventana_ver_fotos(archivado)
 
 def abrir_ventana_ver_fotos(archivado):
@@ -859,6 +864,7 @@ def abrir_ventana_ver_fotos(archivado):
     fVerfotos_p_header.place(relx=0.01, rely=0.01, relwidth=0.98, relheight=0.1)
     fverFotos_p_footer = tk.Frame(fMainFrame3, bg = '#0a4369')
     fverFotos_p_footer.place(relx=0.01, rely=0.81, relwidth=0.98, relheight=0.15)
+   
    
     
     btn_regresar_p = tk.Button(fVerfotos_p_header, text = "Regresar", font='Helvetica 18 bold', bg='#33ff6d')
@@ -880,9 +886,7 @@ def abrir_ventana_ver_fotos(archivado):
 
     canvas_ver_foto_p = tk.Canvas(fverFotos_p_footer,height =70,width =500, bg = '#C1CDCD')
     canvas_ver_foto_p.pack(side = tk.BOTTOM,fill = tk.X)
-    #x_scrool_bar = ttk.Scrollbar(fverFotos_p_footer, orient = tk.HORIZONTAL,command = canvas_ver_foto_p.xview)
-    #x_scrool_bar.pack(side = tk.TOP, fill=tk.X ) 
-    #canvas_ver_foto_p.config(xscrollcommand=x_scrool_bar.set)
+
     canvas_ver_foto_p.bind('<Configure>', lambda e:canvas_ver_foto_p.bbox('all'))
     slider = tk.Frame(canvas_ver_foto_p)
     canvas_ver_foto_p.create_window((0,0),window = slider, anchor = tk.NW)
