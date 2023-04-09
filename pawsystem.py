@@ -1097,7 +1097,7 @@ def ventanaAdopcionP():
     regresar = tk.Button(ventana_adop_p,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=ventana_adop_p.destroy)
     regresar.place(relx=0.01, rely=0.02)
     
-    fotos = tk.Button(ventana_adop_p, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=contenido_ver_fotos)
+    fotos = tk.Button(ventana_adop_p, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=carpeta_fotos_p)
     fotos.place(relx=0.8, rely=0.55,anchor=N)
 
     copy = tk.Button(ventana_adop_p, text="Copiar", font='Helvetica 22 bold', bg='#33ff6d',command=copy_to_clipboard)
@@ -1182,7 +1182,7 @@ def ventanaNoAdopcionP():
     regresar = tk.Button(ventana_no_adopt_p,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=ventana_no_adopt_p.destroy)
     regresar.place(relx=0.01, rely=0.02)
     
-    fotos = tk.Button(ventana_no_adopt_p, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=contenido_ver_fotos)
+    fotos = tk.Button(ventana_no_adopt_p, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=carpeta_fotos_p)
     fotos.place(relx=0.8, rely=0.55,anchor=N)
 
     copy = tk.Button(ventana_no_adopt_p, text="Copiar", font='Helvetica 22 bold', bg='#33ff6d',command=copy_to_clipboard)
@@ -1505,7 +1505,7 @@ def ventanaDonarP():
     regresar = tk.Button(donar_p,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=donar_p.destroy)
     regresar.place(relx=0.01, rely=0.02)
     
-    fotos = tk.Button(donar_p, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=contenido_ver_fotos)
+    fotos = tk.Button(donar_p, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=carpeta_fotos_p)
     fotos.place(relx=0.8, rely=0.55,anchor=N)
 
     copy = tk.Button(donar_p, text="Copiar", font='Helvetica 22 bold', bg='#33ff6d',command=copy_to_clipboard)
@@ -1596,7 +1596,14 @@ def get_img_perro_pub(lbl_img_p):
         lbl_img_p.config(image=new_missingImg)
         lbl_img_p.image = new_missingImg 
         pass
-    
+
+def carpeta_fotos_p():
+    try:
+        dir_path_p_fotos = os.getcwd() + "/pimg/" + selectedp
+        os.startfile(dir_path_p_fotos)
+    except:
+        messagebox.showwarning("ADVERTENCIA","No hay fotos del perrito registradas")
+        return
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 #Código principal
