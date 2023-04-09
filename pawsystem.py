@@ -1082,17 +1082,23 @@ def ventanaAdopcionP():
         " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
     ]
 
+    textos_generados = []
+    
     def copy_to_clipboard():
         text = text_box.get("1.0", "end-1c")
         pyperclip.copy(text)
 
     def generar_otro_texto():
-        nuevo_texto = random.choice(textos)
+        nuevo_texto = ""
+        while nuevo_texto == "" or nuevo_texto in textos_generados:
+            nuevo_texto = random.choice(textos)
+        textos_generados.append(nuevo_texto)
         text_box.delete("1.0", "end")
         text_box.insert("1.0", nuevo_texto)
 
     text = random.choice(textos)
-
+    textos_generados.append(text)
+    
     regresar = tk.Button(ventana_adop_p,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=ventana_adop_p.destroy)
     regresar.place(relx=0.01, rely=0.02)
     
@@ -1167,17 +1173,23 @@ def ventanaNoAdopcionP():
         " #apadrina #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
     ]
 
+    textos_generados = []
+    
     def copy_to_clipboard():
         text = text_box.get("1.0", "end-1c")
         pyperclip.copy(text)
 
     def generar_otro_texto():
-        nuevo_texto = random.choice(textos)
+        nuevo_texto = ""
+        while nuevo_texto == "" or nuevo_texto in textos_generados:
+            nuevo_texto = random.choice(textos)
+        textos_generados.append(nuevo_texto)
         text_box.delete("1.0", "end")
         text_box.insert("1.0", nuevo_texto)
 
     text = random.choice(textos)
-
+    textos_generados.append(text)
+    
     regresar = tk.Button(ventana_no_adopt_p,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=ventana_no_adopt_p.destroy)
     regresar.place(relx=0.01, rely=0.02)
     
@@ -1490,17 +1502,23 @@ def ventanaDonarP():
             "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
     ]
 
+    textos_generados = []
+    
     def copy_to_clipboard():
         text = text_box.get("1.0", "end-1c")
         pyperclip.copy(text)
 
     def generar_otro_texto():
-        nuevo_texto = random.choice(textos)
+        nuevo_texto = ""
+        while nuevo_texto == "" or nuevo_texto in textos_generados:
+            nuevo_texto = random.choice(textos)
+        textos_generados.append(nuevo_texto)
         text_box.delete("1.0", "end")
         text_box.insert("1.0", nuevo_texto)
 
     text = random.choice(textos)
-
+    textos_generados.append(text)
+    
     regresar = tk.Button(donar_p,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=donar_p.destroy)
     regresar.place(relx=0.01, rely=0.02)
     
