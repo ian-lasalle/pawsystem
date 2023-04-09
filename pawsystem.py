@@ -850,6 +850,11 @@ def crear_ventana_ver_fotos(archivado):
     ver_fotos_ven.configure(bg='#0a4369')
     ver_fotos_ven.state('zoomed')
     ver_fotos_ven.update_idletasks()
+    folder_path = os.path.join(os.getcwd(), "pimg")
+    # Verificar si la carpeta existe
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+ 
     abrir_ventana_ver_fotos(archivado)
 
 def abrir_ventana_ver_fotos(archivado):
@@ -858,8 +863,10 @@ def abrir_ventana_ver_fotos(archivado):
     fVerfotos_p_header = tk.Frame(fMainFrame3, bg='#0a4369')
     fVerfotos_p_header.place(relx=0.01, rely=0.01, relwidth=0.98, relheight=0.1)
     fverFotos_p_footer = tk.Frame(fMainFrame3, bg = '#0a4369')
-    fverFotos_p_footer.place(relx=0.01, rely=0.84, relwidth=0.98, relheight=0.15)
-
+    fverFotos_p_footer.place(relx=0.01, rely=0.81, relwidth=0.98, relheight=0.15)
+   
+   
+    
     btn_regresar_p = tk.Button(fVerfotos_p_header, text = "Regresar", font='Helvetica 18 bold', bg='#33ff6d')
     btn_regresar_p.pack(side = 'left')
 
@@ -877,28 +884,23 @@ def abrir_ventana_ver_fotos(archivado):
     btn_eliminarfotos_p = tk.Button(fverFotos_p_footer, text = "Eliminar foto", font='Helvetica 18 bold', bg='#db5142')
     btn_eliminarfotos_p.pack(side= 'right', padx=45)
 
-    canvas_ver_foto_p = tk.Canvas(fverFotos_p_footer,height =75,width =500, bg = '#C1CDCD')
+    canvas_ver_foto_p = tk.Canvas(fverFotos_p_footer,height =70,width =500, bg = '#C1CDCD')
     canvas_ver_foto_p.pack(side = tk.BOTTOM,fill = tk.X)
-    x_scrool_bar = ttk.Scrollbar(fverFotos_p_footer, orient = tk.HORIZONTAL)
-    x_scrool_bar.pack(side = tk.BOTTOM, fill=tk.X )
-    x_scrool_bar.config(command = canvas_ver_foto_p.xview)
-    canvas_ver_foto_p.config(xscrollcommand=x_scrool_bar.set)
-    canvas_ver_foto_p.bind('<Configure>', lambda e:canvas_ver_foto_p.bbox('all'))
 
+    canvas_ver_foto_p.bind('<Configure>', lambda e:canvas_ver_foto_p.bbox('all'))
     slider = tk.Frame(canvas_ver_foto_p)
     canvas_ver_foto_p.create_window((0,0),window = slider, anchor = tk.NW)
-
     progbarFP = ttk.Progressbar(fVerfotos_p_header, orient='horizontal',mode='determinate',length=500)
     progbarFP.update_idletasks()
     progbarFP.pack(side=TOP,expand=YES)
 
-    threading.Thread(target = lambda:contenido_ver_fotos(fMainFrame3,archivado,slider,btn_agregarfoto_p,btn_regresar_p,btn_eliminarfotos_p,progbarFP)).start()
+    threading.Thread(target = lambda:contenido_ver_fotos(canvas_ver_foto_p,fverFotos_p_footer,fMainFrame3,archivado,slider,btn_agregarfoto_p,btn_regresar_p,btn_eliminarfotos_p,progbarFP)).start()
 
-def contenido_ver_fotos(fMainFrame3,archivado,slider,btn_agregarfoto_p,btn_regresar_p,btn_eliminarfotos_p,progbarFP):    
+def contenido_ver_fotos(canvas_ver_foto_p,fverFotos_p_footer,fMainFrame3,archivado,slider,btn_agregarfoto_p,btn_regresar_p,btn_eliminarfotos_p,progbarFP):    
     #Frames de contenidos para fotos
     fVerFotos_p_contents = tk.Frame(fMainFrame3, bg = '#0a4369')
     fVerFotos_p_contents.place(relx=0.01, rely=0.12, relwidth=0.98, relheight=0.71)
-    
+
     #Botones ver fotos, regresar y eliminar COMMAND
     if archivado == False:
         btn_regresar_p.config(command = lambda: [ver_fotos_ven.destroy(),ventana_perros.deiconify()])
@@ -926,17 +928,32 @@ def contenido_ver_fotos(fMainFrame3,archivado,slider,btn_agregarfoto_p,btn_regre
 
     for r in range(0, len(images_files)):
         original_image = Image.open(dir_path_p_fotos + '/' + images_files[r])
-        width, height = original_image.size
-        aspect_ratio = height / width
+        width_img_p, height_img_p = original_image.size
+        aspect_ratio_P = width_img_p/height_img_p
         resized_image = original_image.resize((400, 400), Image.Resampling.LANCZOS)
+        max_width_img_p = 500
+        max_height_img_p = 500
+        new_width_img_p = min(width_img_p, max_width_img_p)
+        new_height_img_P = min(height_img_p, max_height_img_p)
+        
+        if aspect_ratio_P > 1:
+            #Imagen más ancha que alta
+            new_height_img_P = int(new_width_img_p / aspect_ratio_P)
+        else:
+            #Imagen más alta que ancha
+            new_width_img_p = int(new_height_img_P * aspect_ratio_P)
+
         images_list_p.append([
-            ImageTk.PhotoImage(original_image.resize((60, 70), Image.Resampling.LANCZOS)),
-            ImageTk.PhotoImage(resized_image.resize((600, int(600 * aspect_ratio)), Image.Resampling.LANCZOS))
-        ])   
+                ImageTk.PhotoImage(original_image.resize((int(new_width_img_p/7),int(new_height_img_P/7) ), Image.Resampling.LANCZOS)),
+                ImageTk.PhotoImage(resized_image.resize((new_width_img_p, new_height_img_P)), Image.Resampling.LANCZOS)
+                             ])   
         images_vars_p.append(f'img_{r}')
+        
+
         progbarFP['value'] += (100/len(images_files))
     progbarFP.pack_forget()
-
+    
+    
     def desplegar_img_p(index_p):
         global aux_index
         aux_index = index_p
@@ -946,7 +963,14 @@ def contenido_ver_fotos(fMainFrame3,archivado,slider,btn_agregarfoto_p,btn_regre
     for n in range(len(images_vars_p)):
         globals()[images_vars_p[n]] = tk.Button(slider,image=images_list_p[n][0], bd = 0, command = lambda n = n:desplegar_img_p(n))
         globals()[images_vars_p[n]].pack(side =tk.LEFT)
-            
+
+    canvas_ver_foto_p.configure(scrollregion=canvas_ver_foto_p.bbox('all'))
+    x_scroll_bar = tk.Scrollbar(fverFotos_p_footer, orient='horizontal')
+    x_scroll_bar.pack(side = tk.BOTTOM,fill = tk.X)
+    x_scroll_bar.configure(command=canvas_ver_foto_p.xview)
+    canvas_ver_foto_p.configure(xscrollcommand=x_scroll_bar.set)
+    slider.bind('<Configure>', lambda event: canvas_ver_foto_p.configure(scrollregion=canvas_ver_foto_p.bbox('all')))
+    
     def eliminar_foto_p(dir_path_p_fotos, aux_index): 
         respuesta = messagebox.askyesno("Eliminar imagen","¿Seguro quieres eliminar la imagen?")
         if respuesta ==1:
@@ -971,6 +995,7 @@ def contenido_ver_fotos(fMainFrame3,archivado,slider,btn_agregarfoto_p,btn_regre
         new_path_image = dir_path_p_fotos + "/" + str(n_archivo_p)
         shutil.copyfile(current_path_image, new_path_image)
         fMainFrame3.destroy()
+
 
 #Textos Perros ---------------------------------------------------------------------------------------------
 def ventanaAdopcionP():
