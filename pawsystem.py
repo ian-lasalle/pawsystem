@@ -1107,7 +1107,7 @@ def ventanaAdopcionP():
     otro.place(relx=0.8, rely=0.85,anchor=N)
 
     fr = Frame(ventana_adop_p, bg='#0a4369')
-    fr.place(relx=0.025, rely=0.11,relwidth=0.6, relheight=0.85)
+    fr.place(relx=0.025, rely=0.11,relwidth=0.55, relheight=0.85)
 
     text_box = tk.Text(fr, font=("Roboto", 17), bg="#0a4369", fg="white", bd=0, highlightthickness=0, insertborderwidth=0, exportselection=False,wrap=WORD)
     text_box.insert(tk.END, text)
@@ -1118,7 +1118,7 @@ def ventanaAdopcionP():
     lbl_nombre_p.config(text=valuesp[0])
 
     lbl_img_p = Label(ventana_adop_p,bg = '#0a4369')
-    lbl_img_p.place(relx= 0.8, rely=0.1, anchor=N)
+    lbl_img_p.place(relx= 0.8, rely=0.05, anchor=N)
 
     threading.Thread(target = lambda:get_img_perro_pub(lbl_img_p)).start()
 
@@ -1192,7 +1192,7 @@ def ventanaNoAdopcionP():
     otro.place(relx=0.8, rely=0.85,anchor=N)
 
     fr = Frame(ventana_no_adopt_p, bg='#0a4369')
-    fr.place(relx=0.025, rely=0.11,relwidth=0.6, relheight=0.85)
+    fr.place(relx=0.025, rely=0.11,relwidth=0.55, relheight=0.85)
 
     text_box = tk.Text(fr, font=("Roboto", 17), bg="#0a4369", fg="white", bd=0, highlightthickness=0, insertborderwidth=0, exportselection=False,wrap=WORD)
     text_box.insert(tk.END, text)
@@ -1203,7 +1203,7 @@ def ventanaNoAdopcionP():
     lbl_nombre_p.config(text=valuesp[0])
 
     lbl_img_p = Label(ventana_no_adopt_p,bg = '#0a4369')
-    lbl_img_p.place(relx= 0.8, rely=0.1, anchor=N)
+    lbl_img_p.place(relx= 0.8, rely=0.05, anchor=N)
 
     threading.Thread(target = lambda:get_img_perro_pub(lbl_img_p)).start()
 
@@ -1515,7 +1515,7 @@ def ventanaDonarP():
     otro.place(relx=0.8, rely=0.85,anchor=N)
 
     fr = Frame(donar_p, bg='#0a4369')
-    fr.place(relx=0.025, rely=0.11,relwidth=0.6, relheight=0.85)
+    fr.place(relx=0.025, rely=0.11,relwidth=0.55, relheight=0.85)
 
     text_box = tk.Text(fr, font=("Roboto", 17), bg="#0a4369", fg="white", bd=0, highlightthickness=0, insertborderwidth=0, exportselection=False,wrap=WORD)
     text_box.insert(tk.END, text)
@@ -1526,7 +1526,7 @@ def ventanaDonarP():
     lbl_nombre_p.config(text=valuesp[0])
 
     lbl_img_p = Label(donar_p,bg = '#0a4369')
-    lbl_img_p.place(relx= 0.8, rely=0.1, anchor=N)
+    lbl_img_p.place(relx= 0.8, rely=0.05, anchor=N)
 
 def ventanaPublicarP():
     try:
@@ -1553,13 +1553,13 @@ def ventanaPublicarP():
 
     # Crear el botón de opciones
     adopcion = tk.Button(ventana_publicar_p, text="Adopción", font='Helvetica 24 bold', bg="#33ff6d",command=lambda: [ventanaAdopcionP(),ventana.deiconify])
-    adopcion.place(relx=0.2, rely=0.75, anchor="center")
+    adopcion.place(relx=0.2, rely=0.85, anchor="center")
 
     noadop = tk.Button(ventana_publicar_p, text="No adopción", font='Helvetica 24 bold', bg="#33ff6d",command=lambda: [ventanaNoAdopcionP(),ventana.deiconify])
-    noadop.place(relx=0.5, rely=0.75, anchor="center")
+    noadop.place(relx=0.5, rely=0.85, anchor="center")
 
     donacion = tk.Button(ventana_publicar_p, text="Donación", font='Helvetica 24 bold', bg="#33ff6d",command=lambda: [ventanaDonarP(),ventana.deiconify])
-    donacion.place(relx=0.8, rely=0.75, anchor="center")
+    donacion.place(relx=0.8, rely=0.85, anchor="center")
 
     lbl_img_p = Label(ventana_publicar_p,bg = '#0a4369')
     lbl_img_p.place(relx= 0.5, rely=0.2, anchor=N)
@@ -1571,10 +1571,22 @@ def get_img_perro_pub(lbl_img_p):
         dir_path_p_fotos = os.getcwd() + "/pimg/" + selectedp #Conseguir directorio de la carpeta de imagenes
         images_files = os.listdir(dir_path_p_fotos)[0]
         original_image = Image.open(dir_path_p_fotos + '/' + images_files)
-        width, height = original_image.size
-        aspect_ratio = height / width
+        width_img_p, height_img_p = original_image.size
+        aspect_ratio_P = width_img_p/height_img_p
         resized_image = original_image.resize((400, 400), Image.Resampling.LANCZOS)
-        new_img = ImageTk.PhotoImage(resized_image.resize((600, int(600 * aspect_ratio)), Image.Resampling.LANCZOS))
+        max_width_img_p = 400
+        max_height_img_p = 400
+        new_width_img_p = min(width_img_p, max_width_img_p)
+        new_height_img_P = min(height_img_p, max_height_img_p)
+        
+        if aspect_ratio_P > 1:
+            #Imagen más ancha que alta
+            new_height_img_P = int(new_width_img_p / aspect_ratio_P)
+        else:
+            #Imagen más alta que ancha
+            new_width_img_p = int(new_height_img_P * aspect_ratio_P)
+
+        new_img = ImageTk.PhotoImage(resized_image.resize((new_width_img_p, new_height_img_P)), Image.Resampling.LANCZOS)
         lbl_img_p.config(image=new_img)
         lbl_img_p.image = new_img   
     except:
