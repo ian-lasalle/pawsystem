@@ -996,12 +996,11 @@ def contenido_ver_fotos(canvas_ver_foto_p,fverFotos_p_footer,fMainFrame3,archiva
         shutil.copyfile(current_path_image, new_path_image)
         fMainFrame3.destroy()
 
-
 #Textos Perros ---------------------------------------------------------------------------------------------
 def ventanaAdopcionP():
     ventana.withdraw()
     ventana_adop_p = tk.Toplevel()
-    ventana_adop_p.geometry("800x600")
+    ventana_adop_p.geometry("1280x720")
     ventana_adop_p.title("Adopción")
     ventana_adop_p.iconbitmap('paw-icon.ico')
     ventana_adop_p.configure(bg='#0a4369')
@@ -1125,7 +1124,7 @@ def ventanaAdopcionP():
 def ventanaNoAdopcionP():
     ventana.withdraw()
     ventana_no_adopt_p = tk.Toplevel()
-    ventana_no_adopt_p.geometry("800x600")
+    ventana_no_adopt_p.geometry("1280x720")
     ventana_no_adopt_p.title("No adopción")
     ventana_no_adopt_p.iconbitmap('paw-icon.ico')
     ventana_no_adopt_p.configure(bg='#0a4369')
@@ -1210,7 +1209,7 @@ def ventanaNoAdopcionP():
 def ventanaDonarP():
     ventana.withdraw()
     donar_p = tk.Toplevel()
-    donar_p.geometry("800x600")
+    donar_p.geometry("1280x720")
     donar_p.title("Donación")
     donar_p.iconbitmap('paw-icon.ico')
     donar_p.configure(bg='#0a4369')
