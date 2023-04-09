@@ -1000,7 +1000,7 @@ def contenido_ver_fotos(canvas_ver_foto_p,fverFotos_p_footer,fMainFrame3,archiva
 def ventanaAdopcionP():
     ventana.withdraw()
     ventana_adop_p = tk.Toplevel()
-    ventana_adop_p.geometry("1280x720")
+    ventana_adop_p.geometry("1300x720")
     ventana_adop_p.title("Adopción")
     ventana_adop_p.iconbitmap('paw-icon.ico')
     ventana_adop_p.configure(bg='#0a4369')
@@ -1097,13 +1097,13 @@ def ventanaAdopcionP():
     regresar.place(relx=0.01, rely=0.02)
     
     fotos = tk.Button(ventana_adop_p, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=carpeta_fotos_p)
-    fotos.place(relx=0.8, rely=0.55,anchor=N)
+    fotos.place(relx=0.8, rely=0.7,anchor=N)
 
     copy = tk.Button(ventana_adop_p, text="Copiar", font='Helvetica 22 bold', bg='#33ff6d',command=copy_to_clipboard)
-    copy.place(relx=0.8, rely=0.7,anchor=N)
+    copy.place(relx=0.8, rely=0.8,anchor=N)
 
     otro = tk.Button(ventana_adop_p, text="Generar otro texto", font='Helvetica 22 bold', bg='#33ff6d', command=generar_otro_texto)
-    otro.place(relx=0.8, rely=0.85,anchor=N)
+    otro.place(relx=0.8, rely=0.9,anchor=N)
 
     fr = Frame(ventana_adop_p, bg='#0a4369')
     fr.place(relx=0.025, rely=0.11,relwidth=0.55, relheight=0.85)
@@ -1124,7 +1124,7 @@ def ventanaAdopcionP():
 def ventanaNoAdopcionP():
     ventana.withdraw()
     ventana_no_adopt_p = tk.Toplevel()
-    ventana_no_adopt_p.geometry("1280x720")
+    ventana_no_adopt_p.geometry("1300x720")
     ventana_no_adopt_p.title("No adopción")
     ventana_no_adopt_p.iconbitmap('paw-icon.ico')
     ventana_no_adopt_p.configure(bg='#0a4369')
@@ -1182,13 +1182,13 @@ def ventanaNoAdopcionP():
     regresar.place(relx=0.01, rely=0.02)
     
     fotos = tk.Button(ventana_no_adopt_p, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=carpeta_fotos_p)
-    fotos.place(relx=0.8, rely=0.55,anchor=N)
+    fotos.place(relx=0.8, rely=0.7,anchor=N)
 
     copy = tk.Button(ventana_no_adopt_p, text="Copiar", font='Helvetica 22 bold', bg='#33ff6d',command=copy_to_clipboard)
-    copy.place(relx=0.8, rely=0.7,anchor=N)
+    copy.place(relx=0.8, rely=0.8,anchor=N)
 
     otro = tk.Button(ventana_no_adopt_p, text="Generar otro texto", font='Helvetica 22 bold', bg='#33ff6d', command=generar_otro_texto)
-    otro.place(relx=0.8, rely=0.85,anchor=N)
+    otro.place(relx=0.8, rely=0.9,anchor=N)
 
     fr = Frame(ventana_no_adopt_p, bg='#0a4369')
     fr.place(relx=0.025, rely=0.11,relwidth=0.55, relheight=0.85)
@@ -1209,7 +1209,7 @@ def ventanaNoAdopcionP():
 def ventanaDonarP():
     ventana.withdraw()
     donar_p = tk.Toplevel()
-    donar_p.geometry("1280x720")
+    donar_p.geometry("1300x720")
     donar_p.title("Donación")
     donar_p.iconbitmap('paw-icon.ico')
     donar_p.configure(bg='#0a4369')
@@ -1505,13 +1505,13 @@ def ventanaDonarP():
     regresar.place(relx=0.01, rely=0.02)
     
     fotos = tk.Button(donar_p, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=carpeta_fotos_p)
-    fotos.place(relx=0.8, rely=0.55,anchor=N)
+    fotos.place(relx=0.8, rely=0.7,anchor=N)
 
     copy = tk.Button(donar_p, text="Copiar", font='Helvetica 22 bold', bg='#33ff6d',command=copy_to_clipboard)
-    copy.place(relx=0.8, rely=0.7,anchor=N)
+    copy.place(relx=0.8, rely=0.8,anchor=N)
 
     otro = tk.Button(donar_p, text="Generar otro texto", font='Helvetica 22 bold', bg='#33ff6d', command=generar_otro_texto)
-    otro.place(relx=0.8, rely=0.85,anchor=N)
+    otro.place(relx=0.8, rely=0.9,anchor=N)
 
     fr = Frame(donar_p, bg='#0a4369')
     fr.place(relx=0.025, rely=0.11,relwidth=0.55, relheight=0.85)
@@ -1603,6 +1603,7 @@ def carpeta_fotos_p():
     except:
         messagebox.showwarning("ADVERTENCIA","No hay fotos del perrito registradas")
         return
+
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 #Código principal
