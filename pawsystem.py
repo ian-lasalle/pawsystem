@@ -309,6 +309,12 @@ def seleccionarUsandoClickP(treeVP):
     print(valuesp)
 
 def borrarRegistroP():
+    try:
+        valuesp
+    except NameError:
+        messagebox.showwarning("Advertencia","Seleccione un perro por favor")
+        ventana_perros.deiconify()
+        return
     conexion = sqlite3.connect("dbomeyocan.db")
     cursor = conexion.cursor()
     if messagebox.askyesno(message="¿Realmente desea eliminar el registro? Se borrarán los datos y las imágenes", title="ADVERTENCIA"):
@@ -337,6 +343,12 @@ def mostrarCamposPa():
         pass
 
 def archivarP():
+    try:
+        valuesp
+    except NameError:
+        messagebox.showwarning("Advertencia","Seleccione un perro por favor")
+        ventana_perros.deiconify()
+        return
     if messagebox.askyesno(message="¿Realmente desea archivar el registro?", title="ADVERTENCIA"):
         global estadoPa
         estadoPa = ""
@@ -669,6 +681,13 @@ def abrir_ventana_perros():
 
     #Ventana para agregar perritos
     def agregar_perritos(add):
+        if add == False:
+            try:
+                valuesp
+            except NameError:
+                messagebox.showwarning("Advertencia","Seleccione un perro por favor")
+                return
+
         fMainFrame1.destroy()
         fMainFrame2 = tk.Frame(ventana_perros, bg='#0a4369')
         fMainFrame2.pack(fill="both", expand=True)
