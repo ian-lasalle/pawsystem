@@ -332,12 +332,16 @@ def mostrarCamposPa():
     try:
         cursor.execute("SELECT * FROM perrosarchivados")
         for row in cursor:
-            treeVPa.insert("",0,text=row[0], iid=row[0],values=(row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13]))
+            treeVPa.insert("",0,text=row[0], iid=row[0],values=(row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14]))
     except:
         pass
 
 def archivarP():
     if messagebox.askyesno(message="¿Realmente desea archivar el registro?", title="ADVERTENCIA"):
+        global estadoPa
+        estadoPa = ""
+        ventana_archivar_estadoP()
+        ventana_perros.wait_window(ventana_archivar_estado_perros)
         conexion = sqlite3.connect("dbomeyocan.db")
         cursor = conexion.cursor()
         try:
@@ -347,7 +351,8 @@ def archivarP():
             datosPa = [selectedp]
             for i in range(len(valuesp)):
                 datosPa.append(valuesp[i])
-            cursor.execute("INSERT INTO perrosarchivados VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (datosPa))
+            datosPa.append(estadoPa)
+            cursor.execute("INSERT INTO perrosarchivados VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (datosPa))
             conexion.commit()
             mostrarCamposP()
         except:
@@ -365,6 +370,7 @@ def desarchivarP():
             datosPa = [selectedp]
             for i in range(len(valuesp)):
                 datosPa.append(valuesp[i])
+            datosPa.pop()
             cursor.execute("INSERT INTO perros VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (datosPa))
             conexion.commit()
             mostrarCamposPa()
@@ -468,6 +474,33 @@ def insertar_editables_perros():
     date_fecha_ingresop.set_date(fip_date)
 
 #Ventanas Perros -------------------------------------------------------------------------------------------
+def ventana_archivar_estadoP():
+    global ventana_archivar_estado_perros
+    ventana_archivar_estado_perros = tk.Toplevel()
+    ventana_archivar_estado_perros.geometry("380x230")
+    ventana_archivar_estado_perros.title("PawSystem Perros Archivar Motivo")
+    ventana_archivar_estado_perros.iconbitmap('paw-icon.ico')
+    ventana_archivar_estado_perros.configure(bg='#0a4369')
+    ventana_archivar_estado_perros.resizable(False, False)
+    lbl_vaep = Label(ventana_archivar_estado_perros, text="Motivo:", bg='#0a4369', fg="white",font='Helvetica 20')
+    lbl_vaep.pack(pady=10)
+    RBestadop = IntVar()
+    RBestadop.set(1)
+    rb_ep1 = tk.Radiobutton(ventana_archivar_estado_perros, text="Adoptado", padx = 5, variable=RBestadop, value=1,font=('Helvetica 14'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+    rb_ep1.pack(pady=10)
+    rb_ep2 = tk.Radiobutton(ventana_archivar_estado_perros, text="Fallecido", padx = 5, variable=RBestadop, value=2,font=('Helvetica 14'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+    rb_ep2.pack(pady=10)
+    btn_aceptar = Button(ventana_archivar_estado_perros, text="Aceptar", width=7, font='Helvetica 13 bold', bg='#33ff6d',command=lambda: aceptar(RBestadop))
+    btn_aceptar.pack(pady=10)
+
+    def aceptar(RBestadop):
+        global estadoPa
+        if RBestadop.get() == 1:
+            estadoPa = "Adoptado"
+        else:
+            estadoPa = "Fallecido"
+        ventana_archivar_estado_perros.destroy()
+
 def ventana_buscarP():
     global ventana_buscar_perros
     ventana_buscar_perros = tk.Toplevel()
@@ -574,11 +607,13 @@ def abrir_ventana_perros_archivados():
     fContents_vpa= tk.Frame(fMainFrame1, bg='#0a4369')
     fContents_vpa.place(relx=0.01, rely=0.12, relwidth=0.98, relheight=0.75)
 
-    column_names = ("nombre","fechanacimiento","sexo","raza","color","pelo","talla","temperamento","esterilizacion","discapacidad","adoptable","fechaesterilizacion","fechaingreso")
+    column_names = ("nombre","fechanacimiento","sexo","raza","color","pelo","talla","temperamento","esterilizacion","discapacidad","adoptable","fechaesterilizacion","fechaingreso","estado")
     global treeVPa
     treeVPa = ttk.Treeview(fContents_vpa)
     columnas_perros(column_names, treeVPa)
     headings_perros(treeVPa)
+    treeVPa.heading("estado", text="Estado")
+    treeVPa.column("estado",width=40, minwidth=10)
     treeVPa.place(relwidth=0.98, relheight=0.96)
     scrollbar_perros(fContents_vpa, treeVPa)
     mostrarCamposPa()
