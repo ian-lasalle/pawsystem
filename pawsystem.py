@@ -571,7 +571,7 @@ def abrir_ventana_perros_archivados():
     lbl_vpa_Perros = tk.Label(fHeader_vpa, text="Perros archivados", font='Helvetica 36 bold', bg='#0a4369', fg='pink').pack(side='left', padx=10)
 
     #CONTENTS =============================================================================================================================
-    fContents_vpa= tk.Frame(fMainFrame1, bg='red')
+    fContents_vpa= tk.Frame(fMainFrame1, bg='#0a4369')
     fContents_vpa.place(relx=0.01, rely=0.12, relwidth=0.98, relheight=0.75)
 
     column_names = ("nombre","fechanacimiento","sexo","raza","color","pelo","talla","temperamento","esterilizacion","discapacidad","adoptable","fechaesterilizacion","fechaingreso")
@@ -606,7 +606,7 @@ def abrir_ventana_perros():
     btn_vp_LimpiarBusqueda = tk.Button(fHeader_vp, text="Limpiar búsqueda", font='Helvetica 10 bold', bg='#edd972',command=mostrarCamposP).pack(side='right', padx=10, pady=(30,0))
     
     #CONTENTS =============================================================================================================================
-    fContents_vp= tk.Frame(fMainFrame1, bg='red')
+    fContents_vp= tk.Frame(fMainFrame1, bg='#0a4369')
     fContents_vp.place(relx=0.01, rely=0.12, relwidth=0.98, relheight=0.75)
     
     column_names = ("nombre","fechanacimiento","sexo","raza","color","pelo","talla","temperamento","esterilizacion","discapacidad","adoptable","fechaesterilizacion","fechaingreso")
