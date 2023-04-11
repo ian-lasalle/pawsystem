@@ -1141,11 +1141,11 @@ def ventanaAdopcionP():
         pyperclip.copy(text)
 
     def generar_otro_texto():
-        nuevo_texto = random.choice(textos)
+        nuevo_texto = random.sample(textos, 1)[0]
         text_box.delete("1.0", "end")
         text_box.insert("1.0", nuevo_texto)
 
-    text = random.choice(textos)
+    text = random.sample(textos, 1)[0]
 
     regresar = tk.Button(ventana_adop_p,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=ventana_adop_p.destroy)
     regresar.place(relx=0.01, rely=0.02)
@@ -1226,11 +1226,11 @@ def ventanaNoAdopcionP():
         pyperclip.copy(text)
 
     def generar_otro_texto():
-        nuevo_texto = random.choice(textos)
+        nuevo_texto = random.sample(textos, 1)[0]
         text_box.delete("1.0", "end")
         text_box.insert("1.0", nuevo_texto)
 
-    text = random.choice(textos)
+    text = random.sample(textos, 1)[0]
 
     regresar = tk.Button(ventana_no_adopt_p,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=ventana_no_adopt_p.destroy)
     regresar.place(relx=0.01, rely=0.02)
@@ -1549,11 +1549,11 @@ def ventanaDonarP():
         pyperclip.copy(text)
 
     def generar_otro_texto():
-        nuevo_texto = random.choice(textos)
+        nuevo_texto = random.sample(textos, 1)[0]
         text_box.delete("1.0", "end")
         text_box.insert("1.0", nuevo_texto)
 
-    text = random.choice(textos)
+    text = random.sample(textos, 1)[0]
 
     regresar = tk.Button(donar_p,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=donar_p.destroy)
     regresar.place(relx=0.01, rely=0.02)
