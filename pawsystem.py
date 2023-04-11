@@ -405,13 +405,13 @@ def buscarPa():
         #print(records)
         if not records: #empty list
             messagebox.showwarning("ADVERTENCIA","No se encontraron resultados")
-            mostrarCamposP()
+            mostrarCamposPa()
         else:
             for record in records:
                 treeVPa.insert("",0,text=record[0], iid=record[0],values=(record[1],record[2],record[3],record[4],record[5],record[6],record[7],record[8],record[9],record[10],record[11],record[12],record[13],record[14]))
     except:
         messagebox.showwarning("ADVERTENCIA","Ocurrió un error")
-        mostrarCamposP()
+        mostrarCamposPa()
     ventana_buscar_perros_arch.destroy()
 
 def buscarP():
@@ -713,6 +713,8 @@ def abrir_ventana_perros_archivados():
     fHeader_vpa = tk.Frame(fMainFrame1, bg='#0a4369')
     fHeader_vpa.place(relx=0.01, rely=0.01, relwidth=0.98, relheight=0.1)
     lbl_vpa_Perros = tk.Label(fHeader_vpa, text="Perros archivados", font='Helvetica 36 bold', bg='#0a4369', fg='pink').pack(side='left', padx=10)
+    btn_vp_Buscar = tk.Button(fHeader_vpa, text="Buscar", font='Helvetica 20 bold', bg='#edd972', command=ventana_buscarPa).pack(side='right', padx=10)
+    btn_vp_LimpiarBusqueda = tk.Button(fHeader_vpa, text="Limpiar búsqueda", font='Helvetica 10 bold', bg='#edd972',command=mostrarCamposPa).pack(side='right', padx=10, pady=(30,0))
 
     #CONTENTS =============================================================================================================================
     fContents_vpa= tk.Frame(fMainFrame1, bg='#0a4369')
