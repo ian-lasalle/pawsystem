@@ -2872,7 +2872,7 @@ def ventanaAdopcionG():
         " una familia. Para más información comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx #adopta "
         "#amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
-        ""+valuesG[0]+" 🐶es de talla "+valuesG[6]+". Es"+valuesG[7]+", y "+valuesG[2]+""  
+        ""+valuesG[0]+" 🐱 es de talla "+valuesG[6]+". Es"+valuesG[7]+", y "+valuesG[2]+""  
         "Si quieres adoptar a "+valuesG[0]+" y que formen una hermosa familia juntos❤️🐾, contáctanos."
         "#ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
         "adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
@@ -2903,7 +2903,7 @@ def ventanaAdopcionG():
         " Si estás interesado en adoptarme, por favor asegúrate de que tienes el tiempo y los recursos necesarios para cuidarme adecuadamente." 
         " Estoy dispuesto a aprender y estoy ansioso por encontrar un hogar lleno de amor. ¡Gracias por considerarme!",
         #--------------------------------------------------------------------------------------------------------------------
-        "¡Hola nosotros somos #Omeyocan🖐🏼! Necesitamos tu ayuda🥹, "+valuesG[0]+" 🐶esta buscando una familia con quien compartir su felicidad y cariño ❤️"
+        "¡Hola nosotros somos #Omeyocan🖐🏼! Necesitamos tu ayuda🥹, "+valuesG[0]+" 🐱 esta buscando una familia con quien compartir su felicidad y cariño ❤️"
         "\nNACIÓ: "+valuesG[1]+"\n"
         "TALLA: "+valuesG[6]+"\n"
         "SEXO: "+valuesG[2]+"\n"
@@ -2967,7 +2967,7 @@ def ventanaNoAdopcionG():
 
     textos = [
         "¡Hola! Soy "+valuesG[0]+" estoy buscando apoyo para poder tener una vida digna🐾." 
-        " No soy adoptable, pero puedes apadrinarme de manera virtual 🐶 en adopcionesvirtualesomeyocan@yahoo.com.mx." 
+        " No soy adoptable, pero puedes apadrinarme de manera virtual 🐱 en adopcionesvirtualesomeyocan@yahoo.com.mx." 
         " No todos podemos ser adoptables por distintas razones, pero siempre existen más maneras de apoyar. ❤️"
         " #APADRINA #noadoptable #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
@@ -2988,9 +2988,9 @@ def ventanaNoAdopcionG():
         " #APADRINA"
         " #UnperritogatitoabandonadoenunHOGAR",
         #--------------------------------------------------------------------------------------------------------------------
-        "¡Haz la diferencia en la vida de "+valuesG[0]+"! Apadrina a uno de los adorables perros de Omeyocan, un refugio dedicado a cuidar y proteger a los animales." 
-        " Tu apadrinamiento ayudará a cubrir los costos de alimentación, atención médica y cuidado diario de estos perros mientras esperan encontrar un hogar amoroso y permanente." 
-        " ¡Únete a nosotros en nuestra misión de brindar una vida mejor a estos perros necesitados!"
+        "¡Haz la diferencia en la vida de "+valuesG[0]+"! Apadrina a uno de los adorables gatitos de Omeyocan, un refugio dedicado a cuidar y proteger a los animales." 
+        " Tu apadrinamiento ayudará a cubrir los costos de alimentación, atención médica y cuidado diario de estos gatitos mientras esperan encontrar un hogar amoroso y permanente." 
+        " ¡Únete a nosotros en nuestra misión de brindar una vida mejor a estos gatitos necesitados!"
         " Para más información comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx"
         " #apadrina #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
