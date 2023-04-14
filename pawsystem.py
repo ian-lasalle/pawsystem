@@ -331,9 +331,11 @@ def borrarRegistroP():
     cursor = conexion.cursor()
     if messagebox.askyesno(message="¿Realmente desea eliminar el registro? Se borrarán los datos y las imágenes", title="ADVERTENCIA"):
         try:
-            path_2erase_p = os.getcwd() + "\\pimg\\" + selectedp
-            print(path_2erase_p)
-            shutil.rmtree(path_2erase_p)
+            try:
+                path_2erase_p = os.getcwd() + "\\pimg\\" + selectedp
+                shutil.rmtree(path_2erase_p)
+            except OSError:
+                pass
             cursor.execute("DELETE FROM perros WHERE ID="+selectedp)
             conexion.commit()
         except:
@@ -705,6 +707,10 @@ def crear_ventana_perros():
     ventana_perros.iconbitmap('paw-icon.ico')
     ventana_perros.configure(bg='#0a4369')
     ventana_perros.state('zoomed')
+    folder_path = os.path.join(os.getcwd(), "pimg")
+    # Verificar si la carpeta existe
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
 
 def crear_ventana_perros_archivados():
     global ventana_perros_archivados
@@ -1086,13 +1092,12 @@ def contenido_ver_fotos(canvas_ver_foto_p,fverFotos_p_footer,fMainFrame3,archiva
 
     global dir_path_p_fotos
     images_files = None
-    try:
-        dir_path_p_fotos = os.getcwd() + "/pimg/" + selectedp #Conseguir directorio de la carpeta de imagenes
-        images_files = os.listdir(dir_path_p_fotos)
-    except:
-        os.makedirs(os.getcwd() + "/pimg/" + selectedp)
-        images_files = os.listdir(dir_path_p_fotos)
+    dir_path_p_fotos = os.getcwd() + "/pimg/" + selectedp
+    if not os.path.exists(dir_path_p_fotos):
+        os.makedirs(dir_path_p_fotos)
 
+    images_files = os.listdir(dir_path_p_fotos)
+  
     for r in range(0, len(images_files)):
         original_image = Image.open(dir_path_p_fotos + '/' + images_files[r])
         width_img_p, height_img_p = original_image.size
@@ -1876,6 +1881,7 @@ def crearG(fMainframe2):
         datosG = nombreG.get(), fechanacimientoG, sexoG, razaG.get(), colorG.get(), peloG, tallaG, temperamentoG.get(), esterilizacionG, discapacidadG.get(), adoptableG, str(fechaesterilizacionG), str(fechaingresoG)
         cursor.execute("INSERT INTO gatos VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?)", (datosG))
         conexion.commit()
+
     except:
         messagebox.showwarning("ADVERTENCIA","Ocurrió un error al crear el registro")
         pass
@@ -1993,9 +1999,11 @@ def borrarRegistroG():
     cursor = conexion.cursor()
     if messagebox.askyesno(message="¿Realmente desea eliminar el registro? Se borrarán los datos y las imágenes", title="ADVERTENCIA"):
         try:
-            path_2erase_g = os.getcwd() + "\\gimg\\" + selectedG
-            print(path_2erase_g)
-            shutil.rmtree(path_2erase_g)
+            try:
+                path_2erase_g = os.getcwd() + "\\gimg\\" + selectedG
+                shutil.rmtree(path_2erase_g)
+            except OSError:
+                pass
             cursor.execute("DELETE FROM gatos WHERE ID="+selectedG)
             conexion.commit()
         except:
@@ -2367,6 +2375,10 @@ def crear_ventana_Gatos():
     ventana_Gatos.iconbitmap('paw-icon.ico')
     ventana_Gatos.configure(bg='#0a4369')
     ventana_Gatos.state('zoomed')
+    folder_path = os.path.join(os.getcwd(), "gimg")
+    # Verificar si la carpeta existe
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
 
 def crear_ventana_Gatos_archivados():
     global ventana_Gatos_archivados
@@ -2490,12 +2502,14 @@ def abrir_ventana_Gatos():
         #Radio Buttons de las categorias
         radiobtns_formulario_Gatos(fagregar_G)
 
+        
         if add == True:
             btn_Vagregar_Agregar = tk.Button(fagregar_G_header, text="Agregar", font='Helvetica 20 bold', bg='#33ff6d', command=lambda:[crearG(fMainFrame2)]).pack(side='right', padx=10)
         elif add == False:
             btn_Vagregar_Editar = tk.Button(fagregar_G_header, text="Guardar cambios", font='Helvetica 20 bold', bg='#33ff6d', command=lambda:[editarG(fMainFrame2)]).pack(side='right', padx=10)
             clear_entradas_Gatos()
             insertar_editables_Gatos()
+            
 
     def radiobtns_formulario_Gatos(fagregar_G):
         global RBsexoG
@@ -2679,10 +2693,6 @@ def crear_ventana_ver_fotos_G(archivado):
     ver_fotos_ven_G.configure(bg='#0a4369')
     ver_fotos_ven_G.state('zoomed')
     ver_fotos_ven_G.update_idletasks()
-    folder_path = os.path.join(os.getcwd(), "gimg")
-    # Verificar si la carpeta existe
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
 
     abrir_ventana_ver_fotos_G(archivado)
 
@@ -2746,12 +2756,11 @@ def contenido_ver_fotos_G(canvas_ver_foto_G,fverFotos_G_footer,fMainFrame3,archi
 
     global dir_path_G_fotos
     images_files = None
-    try:
-        dir_path_G_fotos = os.getcwd() + "/gimg/" + selectedG #Conseguir directorio de la carpeta de imagenes
-        images_files = os.listdir(dir_path_G_fotos)
-    except:
-        os.makedirs(os.getcwd() + "/gimg/" + selectedG)
-        images_files = os.listdir(dir_path_G_fotos)
+    dir_path_G_fotos = os.getcwd() + "/gimg/" + selectedG
+    if not os.path.exists(dir_path_G_fotos):
+        os.makedirs(dir_path_G_fotos)
+    images_files = os.listdir(dir_path_G_fotos)      
+        
 
     for r in range(0, len(images_files)):
         original_image = Image.open(dir_path_G_fotos + '/' + images_files[r])
