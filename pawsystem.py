@@ -272,6 +272,18 @@ def monthToNum(monthName):
                 'OCTUBRE': "10",
                 'NOVIEMBRE': "11",
                 'DICIEMBRE': "12",
+                'ENE': "01",
+                'FEB': "02",
+                'MAR': "03",
+                'ABR': "04",
+                'MAY': "05",
+                'JUN': "06",
+                'JUL': "07",
+                'AGO': "08",
+                'SEP': "09", 
+                'OCT': "10",
+                'NOV': "11",
+                'DIC': "12",
                 'ene': "01",
                 'feb': "02",
                 'mar': "03",
@@ -1761,6 +1773,1667 @@ def carpeta_fotos_p():
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+
+##### Gatos ##### ----------------===============------------------===============------------------================--------------
+
+#Variables Gatos ----------------------------------------------------------------------------------
+idG = StringVar()
+nombreG = StringVar()
+fechanacimientoG = StringVar()
+sexoG = StringVar()
+razaG = StringVar()
+colorG = StringVar()
+peloG = StringVar()
+tallaG = StringVar()
+temperamentoG = StringVar()
+esterilizacionG = StringVar()
+discapacidadG = StringVar()
+adoptableG = StringVar()
+fechaesterilizacionG = StringVar()
+fechaingresoG = StringVar()
+
+#CRUD Gatos ---------------------------------------------------------------------------------------------
+def limpiarCamposG():
+    idG.set("")
+    nombreG.set("")
+    fechanacimientoG.set("")
+    sexoG.set("")
+    razaG.set("")
+    colorG.set("")
+    peloG.set("")
+    tallaG.set("")
+    temperamentoG.set("")
+    esterilizacionG.set("")
+    discapacidadG.set("")
+    adoptableG.set("")
+    fechaesterilizacionG.set("")
+    fechaingresoG.set("")
+    peloOtroG.set("")
+
+def crearG(fMainframe2):
+    #Conversiones 
+    fechaesterilizacionG = date_fecha_esterilizacionG.get_date()
+    fechaingresoG = date_fecha_ingresoG.get_date()
+    try:
+        mesConvG = monthToNum(mesNacG.get())
+        fechanacimientoG = anoNacG.get() + "-" + mesConvG
+    except:
+        messagebox.showwarning("ADVERTENCIA","Ocurrió un error al crear el registro")
+        return
+    sexoGato = RBsexoG.get()
+    if sexoGato == 1:
+        sexoG = "Hembra"
+    elif sexoGato == 2:
+        sexoG = "Macho"
+    esterilizacionGato = RBesterilizacionG.get()
+    if esterilizacionGato == 1:
+        esterilizacionG = "Si"
+    elif esterilizacionGato == 2:
+        esterilizacionG = "No"
+        fechaesterilizacionG = "N/A"
+    adoptableGato = RBadoptableG.get()
+    if adoptableGato == 1:
+        adoptableG = "Si"
+    elif adoptableGato == 2:
+        adoptableG = "No"
+    tallaGato = RBtallaG.get()
+    if tallaGato == 1:
+        tallaG = "Chico"
+    elif tallaGato == 2:
+        tallaG = "Mediano"
+    elif tallaGato == 3:
+        tallaG = "Grande"
+    peloGato = RBpeloG.get()
+    if peloGato == 1:
+        peloG = "Corto"
+    elif peloGato == 2:
+        peloG = "Largo"
+    elif peloGato == 3:
+        peloG = "Duro"
+    elif peloGato == 4:
+        peloG = "Alambre"
+    elif peloGato == 5:
+        peloG = "Chino"
+    elif peloGato == 6:
+        peloG = str(peloOtroG.get())
+    #Conexión
+    conexion = sqlite3.connect("dbomeyocan.db")
+    cursor = conexion.cursor()
+    try:
+        print(nombreG.get())
+        print(fechanacimientoG)
+        print(sexoG)
+        print(razaG.get())
+        print(colorG.get())
+        print(str(peloG))
+        print(tallaG)
+        print(temperamentoG.get())
+        print(esterilizacionG)
+        print(discapacidadG.get())
+        print(adoptableG)
+        print(str(fechaesterilizacionG))
+        print(str(fechaingresoG))
+        datosG = nombreG.get(), fechanacimientoG, sexoG, razaG.get(), colorG.get(), peloG, tallaG, temperamentoG.get(), esterilizacionG, discapacidadG.get(), adoptableG, str(fechaesterilizacionG), str(fechaingresoG)
+        cursor.execute("INSERT INTO gatos VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?)", (datosG))
+        conexion.commit()
+    except:
+        messagebox.showwarning("ADVERTENCIA","Ocurrió un error al crear el registro")
+        pass
+    limpiarCamposG()
+    fMainframe2.destroy()
+    ventana.iconify()
+    abrir_ventana_Gatos()
+    mostrarCamposG()
+
+def editarG(fMainframe2):
+    fechaesterilizacionG = date_fecha_esterilizacionG.get_date()
+    fechaingresoG = date_fecha_ingresoG.get_date()
+    try:
+        mesConvG = monthToNum(mesNacG.get())
+        fechanacimientoG = anoNacG.get() + "-" + mesConvG
+    except:
+        messagebox.showwarning("ADVERTENCIA","Ocurrió un error al editar el registro")
+        return
+    sexoGato = RBsexoG.get()
+    if sexoGato == 1:
+        sexoG = "Hembra"
+    elif sexoGato == 2:
+        sexoG = "Macho"
+    esterilizacionGato = RBesterilizacionG.get()
+    if esterilizacionGato == 1:
+        esterilizacionG = "Si"
+    elif esterilizacionGato == 2:
+        esterilizacionG = "No"
+        fechaesterilizacionG = "N/A"
+    adoptableGato = RBadoptableG.get()
+    if adoptableGato == 1:
+        adoptableG = "Si"
+    elif adoptableGato == 2:
+        adoptableG = "No"
+    tallaGato = RBtallaG.get()
+    if tallaGato == 1:
+        tallaG = "Chico"
+    elif tallaGato == 2:
+        tallaG = "Mediano"
+    elif tallaGato == 3:
+        tallaG = "Grande"
+    peloGato = RBpeloG.get()
+    if peloGato == 1:
+        peloG = "Corto"
+    elif peloGato == 2:
+        peloG = "Largo"
+    elif peloGato == 3:
+        peloG = "Duro"
+    elif peloGato == 4:
+        peloG = "Alambre"
+    elif peloGato == 5:
+        peloG = "Chino"
+    elif peloGato == 6:
+        peloG = str(peloOtroG.get())
+    #Conexión
+    conexion = sqlite3.connect("dbomeyocan.db")
+    cursor = conexion.cursor()
+    try:
+        print(nombreG.get())
+        print(fechanacimientoG)
+        print(sexoG)
+        print(razaG.get())
+        print(colorG.get())
+        print(str(peloG))
+        print(tallaG)
+        print(temperamentoG.get())
+        print(esterilizacionG)
+        print(discapacidadG.get())
+        print(adoptableG)
+        print(str(fechaesterilizacionG))
+        print(str(fechaingresoG))
+        datosG = nombreG.get(), fechanacimientoG, sexoG, razaG.get(), colorG.get(), peloG, tallaG, temperamentoG.get(), esterilizacionG, discapacidadG.get(), adoptableG, str(fechaesterilizacionG), str(fechaingresoG)
+        cursor.execute("UPDATE gatos SET NOMBRE=?, FECHANACIMIENTO=?, SEXO=?, RAZA=?, COLOR=?, PELO=?, TALLA=?, TEMPERAMENTO=?, ESTERILIZACION=?, DISCAPACIDAD=?, ADOPTABLE=?, FECHAESTERILIZACION=?, FECHAINGRESO=? WHERE ID="+selectedG, (datosG))
+        conexion.commit()
+    except:
+        messagebox.showwarning("ADVERTENCIA","Ocurrió un error al editar el registro")
+        pass
+    limpiarCamposG()
+    fMainframe2.destroy()
+    ventana.iconify()
+    abrir_ventana_Gatos()
+    mostrarCamposG()
+
+def mostrarCamposG():
+    conexion = sqlite3.connect("dbomeyocan.db")
+    cursor = conexion.cursor()
+    registrosG = treeVG.get_children()
+    for elemento in registrosG:
+        treeVG.delete(elemento)
+    try:
+        cursor.execute("SELECT * FROM gatos")
+        for row in cursor:
+            treeVG.insert("",0,text=row[0], iid=row[0],values=(row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13]))
+    except:
+        pass
+
+def seleccionarUsandoClickG(treeVG):
+    global selectedG
+    global valuesG
+    selectedG = None
+    valuesG = None
+    selectedG = treeVG.focus()
+    valuesG = treeVG.item(selectedG,'values')
+    print(selectedG)
+    print(valuesG)
+
+def borrarRegistroG():
+    try:
+        valuesG
+    except NameError:
+        messagebox.showwarning("Advertencia","Seleccione un gato por favor")
+        ventana_Gatos.deiconify()
+        return
+    conexion = sqlite3.connect("dbomeyocan.db")
+    cursor = conexion.cursor()
+    if messagebox.askyesno(message="¿Realmente desea eliminar el registro? Se borrarán los datos y las imágenes", title="ADVERTENCIA"):
+        try:
+            path_2erase_g = os.getcwd() + "\\gimg\\" + selectedG
+            print(path_2erase_g)
+            shutil.rmtree(path_2erase_g)
+            cursor.execute("DELETE FROM gatos WHERE ID="+selectedG)
+            conexion.commit()
+        except:
+            messagebox.showwarning("ADVERTENCIA","Ocurrió un error al tratar de eliminar el registro")
+            pass
+    mostrarCamposG()
+
+def mostrarCamposGa():
+    conexion = sqlite3.connect("dbomeyocan.db")
+    cursor = conexion.cursor()
+    registrosG = treeVGa.get_children()
+    for elemento in registrosG:
+        treeVGa.delete(elemento)
+    try:
+        cursor.execute("SELECT * FROM gatosarchivados")
+        for row in cursor:
+            treeVGa.insert("",0,text=row[0], iid=row[0],values=(row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14]))
+    except:
+        pass
+
+def archivarG():
+    try:
+        valuesG
+    except NameError:
+        messagebox.showwarning("Advertencia","Seleccione un gato por favor")
+        ventana_Gatos.deiconify()
+        return
+    if messagebox.askyesno(message="¿Realmente desea archivar el registro?", title="ADVERTENCIA"):
+        global estadoGa
+        estadoGa = ""
+        ventana_archivar_estadoG()
+        ventana_Gatos.wait_window(ventana_archivar_estado_Gatos)
+        conexion = sqlite3.connect("dbomeyocan.db")
+        cursor = conexion.cursor()
+        try:
+            cursor.execute("DELETE FROM gatos WHERE ID="+selectedG)
+            conexion.commit()
+            print("Archivando gato")
+            datosGa = [selectedG]
+            for i in range(len(valuesG)):
+                datosGa.append(valuesG[i])
+            datosGa.append(estadoGa)
+            cursor.execute("INSERT INTO gatosarchivados VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (datosGa))
+            conexion.commit()
+            mostrarCamposG()
+        except:
+            messagebox.showwarning("ADVERTENCIA","Ocurrió un error al archivar el gato")
+            pass
+
+def desarchivarG():
+    if messagebox.askyesno(message="¿Realmente desea desarchivar el registro?", title="ADVERTENCIA"):
+        conexion = sqlite3.connect("dbomeyocan.db")
+        cursor = conexion.cursor()
+        try:
+            cursor.execute("DELETE FROM gatosarchivados WHERE ID="+selectedG)
+            conexion.commit()
+            print("Desarchivando gato")
+            datosGa = [selectedG]
+            for i in range(len(valuesG)):
+                datosGa.append(valuesG[i])
+            datosGa.pop()
+            cursor.execute("INSERT INTO gatos VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (datosGa))
+            conexion.commit()
+            mostrarCamposGa()
+            mostrarCamposG()
+        except:
+            messagebox.showwarning("ADVERTENCIA","Ocurrió un error al desarchivar el gato")
+            pass
+
+def buscarGa():
+    conexion = sqlite3.connect("dbomeyocan.db")
+    cursor = conexion.cursor()
+    lookup_Gato_arch = busqueda_entryGa.get()
+    #print(lookup_Gato_arch)
+    #print(selCbGa)
+    for record in treeVGa.get_children():
+        treeVGa.delete(record)
+    try:
+        cursor.execute("SELECT * FROM gatosarchivados WHERE "+selCbGa+" like ?",(lookup_Gato_arch,))
+        records = cursor.fetchall()
+        #print(records)
+        if not records: #empty list
+            messagebox.showwarning("ADVERTENCIA","No se encontraron resultados")
+            mostrarCamposGa()
+        else:
+            for record in records:
+                treeVGa.insert("",0,text=record[0], iid=record[0],values=(record[1],record[2],record[3],record[4],record[5],record[6],record[7],record[8],record[9],record[10],record[11],record[12],record[13],record[14]))
+    except:
+        messagebox.showwarning("ADVERTENCIA","Ocurrió un error")
+        mostrarCamposGa()
+    ventana_buscar_Gatos_arch.destroy()
+
+def buscarG():
+    conexion = sqlite3.connect("dbomeyocan.db")
+    cursor = conexion.cursor()
+    lookup_Gato = busqueda_entryG.get()
+    #print(lookup_Gato)
+    #print(selCbG)
+    for record in treeVG.get_children():
+        treeVG.delete(record)
+    try:
+        cursor.execute("SELECT * FROM gatos WHERE "+selCbG+" like ?",(lookup_Gato,))
+        records = cursor.fetchall()
+        #print(records)
+        if not records: #empty list
+            messagebox.showwarning("ADVERTENCIA","No se encontraron resultados")
+            mostrarCamposG()
+        else:
+            for record in records:
+                treeVG.insert("",0,text=record[0], iid=record[0],values=(record[1],record[2],record[3],record[4],record[5],record[6],record[7],record[8],record[9],record[10],record[11],record[12],record[13]))
+    except:
+        messagebox.showwarning("ADVERTENCIA","Ocurrió un error")
+        mostrarCamposG()
+    ventana_buscar_Gatos.destroy()
+
+def clear_entradas_Gatos():
+    e_nombreG.delete(0,END)
+    e_anoNacG.delete(0,END)
+    e_mesNacG.delete(0,END)
+    e_razaG.delete(0,END)
+    e_colorG.delete(0,END)
+    e_peloG.delete(0,END)
+    e_temperamentoG.delete(0,END)
+    e_discapacidadG.delete(0,END)
+
+def insertar_editables_Gatos():
+    #0 nombre
+    e_nombreG.insert(0,valuesG[0])
+    #1 fecha nacimiento
+    split_fnp = valuesG[1].split('-')
+    e_anoNacG.insert(0,split_fnp[0])
+    e_mesNacG.insert(0,split_fnp[1])
+    #2 sexo
+    if valuesG[2] == 'Hembra':
+        RBsexoG.set(1)
+    elif valuesG[2] == 'Macho':
+        RBsexoG.set(2)
+    #3 raza
+    e_razaG.insert(0,valuesG[3])
+    #4 color
+    e_colorG.insert(0,valuesG[4])
+    #5 pelo
+    if valuesG[5] == 'Corto':
+        RBpeloG.set(1)
+    elif valuesG[5] == 'Largo':
+        RBpeloG.set(2)
+    elif valuesG[5] == 'Duro':
+        RBpeloG.set(3)
+    elif valuesG[5] == 'Alambre':
+        RBpeloG.set(4)
+    elif valuesG[5] == 'Chino':
+        RBpeloG.set(5)
+    else:
+        RBpeloG.set(6)
+        e_peloG.insert(0,valuesG[5])
+    #6 talla
+    if valuesG[6] == 'Chico':
+        RBtallaG.set(1)
+    elif valuesG[6] == 'Mediano':
+        RBtallaG.set(2)
+    elif valuesG[6] == 'Grande':
+        RBtallaG.set(3)
+    #7 temperamento
+    e_temperamentoG.insert(0,valuesG[7])
+    #8 esterilizacion
+    if valuesG[8] == 'Si':
+        RBesterilizacionG.set(1)
+    elif valuesG[8] == 'No':
+        RBesterilizacionG.set(2)
+    #9 discapacidad
+    e_discapacidadG.insert(0,valuesG[9])
+    #10 adoptable
+    if valuesG[10] == 'Si':
+        RBadoptableG.set(1)
+    elif valuesG[10] == 'No':
+        RBadoptableG.set(2)
+    #11 fecha esterilizacion
+    if not valuesG[11] == "N/A":
+        split_feg = valuesG[11].split('-')
+        feg_date = date(int(split_feg[0]),int(split_feg[1]),int(split_feg[2]))
+        date_fecha_esterilizacionG.set_date(feg_date)
+    #12 fecha ingreso
+    split_fig = valuesG[12].split('-')
+    fig_date = date(int(split_fig[0]),int(split_fig[1]),int(split_fig[2]))
+    date_fecha_ingresoG.set_date(fig_date)
+
+#Ventanas Gatos -------------------------------------------------------------------------------------------
+def ventana_archivar_estadoG():
+    global ventana_archivar_estado_Gatos
+    ventana_archivar_estado_Gatos = tk.Toplevel()
+    ventana_archivar_estado_Gatos.geometry("380x230")
+    ventana_archivar_estado_Gatos.title("PawSystem Gatos Archivar Motivo")
+    ventana_archivar_estado_Gatos.iconbitmap('paw-icon.ico')
+    ventana_archivar_estado_Gatos.configure(bg='#0a4369')
+    ventana_archivar_estado_Gatos.resizable(False, False)
+    lbl_vaeg = Label(ventana_archivar_estado_Gatos, text="Motivo:", bg='#0a4369', fg="white",font='Helvetica 20')
+    lbl_vaeg.pack(pady=10)
+    RBestadog = IntVar()
+    RBestadog.set(1)
+    rb_eg1 = tk.Radiobutton(ventana_archivar_estado_Gatos, text="Adoptado", padx = 5, variable=RBestadog, value=1,font=('Helvetica 14'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+    rb_eg1.pack(pady=10)
+    rb_eg2 = tk.Radiobutton(ventana_archivar_estado_Gatos, text="Fallecido", padx = 5, variable=RBestadog, value=2,font=('Helvetica 14'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+    rb_eg2.pack(pady=10)
+    btn_aceptar = Button(ventana_archivar_estado_Gatos, text="Aceptar", width=7, font='Helvetica 13 bold', bg='#33ff6d',command=lambda: aceptar(RBestadog))
+    btn_aceptar.pack(pady=10)
+
+    def aceptar(RBestadog):
+        global estadoGa
+        if RBestadog.get() == 1:
+            estadoGa = "Adoptado"
+        else:
+            estadoGa = "Fallecido"
+        ventana_archivar_estado_Gatos.destroy()
+
+def ventana_buscarGa():
+    global ventana_buscar_Gatos_arch
+    ventana_buscar_Gatos_arch = tk.Toplevel()
+    ventana_buscar_Gatos_arch.geometry("475x230")
+    ventana_buscar_Gatos_arch.title("PawSystem Gatos Búsqueda")
+    ventana_buscar_Gatos_arch.iconbitmap('paw-icon.ico')
+    ventana_buscar_Gatos_arch.configure(bg='#0a4369')
+    ventana_buscar_Gatos_arch.resizable(False, False)
+    lbl_opcion = Label(ventana_buscar_Gatos_arch, text="Opción:", bg='#0a4369', fg="white",font='Helvetica 14')
+    lbl_opcion.grid(column=0, row=0, sticky=W, padx=5, pady=(10,5))
+    combo = ttk.Combobox(ventana_buscar_Gatos_arch,state="readonly", font='Helvetica 10', values=["Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Discapacidad","Adoptable","Fecha de esterilización","Fecha de ingreso","Estado"])
+    combo.grid(column=1, row=0, sticky=W, padx=10, pady=(10,5))
+    lbl_busqueda = Label(ventana_buscar_Gatos_arch, text="Búsqueda:", bg='#0a4369', fg="white",font='Helvetica 14')
+    lbl_busqueda.grid(column=0, row=1, sticky=W, padx=5, pady=5)
+    global busqueda_entryGa
+    busqueda_entryGa = ttk.Entry(ventana_buscar_Gatos_arch,font=('Helvetica 10'))
+    busqueda_entryGa.grid(column=1, row=1, sticky=W, padx=10, pady=5)
+    lbl_busqueda_formato = Label(ventana_buscar_Gatos_arch, text="", bg='#0a4369', fg="white",font='Helvetica 14')
+    lbl_busqueda_formato.grid(column=1, row=2, sticky=W, padx=7, pady=2)
+    btn_cancelarBG = Button(ventana_buscar_Gatos_arch, text="Cancelar", width=8, font='Helvetica 11 bold', bg='pink',command=lambda:ventana_buscar_Gatos_arch.destroy())
+    btn_cancelarBG.grid(column=0, row=4, sticky=W, padx=5, pady=5)
+
+    def selectionCombo(event):
+        global selCbGa
+        selCbGa = None
+        selCbGa = combo.get()
+        #print(selCbGa)
+        match selCbGa:
+            case "Nombre":
+                lbl_busqueda_formato.config(text="escriba el nombre del gato")
+                selCbGa = "NOMBRE"
+            case "Fecha de nacimiento":
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm")
+                selCbGa = "FECHANACIMIENTO"
+            case "Sexo":
+                lbl_busqueda_formato.config(text="escriba hembra o macho")
+                selCbGa = "SEXO"
+            case "Raza":
+                lbl_busqueda_formato.config(text="escriba la raza del gato")
+                selCbGa = "RAZA"
+            case "Color":
+                lbl_busqueda_formato.config(text="escriba el color del gato")
+                selCbGa = "COLOR"
+            case "Pelo":
+                lbl_busqueda_formato.config(text="escriba el pelo del gato")
+                selCbGa = "PELO"
+            case "Talla":
+                lbl_busqueda_formato.config(text="escriba la talla del gato")
+                selCbGa = "TALLA"
+            case "Temperamento":
+                lbl_busqueda_formato.config(text="escriba el temperamento del gato")
+                selCbGa = "TEMPERAMENTO"
+            case "Esterilización":
+                lbl_busqueda_formato.config(text="escriba sí o no")
+                selCbGa = "ESTERILIZACION"
+            case "Discapacidad":
+                lbl_busqueda_formato.config(text="escriba sí o no")
+                selCbGa = "DISCAPACIDAD"
+            case "Adoptable":
+                lbl_busqueda_formato.config(text="escriba sí o no")
+                selCbGa = "ADOPTABLE"
+            case "Fecha de esterilización":
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm-dd")
+                selCbGa = "FECHAESTERILIZACION"
+            case "Fecha de ingreso":
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm-dd")
+                selCbGa = "FECHAINGRESO"
+            case "Estado":
+                lbl_busqueda_formato.config(text="escriba Adoptado o Fallecido")
+                selCbGa = "STATUS"
+        #print(selCbGa)
+
+    combo.bind("<<ComboboxSelected>>", selectionCombo)
+    btn_buscarG = Button(ventana_buscar_Gatos_arch, text="Buscar", width=7, font='Helvetica 13 bold', bg='#edd972',command=buscarGa)
+    btn_buscarG.grid(column=1, row=3, sticky=E, padx=5, pady=5)
+
+def ventana_buscarG():
+    global ventana_buscar_Gatos
+    ventana_buscar_Gatos = tk.Toplevel()
+    ventana_buscar_Gatos.geometry("475x230")
+    ventana_buscar_Gatos.title("PawSystem Gatos Búsqueda")
+    ventana_buscar_Gatos.iconbitmap('paw-icon.ico')
+    ventana_buscar_Gatos.configure(bg='#0a4369')
+    ventana_buscar_Gatos.resizable(False, False)
+    lbl_opcion = Label(ventana_buscar_Gatos, text="Opción:", bg='#0a4369', fg="white",font='Helvetica 14')
+    lbl_opcion.grid(column=0, row=0, sticky=W, padx=5, pady=(10,5))
+    combo = ttk.Combobox(ventana_buscar_Gatos,state="readonly", font='Helvetica 10', values=["Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Discapacidad","Adoptable","Fecha de esterilización","Fecha de ingreso"])
+    combo.grid(column=1, row=0, sticky=W, padx=10, pady=(10,5))
+    lbl_busqueda = Label(ventana_buscar_Gatos, text="Búsqueda:", bg='#0a4369', fg="white",font='Helvetica 14')
+    lbl_busqueda.grid(column=0, row=1, sticky=W, padx=5, pady=5)
+    global busqueda_entryG
+    busqueda_entryG = ttk.Entry(ventana_buscar_Gatos,font=('Helvetica 10'))
+    busqueda_entryG.grid(column=1, row=1, sticky=W, padx=10, pady=5)
+    lbl_busqueda_formato = Label(ventana_buscar_Gatos, text="", bg='#0a4369', fg="white",font='Helvetica 14')
+    lbl_busqueda_formato.grid(column=1, row=2, sticky=W, padx=7, pady=2)
+    btn_cancelarBG = Button(ventana_buscar_Gatos, text="Cancelar", width=8, font='Helvetica 11 bold', bg='pink',command=lambda:ventana_buscar_Gatos.destroy())
+    btn_cancelarBG.grid(column=0, row=4, sticky=W, padx=5, pady=5)
+
+    def selectionCombo(event):
+        global selCbG
+        selCbG = None
+        selCbG = combo.get()
+        #print(selCbG)
+        match selCbG:
+            case "Nombre":
+                lbl_busqueda_formato.config(text="escriba el nombre del gato")
+                selCbG = "NOMBRE"
+            case "Fecha de nacimiento":
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm")
+                selCbG = "FECHANACIMIENTO"
+            case "Sexo":
+                lbl_busqueda_formato.config(text="escriba hembra o macho")
+                selCbG = "SEXO"
+            case "Raza":
+                lbl_busqueda_formato.config(text="escriba la raza del gato")
+                selCbG = "RAZA"
+            case "Color":
+                lbl_busqueda_formato.config(text="escriba el color del gato")
+                selCbG = "COLOR"
+            case "Pelo":
+                lbl_busqueda_formato.config(text="escriba el pelo del gato")
+                selCbG = "PELO"
+            case "Talla":
+                lbl_busqueda_formato.config(text="escriba la talla del gato")
+                selCbG = "TALLA"
+            case "Temperamento":
+                lbl_busqueda_formato.config(text="escriba el temperamento del gato")
+                selCbG = "TEMPERAMENTO"
+            case "Esterilización":
+                lbl_busqueda_formato.config(text="escriba sí o no")
+                selCbG = "ESTERILIZACION"
+            case "Discapacidad":
+                lbl_busqueda_formato.config(text="escriba sí o no")
+                selCbG = "DISCAPACIDAD"
+            case "Adoptable":
+                lbl_busqueda_formato.config(text="escriba sí o no")
+                selCbG = "ADOPTABLE"
+            case "Fecha de esterilización":
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm-dd")
+                selCbG = "FECHAESTERILIZACION"
+            case "Fecha de ingreso":
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm-dd")
+                selCbG = "FECHAINGRESO"
+        #print(selCbG)
+
+    combo.bind("<<ComboboxSelected>>", selectionCombo)
+    btn_buscarG = Button(ventana_buscar_Gatos, text="Buscar", width=7, font='Helvetica 13 bold', bg='#edd972',command=buscarG)
+    btn_buscarG.grid(column=1, row=3, sticky=E, padx=5, pady=5)
+
+def crear_ventana_Gatos():
+    global ventana_Gatos
+    ventana_Gatos = tk.Toplevel()
+    ventana_Gatos.geometry("1280x860")
+    ventana_Gatos.title("PawSystem Gatos")
+    ventana_Gatos.iconbitmap('paw-icon.ico')
+    ventana_Gatos.configure(bg='#0a4369')
+    ventana_Gatos.state('zoomed')
+
+def crear_ventana_Gatos_archivados():
+    global ventana_Gatos_archivados
+    ventana_Gatos_archivados = tk.Toplevel()
+    ventana_Gatos_archivados.geometry("1280x860")
+    ventana_Gatos_archivados.title("PawSystem Gatos Archivados")
+    ventana_Gatos_archivados.iconbitmap('paw-icon.ico')
+    ventana_Gatos_archivados.configure(bg='#0a4369')
+    ventana_Gatos_archivados.state('zoomed')
+
+def abrir_ventana_Gatos_archivados():
+    #MAIN FRAME
+    fMainFrame1 = tk.Frame(ventana_Gatos_archivados, bg='#0a4369')
+    fMainFrame1.pack(fill="both", expand=True)
+
+    #Crear widgets
+    #HEADER =============================================================================================================================
+    fHeader_vga = tk.Frame(fMainFrame1, bg='#0a4369')
+    fHeader_vga.place(relx=0.01, rely=0.01, relwidth=0.98, relheight=0.1)
+    lbl_vga_Gatos = tk.Label(fHeader_vga, text="Gatos archivados", font='Helvetica 36 bold', bg='#0a4369', fg='pink').pack(side='left', padx=10)
+    btn_vg_Buscar = tk.Button(fHeader_vga, text="Buscar", font='Helvetica 20 bold', bg='#edd972', command=ventana_buscarGa).pack(side='right', padx=10)
+    btn_vg_LimpiarBusqueda = tk.Button(fHeader_vga, text="Limpiar búsqueda", font='Helvetica 10 bold', bg='#edd972',command=mostrarCamposGa).pack(side='right', padx=10, pady=(30,0))
+
+    #CONTENTS =============================================================================================================================
+    fContents_vGa= tk.Frame(fMainFrame1, bg='#0a4369')
+    fContents_vGa.place(relx=0.01, rely=0.12, relwidth=0.98, relheight=0.75)
+
+    column_names = ("nombre","fechanacimiento","sexo","raza","color","pelo","talla","temperamento","esterilizacion","discapacidad","adoptable","fechaesterilizacion","fechaingreso","estado")
+    global treeVGa
+    treeVGa = ttk.Treeview(fContents_vGa)
+    columnas_Gatos(column_names, treeVGa)
+    headings_Gatos(treeVGa)
+    treeVGa.heading("estado", text="Estado")
+    treeVGa.column("estado",width=40, minwidth=10)
+    treeVGa.place(relwidth=0.98, relheight=0.96)
+    scrollbar_Gatos(fContents_vGa, treeVGa)
+    mostrarCamposGa()
+    treeVGa.bind("<<TreeviewSelect>>", lambda eff: seleccionarUsandoClickG(treeVGa))
+
+    #FOOTER =============================================================================================================================
+    fFooter_vGa= tk.Frame(fMainFrame1, bg='#0a4369')
+    fFooter_vGa.place(relx=0.01, rely=0.89, relwidth=0.98, relheight=0.1)
+    btn_vga_Regresar = tk.Button(fFooter_vGa, text="Regresar", font='Helvetica 20 bold', bg='#33ff6d', command=lambda:[ventana_Gatos_archivados.destroy(), ventana_Gatos.deiconify(),seleccionarUsandoClickG(treeVG)]).pack(side='right', padx=10)
+    btn_vga_Desarchivar = tk.Button(fFooter_vGa, text="Desarchivar", font='Helvetica 20 bold', bg='#aaf76a', command=lambda:[desarchivarG()]).pack(side='left', padx=10)
+    btn_vga_VerFotos = tk.Button(fFooter_vGa, text="Fotos", font='Helvetica 20 bold', bg='#33ff6d', command = lambda:[crear_ventana_ver_fotos_G(True),ventana_Gatos_archivados.iconify()]).pack(side='left', padx=10)
+
+def abrir_ventana_Gatos():
+    #MAIN FRAME
+    fMainFrame1 = tk.Frame(ventana_Gatos, bg='#0a4369')
+    fMainFrame1.pack(fill="both", expand=True)
+
+    #Crear widgets
+    #HEADER =============================================================================================================================
+    fHeader_vg = tk.Frame(fMainFrame1, bg='#0a4369')
+    fHeader_vg.place(relx=0.01, rely=0.01, relwidth=0.98, relheight=0.1)
+    lbl_vp_Gatos = tk.Label(fHeader_vg, text="Gatos", font='Helvetica 36 bold', bg='#0a4369', fg='pink').pack(side='left', padx=10)
+    btn_vp_Agregar = tk.Button(fHeader_vg, text="Agregar", font='Helvetica 20 bold', bg='#33ff6d', command=lambda: agregar_Gatitos(True)).pack(side='right', padx=10)
+    btn_vp_Buscar = tk.Button(fHeader_vg, text="Buscar", font='Helvetica 20 bold', bg='#edd972', command=ventana_buscarG).pack(side='right', padx=10)
+    btn_vp_LimpiarBusqueda = tk.Button(fHeader_vg, text="Limpiar búsqueda", font='Helvetica 10 bold', bg='#edd972',command=mostrarCamposG).pack(side='right', padx=10, pady=(30,0))
+
+    #CONTENTS =============================================================================================================================
+    fContents_vG= tk.Frame(fMainFrame1, bg='#0a4369')
+    fContents_vG.place(relx=0.01, rely=0.12, relwidth=0.98, relheight=0.75)
+
+    column_names = ("nombre","fechanacimiento","sexo","raza","color","pelo","talla","temperamento","esterilizacion","discapacidad","adoptable","fechaesterilizacion","fechaingreso")
+    global treeVG
+    treeVG = ttk.Treeview(fContents_vG)
+    columnas_Gatos(column_names, treeVG)
+    headings_Gatos(treeVG)
+    treeVG.place(relwidth=0.98, relheight=0.96)
+
+    mostrarCamposG()
+    treeVG.bind("<<TreeviewSelect>>", lambda eff: seleccionarUsandoClickG(treeVG))
+
+    scrollbar_Gatos(fContents_vG, treeVG)
+
+    #FOOTER =============================================================================================================================
+    fFooter_vG= tk.Frame(fMainFrame1, bg='#0a4369')
+    fFooter_vG.place(relx=0.01, rely=0.89, relwidth=0.98, relheight=0.1)
+    btn_vG_MenuPrincipal = tk.Button(fFooter_vG, text="Menú principal", font='Helvetica 20 bold', bg='#33ff6d', command=lambda:[ventana_Gatos.destroy(), ventana.deiconify()]).pack(side='right', padx=10)
+    btn_vG_VerArchivados = tk.Button(fFooter_vG, text="Ver archivados", font='Helvetica 20 bold', bg='#bd95fc', command=lambda:[crear_ventana_Gatos_archivados(), abrir_ventana_Gatos_archivados(), ventana_Gatos.iconify()]).pack(side='right', padx=10)
+    btn_vG_VerFotos = tk.Button(fFooter_vG, text="Fotos", font='Helvetica 20 bold', bg='#33ff6d', command = lambda:[ventana_Gatos.iconify(),crear_ventana_ver_fotos_G(False)]).pack(side='left', padx=10)
+    btn_vG_Publicar = tk.Button(fFooter_vG, text="Publicar", font='Helvetica 20 bold', bg='#f2925e',command=lambda: [ventana_Gatos.iconify(),ventanaPublicarG()]).pack(side='left', padx=10)
+    btn_vG_Editar = tk.Button(fFooter_vG, text="Editar", font='Helvetica 20 bold', bg='#34ebc3', command=lambda: agregar_Gatitos(False)).pack(side='left', padx=10)
+    btn_vG_Archivar = tk.Button(fFooter_vG, text="Archivar", font='Helvetica 20 bold', bg='pink', command=lambda:archivarG()).pack(side='left', padx=10)
+    btn_vG_Borrar = tk.Button(fFooter_vG, text="Borrar", font='Helvetica 20 bold', bg='#f03932',command=lambda: borrarRegistroG()).pack(side='left', padx=10)
+
+    #Ventana para agregar gatitos
+    def agregar_Gatitos(add):
+        if add == False:
+            try:
+                valuesG
+            except NameError:
+                messagebox.showwarning("Advertencia","Seleccione un gato por favor")
+                return
+
+        fMainFrame1.destroy()
+        fMainFrame2 = tk.Frame(ventana_Gatos, bg='#0a4369')
+        fMainFrame2.pack(fill="both", expand=True)
+
+        fagregar_G_header = tk.Frame(fMainFrame2, bg='#0a4369')
+        fagregar_G_header.place(relx=0.01, rely=0.01, relwidth=0.98, relheight=0.1)
+        lbl_Vagregar_Gatos = tk.Label(fagregar_G_header, text="Gatos", font='Helvetica 30 bold', bg='#0a4369', fg='pink').pack(side='left', padx=10)
+
+        fagregar_G = tk.Frame(fMainFrame2, bg = '#0a4369')
+        fagregar_G.place(relx=0.01, rely=0.11, relwidth=0.98, relheight=0.77)
+
+        fagregar_G_footer = tk.Frame(fMainFrame2, bg='#0a4369')
+        fagregar_G_footer.place(relx=0.01, rely=0.89, relwidth=0.98, relheight=0.1)
+        btn_Vagregar_cancelar = tk.Button(fagregar_G_footer, text="Cancelar", font='Helvetica 20 bold', bg='#33ff6d', command=lambda: [fMainFrame2.destroy(), abrir_ventana_Gatos()]).pack(side='right', padx=10)
+
+        #Labels de categorias
+        labels_formulario_Gatos(fagregar_G)
+
+        #Calendarios de las categorias
+        calendarios_formulario_Gatos(fagregar_G)
+
+        #Entradas de las categorias
+        entradas_formulario_Gatos(fagregar_G)
+
+        #Radio Buttons de las categorias
+        radiobtns_formulario_Gatos(fagregar_G)
+
+        if add == True:
+            btn_Vagregar_Agregar = tk.Button(fagregar_G_header, text="Agregar", font='Helvetica 20 bold', bg='#33ff6d', command=lambda:[crearG(fMainFrame2)]).pack(side='right', padx=10)
+        elif add == False:
+            btn_Vagregar_Editar = tk.Button(fagregar_G_header, text="Guardar cambios", font='Helvetica 20 bold', bg='#33ff6d', command=lambda:[editarG(fMainFrame2)]).pack(side='right', padx=10)
+            clear_entradas_Gatos()
+            insertar_editables_Gatos()
+
+    def radiobtns_formulario_Gatos(fagregar_G):
+        global RBsexoG
+        RBsexoG = IntVar()
+        RBsexoG.set(1)
+        rb_sG1 = tk.Radiobutton(fagregar_G, text="Hembra", padx = 5, variable=RBsexoG, value=1,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_sG1.grid(row=3,column=1,sticky=W)
+        rb_sG2 = tk.Radiobutton(fagregar_G, text="Macho", padx = 5, variable=RBsexoG, value=2,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_sG2.grid(row=3,column=1,sticky=W,padx=120)
+
+        global RBesterilizacionG
+        RBesterilizacionG = IntVar()
+        RBesterilizacionG.set(1)
+        rb_eG1 = tk.Radiobutton(fagregar_G, text="Sí", padx = 10, variable=RBesterilizacionG, value=1,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_eG1.grid(row=9,column=1,sticky=W)
+        rb_eG2 = tk.Radiobutton(fagregar_G, text="No", padx = 10, variable=RBesterilizacionG, value=2,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_eG2.grid(row=9,column=1,sticky=W,padx=90)
+
+        global RBadoptableG
+        RBadoptableG = IntVar()
+        RBadoptableG.set(1)
+        rb_aG1 = tk.Radiobutton(fagregar_G, text="Sí", padx = 10, variable=RBadoptableG, value=1,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_aG1.grid(row=11,column=1,sticky=W)
+        rb_aG2 = tk.Radiobutton(fagregar_G, text="No", padx = 10, variable=RBadoptableG, value=2,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_aG2.grid(row=11,column=1,sticky=W,padx=90)
+
+        global RBpeloG
+        RBpeloG = IntVar()
+        RBpeloG.set(1)
+        rb_pG1 = tk.Radiobutton(fagregar_G, text="Corto", padx = 10, variable=RBpeloG, value=1,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_pG1.grid(row=6,column=1,sticky=W)
+        rb_pG2 = tk.Radiobutton(fagregar_G, text="Largo", padx = 10, variable=RBpeloG, value=2,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_pG2.grid(row=6,column=1,sticky=W,padx=(90,0))
+        rb_pG3 = tk.Radiobutton(fagregar_G, text="Duro", padx = 10, variable=RBpeloG, value=3,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_pG3.grid(row=6,column=1,sticky=W,padx=(182,0))
+        rb_pG4 = tk.Radiobutton(fagregar_G, text="Alambre", padx = 10, variable=RBpeloG, value=4,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_pG4.grid(row=6,column=1,sticky=W,padx=(267,0))
+        rb_pG5 = tk.Radiobutton(fagregar_G, text="Chino", padx = 10, variable=RBpeloG, value=5,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_pG5.grid(row=6,column=1,sticky=W,padx=(377,0))
+        rb_pG6 = tk.Radiobutton(fagregar_G, text="Otro:", padx = 10, variable=RBpeloG, value=6,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_pG6.grid(row=6,column=1,sticky=W,padx=(469,0))
+
+        global RBtallaG
+        RBtallaG = IntVar()
+        RBtallaG.set(1)
+        rb_tG1 = tk.Radiobutton(fagregar_G, text="Chico", padx = 5, variable=RBtallaG, value=1,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_tG1.grid(row=7,column=1,sticky=W)
+        rb_tG2 = tk.Radiobutton(fagregar_G, text="Mediano", padx = 5, variable=RBtallaG, value=2,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_tG2.grid(row=7,column=1,sticky=W,padx=100)
+        rb_tG3 = tk.Radiobutton(fagregar_G, text="Grande", padx = 5, variable=RBtallaG, value=3,font=('Helvetica 12'),bg='#0a4369',fg="white",selectcolor='gray25',activebackground='#0a4369',activeforeground='pink')
+        rb_tG3.grid(row=7,column=1,sticky=W,padx=220)
+
+    def entradas_formulario_Gatos(fagregar_G):
+        global e_razaG
+        e_razaG=tk.Entry(fagregar_G, textvariable=razaG,font=('Helvetica 14'))
+        e_razaG.grid(row=4,column=1,sticky=W)
+        global e_colorG
+        e_colorG=tk.Entry(fagregar_G, textvariable=colorG,font=('Helvetica 14'))
+        e_colorG.grid(row=5,column=1,sticky=W)
+        global peloOtroG
+        peloOtroG = StringVar()
+        global e_peloG
+        e_peloG=tk.Entry(fagregar_G, textvariable=peloOtroG,font=('Helvetica 14'))
+        e_peloG.grid(row=6,column=1,sticky=W,padx=(560,0))
+        global e_temperamentoG
+        e_temperamentoG=tk.Entry(fagregar_G, textvariable=temperamentoG,font=('Helvetica 14'))
+        e_temperamentoG.grid(row=8,column=1,sticky=W)
+        global e_nombreG
+        e_nombreG=tk.Entry(fagregar_G, textvariable=nombreG,font=('Helvetica 14'))
+        e_nombreG.grid(row=0,column=1,sticky=W)
+        global e_discapacidadG
+        e_discapacidadG=tk.Entry(fagregar_G, textvariable=discapacidadG,font=('Helvetica 14'))
+        e_discapacidadG.grid(row=10,column=1,sticky=W)
+        global mesNacG
+        mesNacG = StringVar()
+        global e_mesNacG
+        e_mesNacG = tk.Entry(fagregar_G, textvariable=mesNacG,font=('Helvetica 14'))
+        e_mesNacG.grid(row=1,column=1,padx=70,sticky=W)
+        global anoNacG
+        anoNacG = StringVar()
+        global e_anoNacG
+        e_anoNacG=tk.Entry(fagregar_G, textvariable=anoNacG,font=('Helvetica 14'))
+        e_anoNacG.grid(row=1,column=1,sticky=W,padx=(425,0))
+
+    def calendarios_formulario_Gatos(fagregar_G):
+        global date_fecha_esterilizacionG
+        date_fecha_esterilizacionG = DateEntry(fagregar_G,selectmode ='day')
+        date_fecha_esterilizacionG.grid(row=9,column=1, sticky=W,padx=(510,0))
+        global date_fecha_ingresoG
+        date_fecha_ingresoG = DateEntry(fagregar_G,selectmode ='day')
+        date_fecha_ingresoG.grid(row=2,column=1, sticky=W)
+
+    def labels_formulario_Gatos(fagregar_G):
+        lbl_nombre=tk.Label(fagregar_G,text="Nombre",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_nombre.grid(row=0,column=0,sticky=W,padx=20)
+        lbl_fecha_nacimiento=tk.Label(fagregar_G,text="Fecha de nacimiento",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_fecha_nacimiento.grid(row=1,column=0,sticky=W,padx=(20,45),pady=7)
+        lbl_fecha_nacimiento_mes=tk.Label(fagregar_G,text="mes:",font='Helvetica 14',bg='#0a4369',fg="white")
+        lbl_fecha_nacimiento_mes.grid(row=1, column=1,sticky=W,pady=7)
+        lbl_fecha_nacimiento_year=tk.Label(fagregar_G,text="año:",font='Helvetica 14',bg='#0a4369',fg="white")
+        lbl_fecha_nacimiento_year.grid(row=1, column=1,sticky=W,pady=7,padx=(360,0))
+        lbl_sexo=tk.Label(fagregar_G,text="Sexo",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_sexo.grid(row=3,column=0,sticky=W,padx=20,pady=7)
+        lbl_raza=tk.Label(fagregar_G,text="Raza",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_raza.grid(row=4,column=0,sticky=W,padx=20,pady=7)
+        lbl_color=tk.Label(fagregar_G,text="Color",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_color.grid(row=5,column=0,sticky=W,padx=20,pady=7)
+        lbl_pelo=tk.Label(fagregar_G,text="Pelo",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_pelo.grid(row=6,column=0,sticky=W,padx=20,pady=7)
+        lbl_talla=tk.Label(fagregar_G,text="Talla",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_talla.grid(row=7,column=0,sticky=W,padx=20,pady=7)
+        lbl_temperamento=tk.Label(fagregar_G,text="Temperamento",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_temperamento.grid(row=8,column=0,sticky=W,padx=20,pady=7)
+        lbl_esterilizacion=tk.Label(fagregar_G,text="Esterilización",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_esterilizacion.grid(row=9,column=0,sticky=W,padx=20,pady=7)
+        lbl_discapacidad=tk.Label(fagregar_G,text="Discapacidad",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_discapacidad.grid(row=10,column=0,sticky=W,padx=20,pady=7)
+        lbl_adoptable=tk.Label(fagregar_G,text="Adoptable",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_adoptable.grid(row=11,column=0,sticky=W,padx=20,pady=7)
+        lbl_fecha_esterilizacion=tk.Label(fagregar_G,text="Fecha de esterilización:",font='Helvetica 14',bg='#0a4369',fg="white")
+        lbl_fecha_esterilizacion.grid(row=9,column=1,sticky=W,padx=(267,0),pady=7)
+        lbl_fecha_ingreso=tk.Label(fagregar_G,text="Fecha de ingreso",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_fecha_ingreso.grid(row=2,column=0,sticky=W,padx=20,pady=7)
+        lbl_na_discapacidad=tk.Label(fagregar_G,text="(escribir N/A si no aplica)",font='Helvetica 14',bg='#0a4369',fg="white")
+        lbl_na_discapacidad.grid(row=10,column=1,sticky=W,padx=(270,0),pady=7)
+
+def scrollbar_Gatos(fContents_vG, treeVG):
+    scrollbar1 = ttk.Scrollbar(fContents_vG, orient=tk.VERTICAL, command=treeVG.yview)
+    treeVG.configure(yscroll=scrollbar1.set)
+    scrollbar1.place(relx=0.98, relwidth=0.02, relheight=1)
+
+    scrollbar2 = ttk.Scrollbar(fContents_vG, orient=tk.HORIZONTAL, command=treeVG.xview)
+    treeVG.configure(xscroll=scrollbar2.set)
+    scrollbar2.place(rely=0.96, relwidth=0.98, relheight=0.04)
+
+def headings_Gatos(treeVG):
+    treeVG.heading("nombre", text="Nombre")
+    treeVG.heading("fechanacimiento", text="Fecha de nacimiento")
+    treeVG.heading("sexo", text="Sexo")
+    treeVG.heading("raza", text="Raza")
+    treeVG.heading("color", text="Color")
+    treeVG.heading("pelo", text="Pelo")
+    treeVG.heading("talla", text="Talla")
+    treeVG.heading("temperamento", text="Temperamento")
+    treeVG.heading("esterilizacion", text="Esterilización")
+    treeVG.heading("discapacidad", text="Discapacidad")
+    treeVG.heading("adoptable", text="Adoptable")
+    treeVG.heading("fechaesterilizacion", text="Fecha de esterilización")
+    treeVG.heading("fechaingreso", text="Fecha de ingreso")
+
+def columnas_Gatos(column_names, treeVG):
+    treeVG.configure(columns=column_names, show='headings')
+    treeVG.column("#0",width=10, minwidth=10)
+    treeVG.column("nombre",width=40, minwidth=10)
+    treeVG.column("fechanacimiento",width=40, minwidth=10)
+    treeVG.column("sexo",width=10, minwidth=10)
+    treeVG.column("raza",width=40, minwidth=10)
+    treeVG.column("color",width=15, minwidth=10)
+    treeVG.column("pelo",width=40, minwidth=10)
+    treeVG.column("talla",width=40, minwidth=10)
+    treeVG.column("temperamento",width=40, minwidth=10)
+    treeVG.column("esterilizacion",width=40, minwidth=10)
+    treeVG.column("discapacidad",width=40, minwidth=10)
+    treeVG.column("adoptable",width=40, minwidth=10)
+    treeVG.column("fechaesterilizacion",width=40, minwidth=10)
+    treeVG.column("fechaingreso",width=40, minwidth=10)
+
+#Ventanas Fotos Gatos ------------------------------------------------------------------------------------
+def crear_ventana_ver_fotos_G(archivado):
+    try:
+        valuesG
+    except NameError:
+        messagebox.showwarning("Advertencia","Seleccione un gato por favor")
+        ventana_Gatos.deiconify()
+        return
+    global ver_fotos_ven_G
+    ver_fotos_ven_G = tk.Toplevel(ventana)
+    ver_fotos_ven_G.geometry("1280x720")
+    ver_fotos_ven_G.title("PawSystem Gatos")
+    ver_fotos_ven_G.iconbitmap('paw-icon.ico')
+    ver_fotos_ven_G.configure(bg='#0a4369')
+    ver_fotos_ven_G.state('zoomed')
+    ver_fotos_ven_G.update_idletasks()
+    folder_path = os.path.join(os.getcwd(), "gimg")
+    # Verificar si la carpeta existe
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
+    abrir_ventana_ver_fotos_G(archivado)
+
+def abrir_ventana_ver_fotos_G(archivado):
+    fMainFrame3 = tk.Frame(ver_fotos_ven_G, bg='#0a4369')
+    fMainFrame3.pack(fill="both", expand=True)
+    fVerfotos_G_header = tk.Frame(fMainFrame3, bg='#0a4369')
+    fVerfotos_G_header.place(relx=0.01, rely=0.01, relwidth=0.98, relheight=0.1)
+    fverFotos_G_footer = tk.Frame(fMainFrame3, bg = '#0a4369')
+    fverFotos_G_footer.place(relx=0.01, rely=0.81, relwidth=0.98, relheight=0.15)
+
+    btn_regresar_G = tk.Button(fVerfotos_G_header, text = "Regresar", font='Helvetica 18 bold', bg='#33ff6d')
+    btn_regresar_G.pack(side = 'left')
+
+    lbl_vfg_n_Gatos = Label(fVerfotos_G_header, text="", font='Helvetica 30 bold', bg='#0a4369', fg='pink')
+    lbl_vfg_n_Gatos.pack(side='left', padx=50)
+    lbl_vfg_n_Gatos.config(text=valuesG[0])
+    lbl_vfg_fi_Gatos = Label(fVerfotos_G_header, text = "",font='Helvetica 15 bold', bg='#0a4369', fg='pink')
+    lbl_vfg_fi_Gatos.pack(side = 'right',padx=5)
+    lbl_vfg_fi_Gatos.config(text = valuesG[12])
+    lbl_vfg_fit_Gatos = Label(fVerfotos_G_header, text = "Fecha de ingreso: ",font='Helvetica 15 bold', bg='#0a4369', fg='pink')
+    lbl_vfg_fit_Gatos.pack(side = 'right',padx=5)
+
+    btn_agregarfoto_G = tk.Button(fverFotos_G_footer, text = "Agregar Foto", font='Helvetica 18 bold', bg='#33ff6d')
+    btn_agregarfoto_G.pack(side= 'left', padx=45)
+    btn_eliminarfotos_G = tk.Button(fverFotos_G_footer, text = "Eliminar foto", font='Helvetica 18 bold', bg='#db5142')
+    btn_eliminarfotos_G.pack(side= 'right', padx=45)
+
+    canvas_ver_foto_G = tk.Canvas(fverFotos_G_footer,height =70,width =500, bg = '#C1CDCD')
+    canvas_ver_foto_G.pack(side = tk.BOTTOM,fill = tk.X)
+
+    canvas_ver_foto_G.bind('<Configure>', lambda e:canvas_ver_foto_G.bbox('all'))
+    slider = tk.Frame(canvas_ver_foto_G)
+    canvas_ver_foto_G.create_window((0,0),window = slider, anchor = tk.NW)
+    progbarFG = ttk.Progressbar(fVerfotos_G_header, orient='horizontal',mode='determinate',length=500)
+    progbarFG.update_idletasks()
+    progbarFG.pack(side=TOP,expand=YES)
+
+    threading.Thread(target = lambda:contenido_ver_fotos_G(canvas_ver_foto_G,fverFotos_G_footer,fMainFrame3,archivado,slider,btn_agregarfoto_G,btn_regresar_G,btn_eliminarfotos_G,progbarFG)).start()
+
+def contenido_ver_fotos_G(canvas_ver_foto_G,fverFotos_G_footer,fMainFrame3,archivado,slider,btn_agregarfoto_G,btn_regresar_G,btn_eliminarfotos_G,progbarFG):    
+    #Frames de contenidos para fotos
+    fVerFotos_G_contents = tk.Frame(fMainFrame3, bg = '#0a4369')
+    fVerFotos_G_contents.place(relx=0.01, rely=0.12, relwidth=0.98, relheight=0.71)
+
+    #Botones ver fotos, regresar y eliminar COMMAND
+    if archivado == False:
+        btn_regresar_G.config(command = lambda: [ver_fotos_ven_G.destroy(),ventana_Gatos.deiconify()])
+        btn_agregarfoto_G.config(command = lambda: [agregar_fotos_G(ver_fotos_ven_G),abrir_ventana_ver_fotos_G(False)])
+    else:
+        btn_regresar_G.config(command = lambda: [ver_fotos_ven_G.destroy(),ventana_Gatos_archivados.deiconify()])
+        btn_agregarfoto_G.config(command = lambda: [agregar_fotos_G(ver_fotos_ven_G),abrir_ventana_ver_fotos_G(True)])
+    btn_eliminarfotos_G.config(command = lambda:[eliminar_foto_G(dir_path_G_fotos, aux_index)])
+
+    #Lbl desplegar imagenes
+    lbl_desplegar_img_G = tk.Label(fVerFotos_G_contents,bg = '#0a4369')
+    lbl_desplegar_img_G.pack(anchor = tk.CENTER)
+
+    images_list_G = []
+    images_vars_G = []
+
+    global dir_path_G_fotos
+    images_files = None
+    try:
+        dir_path_G_fotos = os.getcwd() + "/gimg/" + selectedG #Conseguir directorio de la carpeta de imagenes
+        images_files = os.listdir(dir_path_G_fotos)
+    except:
+        os.makedirs(os.getcwd() + "/gimg/" + selectedG)
+        images_files = os.listdir(dir_path_G_fotos)
+
+    for r in range(0, len(images_files)):
+        original_image = Image.open(dir_path_G_fotos + '/' + images_files[r])
+        width_img_G, height_img_G = original_image.size
+        aspect_ratio_G = width_img_G/height_img_G
+        resized_image = original_image.resize((400, 400), Image.Resampling.LANCZOS)
+        max_width_img_G = 500
+        max_height_img_G = 500
+        new_width_img_G = min(width_img_G, max_width_img_G)
+        new_height_img_G = min(height_img_G, max_height_img_G)
+
+        if aspect_ratio_G > 1:
+            #Imagen más ancha que alta
+            new_height_img_G = int(new_width_img_G / aspect_ratio_G)
+        else:
+            #Imagen más alta que ancha
+            new_width_img_G = int(new_height_img_G * aspect_ratio_G)
+
+        images_list_G.append([
+                ImageTk.PhotoImage(original_image.resize((int(new_width_img_G/7),int(new_height_img_G/7) ), Image.Resampling.LANCZOS)),
+                ImageTk.PhotoImage(resized_image.resize((new_width_img_G, new_height_img_G)), Image.Resampling.LANCZOS)
+                             ])   
+        images_vars_G.append(f'img_{r}')
+
+
+        progbarFG['value'] += (100/len(images_files))
+    progbarFG.pack_forget()
+
+
+    def desplegar_img_G(index_G):
+        global aux_index
+        aux_index = index_G
+        lbl_desplegar_img_G.config(image = images_list_G[index_G][1])
+        lbl_desplegar_img_G.pack(side='left', anchor='center', expand=True)
+
+    for n in range(len(images_vars_G)):
+        globals()[images_vars_G[n]] = tk.Button(slider,image=images_list_G[n][0], bd = 0, command = lambda n = n:desplegar_img_G(n))
+        globals()[images_vars_G[n]].pack(side =tk.LEFT)
+
+    canvas_ver_foto_G.configure(scrollregion=canvas_ver_foto_G.bbox('all'))
+    x_scroll_bar = tk.Scrollbar(fverFotos_G_footer, orient='horizontal')
+    x_scroll_bar.pack(side = tk.BOTTOM,fill = tk.X)
+    x_scroll_bar.configure(command=canvas_ver_foto_G.xview)
+    canvas_ver_foto_G.configure(xscrollcommand=x_scroll_bar.set)
+    slider.bind('<Configure>', lambda event: canvas_ver_foto_G.configure(scrollregion=canvas_ver_foto_G.bbox('all')))
+
+    def eliminar_foto_G(dir_path_G_fotos, aux_index): 
+        respuesta = messagebox.askyesno("Eliminar imagen","¿Seguro quieres eliminar la imagen?")
+        if respuesta ==1:
+            res = []
+            for path in os.listdir(dir_path_G_fotos):
+                # checar si el directorio es un archivo
+                if os.path.isfile(os.path.join(dir_path_G_fotos, path)):
+                    res.append(path) 
+            deletepath = dir_path_G_fotos +"/" +str(res[aux_index])  
+            os.remove(deletepath)
+            fMainFrame3.destroy()
+            if archivado == False:
+                abrir_ventana_ver_fotos_G(False)
+            else:
+                abrir_ventana_ver_fotos_G(True)
+        else:
+            return 0
+
+    def agregar_fotos_G(ventana):
+        current_path_image = filedialog.askopenfilename(initialdir='Imagenes')   
+        ruta_G,n_archivo_G = os.path.split(current_path_image)    
+        new_path_image = dir_path_G_fotos + "/" + str(n_archivo_G)
+        shutil.copyfile(current_path_image, new_path_image)
+        fMainFrame3.destroy()
+
+#Textos Gatos ---------------------------------------------------------------------------------------------
+def ventanaAdopcionG():
+    ventana.withdraw()
+    ventana_adop_G = tk.Toplevel()
+    ventana_adop_G.geometry("1300x720")
+    ventana_adop_G.title("Adopción")
+    ventana_adop_G.iconbitmap('paw-icon.ico')
+    ventana_adop_G.configure(bg='#0a4369')
+    ventana_adop_G.state('zoomed')
+    ventana_adop_G.update_idletasks()
+
+    textos = [
+        "SU 🎞 #HISTORIA CONTINÚA, en #ADOPCIÒN 🐾Un #rescate que aún sigue vigente"
+        " 🇲🇽🐾\nNOMBRE: "+valuesG[0]+"\nNACIÓ: "+valuesG[1]+ "\nTALLA: "+valuesG[6]+"\nSEXO: "
+        +valuesG[2]+" #"+valuesG[8]+"estaesterilizado\nTEMPERAMENTO: "+valuesG[7]+"#adopta"
+        " #adopta #adoptanocompres #amigoperruno ❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA 🧚🏻‍♀"
+        " #APADRINAMIENTOVIRTUAL #UnperritogatitoabandonadoenunHOGAR\nPara más información comunícate a:"
+        " adopcionesvirtualesomeyocan@yahoo.com.mx #amigoperruno #amigogatuno #perritos #gatitos"
+        " #animalitos #Omeyocan",
+        #--------------------------------------------------------------------------------------------------------------------
+        "¡Conoce a "+valuesG[0]+ "! SU #HISTORIA CONTINUA en #ADOPCION. Nació "+valuesG[1]+" y es un #rescate"
+        " que aún sigue vigente, TÚ puedes cambiar su vida\nTALLA: "+valuesG[6]+"\nSEXO:"
+        +valuesG[2]+"\n#"+valuesG[8]+"estaesterilizado\nTEMPERAMENTO: "+valuesG[7]+" Con tu ayuda nuestro"
+        " #Omeyocanito puede tener una vida mejor y compartir su felicidad y alegría con más personas"
+        "\n#adopta #adoptanocompres #amigoperruno ❤ #ADOPCIÓN🇲🇽 #ADOPTA #APADRINA 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL"
+        " #UnperritogatitoabandonadoenunHOGAR Para más información comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx" 
+        "\n#amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        #--------------------------------------------------------------------------------------------------------------------
+        "¡"+valuesG[0]+"!🐾 sigue aquí con nosotros. El es un #Omeyocanito "+valuesG[7]+". Estaríamos muy" 
+        " felices de encontrarle una familia que le dé mucho amor.\nPara más información comunícate a:" 
+        " adopcionesvirtualesomeyocan@yahoo.com.m #amigoperruno #amigogatuno #perritos"
+        " #gatitos #animalitos #Omeyocan",
+        #--------------------------------------------------------------------------------------------------------------------
+        "Adopta a "+valuesG[0]+", lleva un rato con nosotros, pero ya quiere conocer a las personas que serán"
+        " su #familia ❤️. Es de talla"+valuesG[6]+" ¡ya es tiempo de darle la vida que merece!" 
+        " Si no puedes adoptar puedes #apadrinar a"+valuesG[0]+" o #compartir para que encuentre un hogar"
+        " 🐾❤️.\n#ADOPTA #adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        #--------------------------------------------------------------------------------------------------------------------
+        "¡"+valuesG[0]+" merece una oportunidad!. Está con nosotros desde "+valuesG[12]+". Ayúdanos a encontrarle" 
+        " una familia. Para más información comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx #adopta "
+        "#amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        #--------------------------------------------------------------------------------------------------------------------
+        ""+valuesG[0]+" 🐶es de talla "+valuesG[6]+". Es"+valuesG[7]+", y "+valuesG[2]+""  
+        "Si quieres adoptar a "+valuesG[0]+" y que formen una hermosa familia juntos❤️🐾, contáctanos."
+        "#ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        "adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        "🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
+        "Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
+        "#amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        #--------------------------------------------------------------------------------------------------------------------
+        "Me llamo "+valuesG[0]+" estoy buscando una familia que me de mucho cariño🥰." 
+        " Soy "+valuesG[7]+" y de tamaño "+valuesG[6]+". Ayúdame a encontrar la familia que tanto he esperado." 
+        " #ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        " adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
+        " Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
+        " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        #-------------------------------------------------------------------------------------------------------------------
+        "Adopta a "+valuesG[0]+" ya quiere pertenece a una familia, es de talla "+valuesG[6]+"" 
+        " Es "+valuesG[7]+". Estamos seguras de que le dará mucho a amor a la familia a la que vaya a pertenecer." 
+        " Es muy amigable con otros perros y niños," 
+        " pero necesita una familia que pueda brindarle la atención y el tiempo que necesita para mantenerse feliz y saludable."
+        " #ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        " adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
+        " Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
+        " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        #--------------------------------------------------------------------------------------------------------------------
+        "Soy "+valuesG[0]+" y soy de talla "+valuesG[6]+"." 
+        " Soy "+valuesG[7]+" Necesito una familia que tenga tiempo y amor para dedicar a un perro activo como yo."
+        " Si estás interesado en adoptarme, por favor asegúrate de que tienes el tiempo y los recursos necesarios para cuidarme adecuadamente." 
+        " Estoy dispuesto a aprender y estoy ansioso por encontrar un hogar lleno de amor. ¡Gracias por considerarme!",
+        #--------------------------------------------------------------------------------------------------------------------
+        "¡Hola nosotros somos #Omeyocan🖐🏼! Necesitamos tu ayuda🥹, "+valuesG[0]+" 🐶esta buscando una familia con quien compartir su felicidad y cariño ❤️"
+        "\nNACIÓ: "+valuesG[1]+"\n"
+        "TALLA: "+valuesG[6]+"\n"
+        "SEXO: "+valuesG[2]+"\n"
+        "#Esterilización "+valuesG[8]+"\n"
+        "TEMPERAMENTO: "+valuesG[7]+"\n"
+        " #ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        " adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
+        " Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
+        " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+    ]
+
+    def copy_to_clipboard():
+        text = text_box.get("1.0", "end-1c")
+        pyperclip.copy(text)
+
+    def generar_otro_texto():
+        nuevo_texto = random.sample(textos, 1)[0]
+        text_box.delete("1.0", "end")
+        text_box.insert("1.0", nuevo_texto)
+
+    text = random.sample(textos, 1)[0]
+
+    regresar = tk.Button(ventana_adop_G,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=ventana_adop_G.destroy)
+    regresar.place(relx=0.01, rely=0.02)
+
+    fotos = tk.Button(ventana_adop_G, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=carpeta_fotos_G)
+    fotos.place(relx=0.8, rely=0.7,anchor=N)
+
+    copy = tk.Button(ventana_adop_G, text="Copiar", font='Helvetica 22 bold', bg='#33ff6d',command=copy_to_clipboard)
+    copy.place(relx=0.8, rely=0.8,anchor=N)
+
+    otro = tk.Button(ventana_adop_G, text="Generar otro texto", font='Helvetica 22 bold', bg='#33ff6d', command=generar_otro_texto)
+    otro.place(relx=0.8, rely=0.9,anchor=N)
+
+    fr = Frame(ventana_adop_G, bg='#0a4369')
+    fr.place(relx=0.025, rely=0.11,relwidth=0.55, relheight=0.85)
+
+    text_box = tk.Text(fr, font=("Roboto", 17), bg="#0a4369", fg="white", bd=0, highlightthickness=0, insertborderwidth=0, exportselection=False,wrap=WORD)
+    text_box.insert(tk.END, text)
+    text_box.pack(side='left')
+
+    lbl_nombre_G = Label(ventana_adop_G,text="",font='Helvetica 30 bold', fg='pink', bg='#0a4369')
+    lbl_nombre_G.place(relx=0.1, rely=0.02)
+    lbl_nombre_G.config(text=valuesG[0])
+
+    lbl_img_G = Label(ventana_adop_G,bg = '#0a4369')
+    lbl_img_G.place(relx= 0.8, rely=0.05, anchor=N)
+
+    threading.Thread(target = lambda:get_img_Gato_pub(lbl_img_G)).start()
+
+def ventanaNoAdopcionG():
+    ventana.withdraw()
+    ventana_no_adopt_G = tk.Toplevel()
+    ventana_no_adopt_G.geometry("1300x720")
+    ventana_no_adopt_G.title("No adopción")
+    ventana_no_adopt_G.iconbitmap('paw-icon.ico')
+    ventana_no_adopt_G.configure(bg='#0a4369')
+    ventana_no_adopt_G.state('zoomed')
+    ventana_no_adopt_G.update_idletasks()
+
+    textos = [
+        "¡Hola! Soy "+valuesG[0]+" estoy buscando apoyo para poder tener una vida digna🐾." 
+        " No soy adoptable, pero puedes apadrinarme de manera virtual 🐶 en adopcionesvirtualesomeyocan@yahoo.com.mx." 
+        " No todos podemos ser adoptables por distintas razones, pero siempre existen más maneras de apoyar. ❤️"
+        " #APADRINA #noadoptable #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        #--------------------------------------------------------------------------------------------------------------------
+        "Existen muchos Omeyocanitos que no tienen la posibilidad de ser adoptados😥 ya que algunos se encuentran" 
+        " en rehabilitación física y/o emocional, pero puedes apadrinar.\n" 
+        ""+valuesG[0]+"🐾💞 no tiene la posibilidad y busca TU🫵 ayuda para poder tener la vida que merece." 
+        " adopcionesvirtualesomeyocan@yahoo.com.mx #APADRINA #noadoptable #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        #--------------------------------------------------------------------------------------------------------------------
+        "¡"+valuesG[0]+" te necesita! Aunque 🚫NO es ADOPTABLE🚫 podrías hacer que tenga una mejor vida y pronta rehabilitación ❤‍🩹 ." 
+        " En #Omeyocan hay #omeyocanitos que requieren de atención especial y rehabilitación física o emocional, sin embargo," 
+        " puedes #apadrinar y contribuir y hacer el cambio 💓. Esta con nosotros desde "+valuesG[12]+". \n"
+        "NACIÓ: "+valuesG[1]+"\n"
+        "TALLA: "+valuesG[6]+"\n"
+        "SEXO: "+valuesG[2]+"\n"
+        "#Esterilizado\n"
+        " TEMPERAMENTO: "+valuesG[7]+""
+        " 🧚🏻‍♀ APADRINAMIENTO VIRTUAL, comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx para mas informarción."
+        " #APADRINA"
+        " #UnperritogatitoabandonadoenunHOGAR",
+        #--------------------------------------------------------------------------------------------------------------------
+        "¡Haz la diferencia en la vida de "+valuesG[0]+"! Apadrina a uno de los adorables perros de Omeyocan, un refugio dedicado a cuidar y proteger a los animales." 
+        " Tu apadrinamiento ayudará a cubrir los costos de alimentación, atención médica y cuidado diario de estos perros mientras esperan encontrar un hogar amoroso y permanente." 
+        " ¡Únete a nosotros en nuestra misión de brindar una vida mejor a estos perros necesitados!"
+        " Para más información comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx"
+        " #apadrina #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        #--------------------------------------------------------------------------------------------------------------------
+        "🚫"+valuesG[0]+" NO ES ADOPTABLE🚫\n"
+        " Lleva con nosotros desde "+valuesG[12]+", necesita de tu apoyo para salir adelante,"
+        " aunque 🚫NO ES ADOPTABLE🚫 puedes #Apadrinar para ayudar a su cuidado.\n"
+        " Para más información comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx"
+        " #apadrina #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+    ]
+
+    def copy_to_clipboard():
+        text = text_box.get("1.0", "end-1c")
+        pyperclip.copy(text)
+
+    def generar_otro_texto():
+        nuevo_texto = random.sample(textos, 1)[0]
+        text_box.delete("1.0", "end")
+        text_box.insert("1.0", nuevo_texto)
+
+    text = random.sample(textos, 1)[0]
+
+    regresar = tk.Button(ventana_no_adopt_G,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=ventana_no_adopt_G.destroy)
+    regresar.place(relx=0.01, rely=0.02)
+
+    fotos = tk.Button(ventana_no_adopt_G, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=carpeta_fotos_G)
+    fotos.place(relx=0.8, rely=0.7,anchor=N)
+
+    copy = tk.Button(ventana_no_adopt_G, text="Copiar", font='Helvetica 22 bold', bg='#33ff6d',command=copy_to_clipboard)
+    copy.place(relx=0.8, rely=0.8,anchor=N)
+
+    otro = tk.Button(ventana_no_adopt_G, text="Generar otro texto", font='Helvetica 22 bold', bg='#33ff6d', command=generar_otro_texto)
+    otro.place(relx=0.8, rely=0.9,anchor=N)
+
+    fr = Frame(ventana_no_adopt_G, bg='#0a4369')
+    fr.place(relx=0.025, rely=0.11,relwidth=0.55, relheight=0.85)
+
+    text_box = tk.Text(fr, font=("Roboto", 17), bg="#0a4369", fg="white", bd=0, highlightthickness=0, insertborderwidth=0, exportselection=False,wrap=WORD)
+    text_box.insert(tk.END, text)
+    text_box.pack(side='left')
+
+    lbl_nombre_G = Label(ventana_no_adopt_G,text="",font='Helvetica 30 bold', fg='pink', bg='#0a4369')
+    lbl_nombre_G.place(relx=0.1, rely=0.02)
+    lbl_nombre_G.config(text=valuesG[0])
+
+    lbl_img_G = Label(ventana_no_adopt_G,bg = '#0a4369')
+    lbl_img_G.place(relx= 0.8, rely=0.05, anchor=N)
+
+    threading.Thread(target = lambda:get_img_Gato_pub(lbl_img_G)).start()
+
+def ventanaDonarG():
+    ventana.withdraw()
+    donar_G = tk.Toplevel()
+    donar_G.geometry("1300x720")
+    donar_G.title("Donación")
+    donar_G.iconbitmap('paw-icon.ico')
+    donar_G.configure(bg='#0a4369')
+    donar_G.state('zoomed')
+
+    textos = [
+            "¡Hola! Somos Omeyoacan un albergue de perros, gatos y conejos🐶🐱🐰 que les brinda hogar temporal y cuidado, a los omeyocanitos sin hogar y abandonados."
+            " Nos dedicamos a ofrecerles un lugar seguro y amoroso ❤️mientras encontramos un hogar permanente para ellos. Sin embargo, para poder mantenernos y seguir"
+            " brindando nuestros servicios, necesitamos tu ayuda🆘. Cualquier donación, por pequeña que sea, nos ayuda a alimentar, vacunar y mantener sanos a nuestros"
+            " amigos caninos. Si te gustaría ayudar, dejamos la información aquí abajo. ¡Cualquier ayuda es bienvenida! ¡Gracias!🥰"
+            "Si tienes la posibilidad #Échanos 🐾#Amiga dependemos al 💯 de tu ✅apoyo.\n"
+            "❤---❤---❤---❤---\n"
+            "🐾 #Cuentasoficiales🐾 de Omeyocan👇\n"
+            "🐾 💳 Banorte, 7 Eleven, Farmacias Guadalajara\n"
+            "Omeyocan Comienzo a Una Nueva Vida, AC.\n"
+            "Cta. 06 83 34 52 74\n"
+            "CLABE: 07 21 80 00 68 33 45 27 48\n"
+            "-------\n"
+            "🐾 💳BancoAzteca (Guardadito)\n"
+            "JESSICA CASARRUBIAS PLATAS\n"
+            "Cta. 55-41 13-93 85-73-91\n"
+            "clabe: 12-71- 800-13-93-85-73-910\n"
+            "___\n"
+            "Oxxo\n"
+            "Número de tarjeta 4217 4700 7412 5077\n"
+            "———\n"
+            "💳 PAYPAL\n"
+            "omeyocanac@yahoo.com.mx\n"
+            "(De tu #aportación total descuentan un porcentaje)\n"
+            "Para donativos en 🎁especie, hay ☝🏻dos opciones:\n"
+            "1. Tenemos un 🏡centro de 🐾acopio en Coapa (mándanos inbox para que te demos la dirección).\n"
+            "2. O puedes enviar tu donativo a través de la mesa de 🎁de Amazon con envío al centro de acopio; la liga a la lista de deseos de Amazon https://www.amazon.com.mx/hz/wishlist/ls/14I5E4IF9FUVQ\n"
+            "💻 Informes vía inbox, mensaje o📧 correo: omeyocanac@yahoo.com.mx\n"
+            "🙏 ✅confirmar a: omeyocanac@yahoo.com.mx\n"
+            "De parte de de toda la familia de Omeyocan, te agaradecemos tu apoyo, tu like o que nos compartas. #Gracias\n"
+            "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
+         ,
+
+            "🆘Amigos es 🚨#URGENTE!🆘\n"
+            "🆘Amigos es 🚨#URGENTE!🆘\n"
+            "🆘Amigos es 🚨#URGENTE!🆘\n"
+            "A pesar de nuestros🐕 llamados 😢no logramos el OBJETIVO y NECESITAMOS DE TU APOYO\n"
+            "🙏¿Crees poder ayudarnos para continuar con este proyecto de vida hecho realidad?🙏\n"
+            " 🆘Amigos es 🚨#URGENTE!🆘\n"
+            "¿Crees poder 🙏#Écharnos 🐾#Amiga 👍"
+            "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
+            "❤---❤---❤---❤---\n"
+            "🐾 #Cuentasoficiales🐾 de Omeyocan👇\n"
+            "🐾 💳 Banorte, 7 Eleven, Farmacias Guadalajara\n"
+            "Omeyocan Comienzo a Una Nueva Vida, AC.\n"
+            "Cta. 06 83 34 52 74\n"
+            "CLABE: 07 21 80 00 68 33 45 27 48\n"
+            "-------\n"
+            "🐾 💳BancoAzteca (Guardadito)\n"
+            "JESSICA CASARRUBIAS PLATAS\n"
+            "Cta. 55-41 13-93 85-73-91\n"
+            "clabe: 12-71- 800-13-93-85-73-910\n"
+            "___\n"
+            "Oxxo\n"
+            "Número de tarjeta 4217 4700 7412 5077\n"
+            "———\n"
+            "💳 PAYPAL\n"
+            "omeyocanac@yahoo.com.mx\n"
+            "(De tu #aportación total descuentan un porcentaje)\n"
+            "Para donativos en 🎁especie, hay ☝🏻dos opciones:\n"
+            "1. Tenemos un 🏡centro de 🐾acopio en Coapa (mándanos inbox para que te demos la dirección).\n"
+            "2. O puedes enviar tu donativo a través de la mesa de 🎁de Amazon con envío al centro de acopio; la liga a la lista de deseos de Amazon https://www.amazon.com.mx/hz/wishlist/ls/14I5E4IF9FUVQ\n"
+            "💻 Informes vía inbox, mensaje o📧 correo: omeyocanac@yahoo.com.mx\n"
+            "🙏 ✅confirmar a: omeyocanac@yahoo.com.mx\n"
+            "De parte de de toda la familia de Omeyocan, te agaradecemos tu apoyo, tu like o que nos compartas. #Gracias\n"
+            "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
+         ,
+            "🆘NECESITAMOS AYUDA🆘\n"
+            "Los Omeyocanitos necesitan de tu apoyo\n"
+            "❤---❤---❤---❤---\n"
+            "🐾 #Cuentasoficiales🐾 de Omeyocan👇\n"
+            "🐾 💳 Banorte, 7 Eleven, Farmacias Guadalajara\n"
+            "Omeyocan Comienzo a Una Nueva Vida, AC.\n"
+            "Cta. 06 83 34 52 74\n"
+            "CLABE: 07 21 80 00 68 33 45 27 48\n"
+            "-------\n"
+            "🐾 💳BancoAzteca (Guardadito)\n"
+            "JESSICA CASARRUBIAS PLATAS\n"
+            "Cta. 55-41 13-93 85-73-91\n"
+            "clabe: 12-71- 800-13-93-85-73-910\n"
+            "___\n"
+            "Oxxo\n"
+            "Número de tarjeta 4217 4700 7412 5077\n"
+            "———\n"
+            "💳 PAYPAL\n"
+            "omeyocanac@yahoo.com.mx\n"
+            "(De tu #aportación total descuentan un porcentaje)\n"
+            "Para donativos en 🎁especie, hay ☝🏻dos opciones:\n"
+            "1. Tenemos un 🏡centro de 🐾acopio en Coapa (mándanos inbox para que te demos la dirección).\n"
+            "2. O puedes enviar tu donativo a través de la mesa de 🎁de Amazon con envío al centro de acopio; la liga a la lista de deseos de Amazon https://www.amazon.com.mx/hz/wishlist/ls/14I5E4IF9FUVQ\n"
+            "💻 Informes vía inbox, mensaje o📧 correo: omeyocanac@yahoo.com.mx\n"
+            "🙏 ✅confirmar a: omeyocanac@yahoo.com.mx\n"
+            "De parte de de toda la familia de Omeyocan, te agaradecemos tu apoyo, tu like o que nos compartas. #Gracias\n"
+            "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
+         ,
+            "Queremos invitarte a hacer una diferencia en la vida de los animalitos🐾❤️ necesitados en nuestro albergue." 
+            " Cada día trabajamos arduamente para asegurarnos de que Omeyocanitos tengan un hogar seguro, comida y atención médica🏥🥖🏠." 
+            " Pero no podemos hacerlo solos. Necesitamos de la ayuda de personas como tú para mantener nuestro albergue funcionando y poder ayudar a más animalitos." 
+            "Cada donación es muy importante y apreciada. ¡Muchas gracias por considerarnos!🙏\n"
+            "❤---❤---❤---❤---\n"
+            "🐾 #Cuentasoficiales🐾 de Omeyocan👇\n"
+            "🐾 💳 Banorte, 7 Eleven, Farmacias Guadalajara\n"
+            "Omeyocan Comienzo a Una Nueva Vida, AC.\n"
+            "Cta. 06 83 34 52 74\n"
+            "CLABE: 07 21 80 00 68 33 45 27 48\n"
+            "-------\n"
+            "🐾 💳BancoAzteca (Guardadito)\n"
+            "JESSICA CASARRUBIAS PLATAS\n"
+            "Cta. 55-41 13-93 85-73-91\n"
+            "clabe: 12-71- 800-13-93-85-73-910\n"
+            "___\n"
+            "Oxxo\n"
+            "Número de tarjeta 4217 4700 7412 5077\n"
+            "———\n"
+            "💳 PAYPAL\n"
+            "omeyocanac@yahoo.com.mx\n"
+            "(De tu #aportación total descuentan un porcentaje)\n"
+            "Para donativos en 🎁especie, hay ☝🏻dos opciones:\n"
+            "1. Tenemos un 🏡centro de 🐾acopio en Coapa (mándanos inbox para que te demos la dirección).\n"
+            "2. O puedes enviar tu donativo a través de la mesa de 🎁de Amazon con envío al centro de acopio; la liga a la lista de deseos de Amazon https://www.amazon.com.mx/hz/wishlist/ls/14I5E4IF9FUVQ\n"
+            "💻 Informes vía inbox, mensaje o📧 correo: omeyocanac@yahoo.com.mx\n"
+            "🙏 ✅confirmar a: omeyocanac@yahoo.com.mx\n"
+            "De parte de de toda la familia de Omeyocan, te agaradecemos tu apoyo, tu like o que nos compartas. #Gracias\n"
+            "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
+         ,
+            "Omeyoacan es financiado por donaciones de personas como tú❤️🥰."
+            " Sin su ayuda, no sería posible continuar nuestra labor de salvar y proteger a estos animales que tanto necesitan nuestro apoyo💪." 
+            " Cada donación, por pequeña que sea, hace una gran diferencia💞." 
+            "Con su ayuda, podemos proporcionar atención médica, comida nutritiva y juguetes para los perros, así como mantener el refugio en óptimas condiciones." 
+            "Cada año, ayudamos a cientos de perros a encontrar un hogar amoroso y seguro❤️🏠.\n"
+            "❤---❤---❤---❤---\n"
+            "🐾 #Cuentasoficiales🐾 de Omeyocan👇\n"
+            "🐾 💳 Banorte, 7 Eleven, Farmacias Guadalajara\n"
+            "Omeyocan Comienzo a Una Nueva Vida, AC.\n"
+            "Cta. 06 83 34 52 74\n"
+            "CLABE: 07 21 80 00 68 33 45 27 48\n"
+            "-------\n"
+            "🐾 💳BancoAzteca (Guardadito)\n"
+            "JESSICA CASARRUBIAS PLATAS\n"
+            "Cta. 55-41 13-93 85-73-91\n"
+            "clabe: 12-71- 800-13-93-85-73-910\n"
+            "___\n"
+            "Oxxo\n"
+            "Número de tarjeta 4217 4700 7412 5077\n"
+            "———\n"
+            "💳 PAYPAL\n"
+            "omeyocanac@yahoo.com.mx\n"
+            "(De tu #aportación total descuentan un porcentaje)\n"
+            "Para donativos en 🎁especie, hay ☝🏻dos opciones:\n"
+            "1. Tenemos un 🏡centro de 🐾acopio en Coapa (mándanos inbox para que te demos la dirección).\n"
+            "2. O puedes enviar tu donativo a través de la mesa de 🎁de Amazon con envío al centro de acopio; la liga a la lista de deseos de Amazon https://www.amazon.com.mx/hz/wishlist/ls/14I5E4IF9FUVQ\n"
+            "💻 Informes vía inbox, mensaje o📧 correo: omeyocanac@yahoo.com.mx\n"
+            "🙏 ✅confirmar a: omeyocanac@yahoo.com.mx\n"
+            "De parte de de toda la familia de Omeyocan, te agaradecemos tu apoyo, tu like o que nos compartas. #Gracias\n"
+            "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
+         ,
+            "Como Omeyoacan, es nuestra misión es asegurarnos de que cada animalito en nuestro cuidado tenga un hogar permanente y amoroso💞🐾." 
+            " Pero para lograrlo, necesitamos de tu ayuda🫵." 
+            " Cada donación que recibimos nos ayuda a proporcionar cuidado médico, alimento, agua y un lugar seguro para nuestros amigos peludos." 
+            " También nos ayuda a publicitar y promocionar nuestros perros para que encuentren un hogar permanente🏠." 
+            " Si te gustaría ayudar, puedes hacer una donación ¡Cualquier ayuda es apreciada y bienvenida! ¡Gracias por pensar en nosotros y en los perros necesitados!🥰"
+            "❤---❤---❤---❤---\n"
+            "🐾 #Cuentasoficiales🐾 de Omeyocan👇\n"
+            "🐾 💳 Banorte, 7 Eleven, Farmacias Guadalajara\n"
+            "Omeyocan Comienzo a Una Nueva Vida, AC.\n"
+            "Cta. 06 83 34 52 74\n"
+            "CLABE: 07 21 80 00 68 33 45 27 48\n"
+            "-------\n"
+            "🐾 💳BancoAzteca (Guardadito)\n"
+            "JESSICA CASARRUBIAS PLATAS\n"
+            "Cta. 55-41 13-93 85-73-91\n"
+            "clabe: 12-71- 800-13-93-85-73-910\n"
+            "___\n"
+            "Oxxo\n"
+            "Número de tarjeta 4217 4700 7412 5077\n"
+            "———\n"
+            "💳 PAYPAL\n"
+            "omeyocanac@yahoo.com.mx\n"
+            "(De tu #aportación total descuentan un porcentaje)\n"
+            "Para donativos en 🎁especie, hay ☝🏻dos opciones:\n"
+            "1. Tenemos un 🏡centro de 🐾acopio en Coapa (mándanos inbox para que te demos la dirección).\n"
+            "2. O puedes enviar tu donativo a través de la mesa de 🎁de Amazon con envío al centro de acopio; la liga a la lista de deseos de Amazon https://www.amazon.com.mx/hz/wishlist/ls/14I5E4IF9FUVQ\n"
+            "💻 Informes vía inbox, mensaje o📧 correo: omeyocanac@yahoo.com.mx\n"
+            "🙏 ✅confirmar a: omeyocanac@yahoo.com.mx\n"
+            "De parte de de toda la familia de Omeyocan, te agaradecemos tu apoyo, tu like o que nos compartas. #Gracias\n"
+            "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
+          ,  
+            "¡Hola! Se hoy el cambio  que quieres mañana. Muchos #omeyocanitos requieren de tu donación." 
+            "El refugio requiere de muchos recursos diariamente, para el alimento, cuidados, mantenimiento y muchas cosas más para cambiar la vida de muchos animalitos." 
+            "Si esta en tus posibilidades ayudar, en #Omeyocan estariamos muy agradecidos."
+            "❤---❤---❤---❤---\n"
+            "🐾 #Cuentasoficiales🐾 de Omeyocan👇\n"
+            "🐾 💳 Banorte, 7 Eleven, Farmacias Guadalajara\n"
+            "Omeyocan Comienzo a Una Nueva Vida, AC.\n"
+            "Cta. 06 83 34 52 74\n"
+            "CLABE: 07 21 80 00 68 33 45 27 48\n"
+            "-------\n"
+            "🐾 💳BancoAzteca (Guardadito)\n"
+            "JESSICA CASARRUBIAS PLATAS\n"
+                "Cta. 55-41 13-93 85-73-91\n"
+            "clabe: 12-71- 800-13-93-85-73-910\n"
+            "___\n"
+            "Oxxo\n"
+            "Número de tarjeta 4217 4700 7412 5077\n"
+            "———\n"
+            "💳 PAYPAL\n"
+            "omeyocanac@yahoo.com.mx\n"
+            "(De tu #aportación total descuentan un porcentaje)\n"
+            "Para donativos en 🎁especie, hay ☝🏻dos opciones:\n"
+            "1. Tenemos un 🏡centro de 🐾acopio en Coapa (mándanos inbox para que te demos la dirección).\n"
+            "2. O puedes enviar tu donativo a través de la mesa de 🎁de Amazon con envío al centro de acopio; la liga a la lista de deseos de Amazon https://www.amazon.com.mx/hz/wishlist/ls/14I5E4IF9FUVQ\n"
+            "💻 Informes vía inbox, mensaje o📧 correo: omeyocanac@yahoo.com.mx\n"
+            "🙏 ✅confirmar a: omeyocanac@yahoo.com.mx\n"
+            "De parte de de toda la familia de Omeyocan, te agaradecemos tu apoyo, tu like o que nos compartas. #Gracias\n"
+            "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
+            ,
+            "🆘🆘🆘 AYUDA🆘🆘🆘\n"
+            "Necesitamos de tu apoyo, tu donación ayudará a muchos #Omeyocanitos ¿Nos podrias dar una 🐾 #amiga?\n"
+            "❤---❤---❤---❤---\n"
+            "🐾 #Cuentasoficiales🐾 de Omeyocan👇\n"
+            "🐾 💳 Banorte, 7 Eleven, Farmacias Guadalajara\n"
+            "Omeyocan Comienzo a Una Nueva Vida, AC.\n"
+            "Cta. 06 83 34 52 74\n"
+            "CLABE: 07 21 80 00 68 33 45 27 48\n"
+            "-------\n"
+            "🐾 💳BancoAzteca (Guardadito)\n"
+            "JESSICA CASARRUBIAS PLATAS\n"
+                "Cta. 55-41 13-93 85-73-91\n"
+            "clabe: 12-71- 800-13-93-85-73-910\n"
+            "___\n"
+            "Oxxo\n"
+            "Número de tarjeta 4217 4700 7412 5077\n"
+            "———\n"
+            "💳 PAYPAL\n"
+            "omeyocanac@yahoo.com.mx\n"
+            "(De tu #aportación total descuentan un porcentaje)\n"
+            "Para donativos en 🎁especie, hay ☝🏻dos opciones:\n"
+            "1. Tenemos un 🏡centro de 🐾acopio en Coapa (mándanos inbox para que te demos la dirección).\n"
+            "2. O puedes enviar tu donativo a través de la mesa de 🎁de Amazon con envío al centro de acopio; la liga a la lista de deseos de Amazon https://www.amazon.com.mx/hz/wishlist/ls/14I5E4IF9FUVQ\n"
+            "💻 Informes vía inbox, mensaje o📧 correo: omeyocanac@yahoo.com.mx\n"
+            "🙏 ✅confirmar a: omeyocanac@yahoo.com.mx\n"
+            "De parte de de toda la familia de Omeyocan, te agaradecemos tu apoyo, tu like o que nos compartas. #Gracias\n"
+            "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
+            ,
+            "🆘URGENTE🆘\n"
+            "¡TE NECESITAMOS! 🐶🐱🐰\n"
+            "¿Nos podrias dar una 🐾 #amiga? CUALQUIER DONATIVO HACE UNA GRAN DIFERENCIA. Todos los #Omeyocanitos te lo agradeceran.\n"
+            "🆘URGENTE🆘🆘URGENTE🆘🆘URGENTE🆘🆘URGENTE🆘🆘URGENTE🆘\n"
+             "❤---❤---❤---❤---\n"
+            "🐾 #Cuentasoficiales🐾 de Omeyocan👇\n"
+            "🐾 💳 Banorte, 7 Eleven, Farmacias Guadalajara\n"
+            "Omeyocan Comienzo a Una Nueva Vida, AC.\n"
+            "Cta. 06 83 34 52 74\n"
+            "CLABE: 07 21 80 00 68 33 45 27 48\n"
+            "-------\n"
+            "🐾 💳BancoAzteca (Guardadito)\n"
+            "JESSICA CASARRUBIAS PLATAS\n"
+                "Cta. 55-41 13-93 85-73-91\n"
+            "clabe: 12-71- 800-13-93-85-73-910\n"
+            "___\n"
+            "Oxxo\n"
+            "Número de tarjeta 4217 4700 7412 5077\n"
+            "———\n"
+            "💳 PAYPAL\n"
+            "omeyocanac@yahoo.com.mx\n"
+            "(De tu #aportación total descuentan un porcentaje)\n"
+            "Para donativos en 🎁especie, hay ☝🏻dos opciones:\n"
+            "1. Tenemos un 🏡centro de 🐾acopio en Coapa (mándanos inbox para que te demos la dirección).\n"
+            "2. O puedes enviar tu donativo a través de la mesa de 🎁de Amazon con envío al centro de acopio; la liga a la lista de deseos de Amazon https://www.amazon.com.mx/hz/wishlist/ls/14I5E4IF9FUVQ\n"
+            "💻 Informes vía inbox, mensaje o📧 correo: omeyocanac@yahoo.com.mx\n"
+            "🙏 ✅confirmar a: omeyocanac@yahoo.com.mx\n"
+            "De parte de de toda la familia de Omeyocan, te agaradecemos tu apoyo, tu like o que nos compartas. #Gracias\n"
+            "#ayuda #tenecesitamos #hazladiferencia #donacion #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan\n"
+    ]
+
+    def copy_to_clipboard():
+        text = text_box.get("1.0", "end-1c")
+        pyperclip.copy(text)
+
+    def generar_otro_texto():
+        nuevo_texto = random.sample(textos, 1)[0]
+        text_box.delete("1.0", "end")
+        text_box.insert("1.0", nuevo_texto)
+
+    text = random.sample(textos, 1)[0]
+
+    regresar = tk.Button(donar_G,  text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=donar_G.destroy)
+    regresar.place(relx=0.01, rely=0.02)
+
+    fotos = tk.Button(donar_G, text="Carpeta de fotos", font='Helvetica 22 bold', bg='#33ff6d',command=carpeta_fotos_G)
+    fotos.place(relx=0.8, rely=0.7,anchor=N)
+
+    copy = tk.Button(donar_G, text="Copiar", font='Helvetica 22 bold', bg='#33ff6d',command=copy_to_clipboard)
+    copy.place(relx=0.8, rely=0.8,anchor=N)
+
+    otro = tk.Button(donar_G, text="Generar otro texto", font='Helvetica 22 bold', bg='#33ff6d', command=generar_otro_texto)
+    otro.place(relx=0.8, rely=0.9,anchor=N)
+
+    fr = Frame(donar_G, bg='#0a4369')
+    fr.place(relx=0.025, rely=0.11,relwidth=0.55, relheight=0.85)
+
+    text_box = tk.Text(fr, font=("Roboto", 17), bg="#0a4369", fg="white", bd=0, highlightthickness=0, insertborderwidth=0, exportselection=False,wrap=WORD)
+    text_box.insert(tk.END, text)
+    text_box.pack(side='left')
+
+    lbl_nombre_G = Label(donar_G,text="",font='Helvetica 30 bold', fg='pink', bg='#0a4369')
+    lbl_nombre_G.place(relx=0.1, rely=0.02)
+    lbl_nombre_G.config(text=valuesG[0])
+
+    lbl_img_G = Label(donar_G,bg = '#0a4369')
+    lbl_img_G.place(relx= 0.8, rely=0.05, anchor=N)
+
+def ventanaPublicarG():
+    try:
+        valuesG
+    except NameError:
+        messagebox.showwarning("Advertencia","Seleccione un gato por favor")
+        ventana_Gatos.deiconify()
+        return
+    ventana_publicar_G = tk.Toplevel()
+    ventana_publicar_G.geometry("1280x720")
+    ventana_publicar_G.title("PawSystem Gatos")
+    ventana_publicar_G.iconbitmap('paw-icon.ico')
+    ventana_publicar_G.configure(bg='#0a4369') 
+    ventana_publicar_G.state('zoomed')
+    ventana_publicar_G.update_idletasks()
+
+    # Crear el botón de regresar
+    regresar = tk.Button(ventana_publicar_G, text="Regresar", font='Helvetica 16 bold', bg='#33ff6d',command=lambda:[ventana_publicar_G.destroy(), ventana_Gatos.deiconify()])
+    regresar.place(relx=0.01, rely=0.02)
+
+    lbl_nombre_G = Label(ventana_publicar_G,text="",font='Helvetica 40 bold', fg='pink', bg='#0a4369')
+    lbl_nombre_G.place(relx=0.12, rely=0.05)
+    lbl_nombre_G.config(text=valuesG[0])
+
+    # Crear el botón de opciones
+    adopcion = tk.Button(ventana_publicar_G, text="Adopción", font='Helvetica 24 bold', bg="#33ff6d",command=lambda: [ventanaAdopcionG(),ventana.deiconify])
+    adopcion.place(relx=0.2, rely=0.85, anchor="center")
+
+    noadop = tk.Button(ventana_publicar_G, text="No adopción", font='Helvetica 24 bold', bg="#33ff6d",command=lambda: [ventanaNoAdopcionG(),ventana.deiconify])
+    noadop.place(relx=0.5, rely=0.85, anchor="center")
+
+    donacion = tk.Button(ventana_publicar_G, text="Donación", font='Helvetica 24 bold', bg="#33ff6d",command=lambda: [ventanaDonarG(),ventana.deiconify])
+    donacion.place(relx=0.8, rely=0.85, anchor="center")
+
+    lbl_img_G = Label(ventana_publicar_G,bg = '#0a4369')
+    lbl_img_G.place(relx= 0.5, rely=0.2, anchor=N)
+
+    get_img_Gato_pub(lbl_img_G)
+
+def get_img_Gato_pub(lbl_img_G):
+    try:
+        dir_path_G_fotos = os.getcwd() + "/gimg/" + selectedG #Conseguir directorio de la carpeta de imagenes
+        images_files = os.listdir(dir_path_G_fotos)[0]
+        original_image = Image.open(dir_path_G_fotos + '/' + images_files)
+        width_img_G, height_img_G = original_image.size
+        aspect_ratio_G = width_img_G/height_img_G
+        resized_image = original_image.resize((400, 400), Image.Resampling.LANCZOS)
+        max_width_img_G = 400
+        max_height_img_G = 400
+        new_width_img_G = min(width_img_G, max_width_img_G)
+        new_height_img_G = min(height_img_G, max_height_img_G)
+
+        if aspect_ratio_G > 1:
+            #Imagen más ancha que alta
+            new_height_img_G = int(new_width_img_G / aspect_ratio_G)
+        else:
+            #Imagen más alta que ancha
+            new_width_img_G = int(new_height_img_G * aspect_ratio_G)
+
+        new_img = ImageTk.PhotoImage(resized_image.resize((new_width_img_G, new_height_img_G)), Image.Resampling.LANCZOS)
+        lbl_img_G.config(image=new_img)
+        lbl_img_G.image = new_img   
+    except:
+        missingImg = (Image.open("noimg.jpg"))
+        resized_missingImg = missingImg.resize((300,300), Image.Resampling.LANCZOS)
+        new_missingImg = ImageTk.PhotoImage(resized_missingImg)
+        lbl_img_G.config(image=new_missingImg)
+        lbl_img_G.image = new_missingImg 
+        pass
+
+def carpeta_fotos_G():
+    try:
+        dir_path_G_fotos = os.getcwd() + "/gimg/" + selectedG
+        os.startfile(dir_path_G_fotos)
+    except:
+        messagebox.showwarning("ADVERTENCIA","No hay fotos del gatito registradas")
+        return
+
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 #Código principal
 logo = (Image.open("logoOmeyocan.jpg"))
 resized_logo = logo.resize((300,200), Image.Resampling.LANCZOS)
@@ -1768,8 +3441,8 @@ new_logo = ImageTk.PhotoImage(resized_logo)
 
 lblLogo = tk.Label(image=new_logo).pack(pady=30)
 
-btnPerros = tk.Button(ventana, text="Perros", width=20, font='Helvetica 18 bold', bg='#33ff6d' , command=lambda: [crear_ventana_perros(), abrir_ventana_perros(), ventana.iconify()]).pack(pady=30)
-btnGatos = tk.Button(ventana, text="Gatos", width=20, font='Helvetica 18 bold', bg='#33ff6d').pack(pady=30)
+btnPerros = tk.Button(ventana, text="Perros", width=20, font='Helvetica 18 bold', bg='#33ff6d', command=lambda: [crear_ventana_perros(), abrir_ventana_perros(), ventana.iconify()]).pack(pady=30)
+btnGatos = tk.Button(ventana, text="Gatos", width=20, font='Helvetica 18 bold', bg='#33ff6d', command=lambda: [crear_ventana_Gatos(), abrir_ventana_Gatos(), ventana.iconify()]).pack(pady=30)
 btnOtros = tk.Button(ventana, text="Otros", width=20, font='Helvetica 18 bold', bg='#33ff6d').pack(pady=30)
 btnCerrar = tk.Button(ventana, text="Salir", width=5, font='Helvetica 13 bold', bg='#33ff6d', command=ventana.destroy).place(relx=0.935, rely=0.015)
 
