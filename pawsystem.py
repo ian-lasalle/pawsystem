@@ -707,10 +707,9 @@ def crear_ventana_perros():
     ventana_perros.iconbitmap('paw-icon.ico')
     ventana_perros.configure(bg='#0a4369')
     ventana_perros.state('zoomed')
-    folder_path = os.path.join(os.getcwd(), "pimg")
-    # Verificar si la carpeta existe
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
+    
+    if not os.path.exists(os.path.join(os.getcwd(), "pimg")):
+        os.makedirs(os.path.join(os.getcwd(), "pimg"))
 
 def crear_ventana_perros_archivados():
     global ventana_perros_archivados
@@ -2375,10 +2374,9 @@ def crear_ventana_Gatos():
     ventana_Gatos.iconbitmap('paw-icon.ico')
     ventana_Gatos.configure(bg='#0a4369')
     ventana_Gatos.state('zoomed')
-    folder_path = os.path.join(os.getcwd(), "gimg")
-    # Verificar si la carpeta existe
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
+
+    if not os.path.exists(os.path.join(os.getcwd(), "gimg")):
+        os.makedirs(os.path.join(os.getcwd(), "gimg"))
 
 def crear_ventana_Gatos_archivados():
     global ventana_Gatos_archivados
