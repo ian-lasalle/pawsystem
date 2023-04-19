@@ -1182,7 +1182,7 @@ def ventanaAdopcionP():
         "SU 🎞 #HISTORIA CONTINÚA, en #ADOPCIÒN 🐾Un #rescate que aún sigue vigente"
         " 🇲🇽🐾\nNOMBRE: "+valuesp[0]+"\nNACIÓ: "+valuesp[1]+ "\nTALLA: "+valuesp[6]+"\nSEXO: "
         +valuesp[2]+" #"+valuesp[8]+"estaesterilizado\nTEMPERAMENTO: "+valuesp[7]+"#adopta"
-        " #adopta #adoptanocompres #amigoperruno ❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA 🧚🏻‍♀"
+        " #adopta #adoptanocompres #amigoperruno ❤ #ADOPCIÓN🇲🇽 #ADOPTA #APADRINA 🧚🏻‍♀"
         " #APADRINAMIENTOVIRTUAL #UnperritogatitoabandonadoenunHOGAR\nPara más información comunícate a:"
         " adopcionesvirtualesomeyocan@yahoo.com.mx #amigoperruno #amigogatuno #perritos #gatitos"
         " #animalitos #Omeyocan",
@@ -1211,8 +1211,8 @@ def ventanaAdopcionP():
         #--------------------------------------------------------------------------------------------------------------------
         ""+valuesp[0]+" 🐶es de talla "+valuesp[6]+". Es"+valuesp[7]+", y "+valuesp[2]+""  
         "Si quieres adoptar a "+valuesp[0]+" y que formen una hermosa familia juntos❤️🐾, contáctanos."
-        "#ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
-        "adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        "#ADOPTA #adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        "adopta #adoptanocompres #amigoperruno ❤ #ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
         "🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
         "Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
         "#amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
@@ -1220,7 +1220,7 @@ def ventanaAdopcionP():
         "Me llamo "+valuesp[0]+" estoy buscando una familia que me de mucho cariño🥰." 
         " Soy "+valuesp[7]+" y de tamaño "+valuesp[6]+". Ayúdame a encontrar la familia que tanto he esperado." 
         " #ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
-        " adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        " adopta #adoptanocompres #amigoperruno ❤ #ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
         " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
         " Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
         " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
@@ -1229,8 +1229,8 @@ def ventanaAdopcionP():
         " Es "+valuesp[7]+". Estamos seguras de que le dará mucho a amor a la familia a la que vaya a pertenecer." 
         " Es muy amigable con otros perros y niños," 
         " pero necesita una familia que pueda brindarle la atención y el tiempo que necesita para mantenerse feliz y saludable."
-        " #ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
-        " adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        " #ADOPTA #adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        " adopta #adoptanocompres #amigoperruno ❤ #ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
         " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
         " Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
         " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
@@ -1246,8 +1246,8 @@ def ventanaAdopcionP():
         "SEXO: "+valuesp[2]+"\n"
         "#Esterilización "+valuesp[8]+"\n"
         "TEMPERAMENTO: "+valuesp[7]+"\n"
-        " #ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
-        " adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        " #ADOPTA #adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        " adopta #adoptanocompres #amigoperruno ❤ #ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
         " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
         " Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
         " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
@@ -2875,10 +2875,10 @@ def ventanaAdopcionG():
         ""+valuesG[0]+" 🐱 es de talla "+valuesG[6]+". Es"+valuesG[7]+", y "+valuesG[2]+""  
         "Si quieres adoptar a "+valuesG[0]+" y que formen una hermosa familia juntos❤️🐾, contáctanos."
         "#ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
-        "adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        "adopta #adoptanocompres #amigoperruno ❤ #ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
         "🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
-        "Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
-        "#amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        "\nPara más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
+        " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "Me llamo "+valuesG[0]+" estoy buscando una familia que me de mucho cariño🥰." 
         " Soy "+valuesG[7]+" y de tamaño "+valuesG[6]+". Ayúdame a encontrar la familia que tanto he esperado." 
@@ -2892,8 +2892,8 @@ def ventanaAdopcionG():
         " Es "+valuesG[7]+". Estamos seguras de que le dará mucho a amor a la familia a la que vaya a pertenecer." 
         " Es muy amigable con otros perros y niños," 
         " pero necesita una familia que pueda brindarle la atención y el tiempo que necesita para mantenerse feliz y saludable."
-        " #ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
-        " adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        " #ADOPTA #adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        " adopta #adoptanocompres #amigoperruno ❤ #ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
         " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
         " Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
         " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
@@ -2909,8 +2909,8 @@ def ventanaAdopcionG():
         "SEXO: "+valuesG[2]+"\n"
         "#Esterilización "+valuesG[8]+"\n"
         "TEMPERAMENTO: "+valuesG[7]+"\n"
-        " #ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
-        " adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        " #ADOPTA #adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        " adopta #adoptanocompres #amigoperruno ❤ #ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
         " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
         " Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
         " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
@@ -2973,7 +2973,7 @@ def ventanaNoAdopcionG():
         #--------------------------------------------------------------------------------------------------------------------
         "Existen muchos Omeyocanitos que no tienen la posibilidad de ser adoptados😥 ya que algunos se encuentran" 
         " en rehabilitación física y/o emocional, pero puedes apadrinar.\n" 
-        ""+valuesG[0]+"🐾💞 no tiene la posibilidad y busca TU🫵 ayuda para poder tener la vida que merece." 
+        ""+valuesG[0]+"🐾💞 no tiene la posibilidad y busca TU ayuda para poder tener la vida que merece." 
         " adopcionesvirtualesomeyocan@yahoo.com.mx #APADRINA #noadoptable #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "¡"+valuesG[0]+" te necesita! Aunque 🚫NO es ADOPTABLE🚫 podrías hacer que tenga una mejor vida y pronta rehabilitación ❤‍🩹 ." 
@@ -2985,8 +2985,7 @@ def ventanaNoAdopcionG():
         "#Esterilizado\n"
         " TEMPERAMENTO: "+valuesG[7]+""
         " 🧚🏻‍♀ APADRINAMIENTO VIRTUAL, comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx para mas informarción."
-        " #APADRINA"
-        " #UnperritogatitoabandonadoenunHOGAR",
+        " \n#APADRINA #UnperritogatitoabandonadoenunHOGAR",
         #--------------------------------------------------------------------------------------------------------------------
         "¡Haz la diferencia en la vida de "+valuesG[0]+"! Apadrina a uno de los adorables gatitos de Omeyocan, un refugio dedicado a cuidar y proteger a los animales." 
         " Tu apadrinamiento ayudará a cubrir los costos de alimentación, atención médica y cuidado diario de estos gatitos mientras esperan encontrar un hogar amoroso y permanente." 
@@ -4530,10 +4529,9 @@ def ventanaAdopcionO():
         "SU 🎞 #HISTORIA CONTINÚA, en #ADOPCIÒN 🐾Un #rescate que aún sigue vigente"
         " 🇲🇽🐾\nNOMBRE: "+valuesO[1]+"\nNACIÓ: "+valuesO[2]+ "\nTALLA: "+valuesO[7]+"\nSEXO: "
         +valuesO[3]+" #"+valuesO[9]+"estaesterilizado\nTEMPERAMENTO: "+valuesO[8]+"#adopta"
-        " #adopta #adoptanocompres #amigoperruno ❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA 🧚🏻‍♀"
+        " #adopta #adoptanocompres #amigoomeyocan ❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA 🧚🏻‍♀"
         " #APADRINAMIENTOVIRTUAL #UnperritogatitoabandonadoenunHOGAR\nPara más información comunícate a:"
-        " adopcionesvirtualesomeyocan@yahoo.com.mx #amigoperruno #amigogatuno #perritos #gatitos"
-        " #animalitos #Omeyocan",
+        " adopcionesvirtualesomeyocan@yahoo.com.mx #"+valuesO[0]+" #amigo"+valuesO[0]+" #animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "¡Conoce a "+valuesO[1]+ "! SU #HISTORIA CONTINUA en #ADOPCION. Nació "+valuesO[2]+" y es un #rescate"
         " que aún sigue vigente, TÚ puedes cambiar su vida\nTALLA: "+valuesO[7]+"\nSEXO:"
@@ -4541,21 +4539,20 @@ def ventanaAdopcionO():
         " #Omeyocanito puede tener una vida mejor y compartir su felicidad y alegría con más personas"
         "\n#adopta #adoptanocompres #amigoperruno ❤ #ADOPCIÓN🇲🇽 #ADOPTA #APADRINA 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL"
         " #UnperritogatitoabandonadoenunHOGAR Para más información comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx" 
-        "\n#amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        "\n#animalitos #"+valuesO[0]+" #amigo"+valuesO[0]+" #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "¡"+valuesO[1]+"!🐾 sigue aquí con nosotros. El es un #Omeyocanito "+valuesO[8]+". Estaríamos muy" 
         " felices de encontrarle una familia que le dé mucho amor.\nPara más información comunícate a:" 
-        " adopcionesvirtualesomeyocan@yahoo.com.m #amigoperruno #amigogatuno #perritos"
-        " #gatitos #animalitos #Omeyocan",
+        " adopcionesvirtualesomeyocan@yahoo.com.mx #"+valuesO[0]+" #amigo"+valuesO[0]+"#animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "Adopta a "+valuesO[1]+", lleva un rato con nosotros, pero ya quiere conocer a las personas que serán"
         " su #familia ❤️. Es de talla"+valuesO[7]+" ¡ya es tiempo de darle la vida que merece!" 
         " Si no puedes adoptar puedes #apadrinar a"+valuesO[1]+" o #compartir para que encuentre un hogar"
-        " 🐾❤️.\n#ADOPTA #adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        " 🐾❤️.\n#ADOPTA #adoptame #"+valuesO[0]+" #amigo"+valuesO[0]+"#animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "¡"+valuesO[1]+" merece una oportunidad!. Está con nosotros desde "+valuesO[13]+". Ayúdanos a encontrarle" 
-        " una familia. Para más información comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx #adopta "
-        "#amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        " una familia. Para más información comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx \n#adopta "
+        "#"+valuesO[0]+" #amigo"+valuesO[0]+"#animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         ""+valuesO[1]+" es de talla "+valuesO[7]+". Es"+valuesO[8]+", y "+valuesO[3]+""  
         "Si quieres adoptar a "+valuesO[1]+" y que formen una hermosa familia juntos❤️🐾, contáctanos."
@@ -4563,42 +4560,40 @@ def ventanaAdopcionO():
         "adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
         "🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
         "Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
-        "#amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        "\n#"+valuesO[0]+" #amigo"+valuesO[0]+"#animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "Me llamo "+valuesO[1]+" estoy buscando una familia que me de mucho cariño🥰." 
         " Soy "+valuesO[8]+" y de tamaño "+valuesO[7]+". Ayúdame a encontrar la familia que tanto he esperado." 
-        " #ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
-        " adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        " #ADOPTA#adoptame #animalitos #Omeyocan #adopta #adoptanocompres ❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
         " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
         " Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
-        " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        " \n#"+valuesO[0]+" #amigo"+valuesO[0]+"#animalitos #Omeyocan",
         #-------------------------------------------------------------------------------------------------------------------
         "Adopta a "+valuesO[1]+" ya quiere pertenece a una familia, es de talla "+valuesO[7]+"" 
         " Es "+valuesO[8]+". Estamos seguras de que le dará mucho a amor a la familia a la que vaya a pertenecer." 
         " Es muy amigable con otros perros y niños," 
         " pero necesita una familia que pueda brindarle la atención y el tiempo que necesita para mantenerse feliz y saludable."
-        " #ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
-        " adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
-        " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
+        " #ADOPTA #adoptame #animalitos #Omeyocan #adopta #adoptanocompres ❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
+        " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL #Un"+valuesO[0]+"abandonadoenunHOGAR"
         " Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
-        " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        " #"+valuesO[0]+" #amigo"+valuesO[0]+"#animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "Soy "+valuesO[1]+" y soy "+valuesO[7]+"." 
-        " Soy "+valuesO[8]+" Necesito una familia que tenga tiempo y amor para dedicar a un perro activo como yo."
+        " Soy "+valuesO[8]+" Necesito una familia que tenga tiempo y amor para dedicar a un "+valuesO[0]+"activo como yo."
         " Si estás interesado en adoptarme, por favor asegúrate de que tienes el tiempo y los recursos necesarios para cuidarme adecuadamente." 
         " Estoy dispuesto a aprender y estoy ansioso por encontrar un hogar lleno de amor. ¡Gracias por considerarme!",
         #--------------------------------------------------------------------------------------------------------------------
-        "¡Hola nosotros somos #Omeyocan🖐🏼! Necesitamos tu ayuda🥹, "+valuesO[1]+" 🐶esta buscando una familia con quien compartir su felicidad y cariño ❤️"
+        "¡Hola nosotros somos #Omeyocan🖐🏼! Necesitamos tu ayuda🥹, "+valuesO[1]+" esta buscando una familia con quien compartir su felicidad y cariño ❤️"
         "\nNACIÓ: "+valuesO[2]+"\n"
         "TALLA: "+valuesO[7]+"\n"
         "SEXO: "+valuesO[3]+"\n"
         "#Esterilización "+valuesO[9]+"\n"
         "TEMPERAMENTO: "+valuesO[8]+"\n"
-        " #ADOPTA#adoptame #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        " #ADOPTA #adoptame #animalitos #Omeyocan"
         " adopta #adoptanocompres #amigoperruno❤#ADOPCIÓN🇲🇽 #ADOPTA #APADRINA"
         " 🧚🏻‍♀ #APADRINAMIENTOVIRTUAL#UnperritogatitoabandonadoenunHOGAR"
         " Para más información comunícate a adopcionesvirtualesomeyocan@yahoo.com.mx"
-        " #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        "#"+valuesO[0]+" #amigo"+valuesO[0]+"#animalitos #Omeyocan"
     ]
 
     def copy_to_clipboard():
@@ -4654,12 +4649,12 @@ def ventanaNoAdopcionO():
         "¡Hola! Soy "+valuesO[1]+" estoy buscando apoyo para poder tener una vida digna🐾." 
         " No soy adoptable, pero puedes apadrinarme de manera virtual  en adopcionesvirtualesomeyocan@yahoo.com.mx." 
         " No todos podemos ser adoptables por distintas razones, pero siempre existen más maneras de apoyar. ❤️"
-        " #APADRINA #noadoptable #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        " #APADRINA #noadoptable #"+valuesO[0]+"#amigo"+valuesO[0]+"#animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "Existen muchos Omeyocanitos que no tienen la posibilidad de ser adoptados😥 ya que algunos se encuentran" 
         " en rehabilitación física y/o emocional, pero puedes apadrinar.\n" 
         ""+valuesO[1]+"🐾💞 no tiene la posibilidad y busca TU🫵 ayuda para poder tener la vida que merece." 
-        " adopcionesvirtualesomeyocan@yahoo.com.mx #APADRINA #noadoptable #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        " adopcionesvirtualesomeyocan@yahoo.com.mx #APADRINA #noadoptable #"+valuesO[0]+"#amigo"+valuesO[0]+"#animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "¡"+valuesO[1]+" te necesita! Aunque 🚫NO es ADOPTABLE🚫 podrías hacer que tenga una mejor vida y pronta rehabilitación ❤‍🩹 ." 
         " En #Omeyocan hay #omeyocanitos que requieren de atención especial y rehabilitación física o emocional, sin embargo," 
@@ -4670,20 +4665,19 @@ def ventanaNoAdopcionO():
         "#Esterilizado\n"
         "TEMPERAMENTO: "+valuesO[8]+""
         "🧚🏻‍♀ APADRINAMIENTO VIRTUAL, comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx para mas informarción."
-        " #APADRINA"
-        " #UnperritogatitoabandonadoenunHOGAR",
+        " #APADRINA #Un"+valuesO[0]+"abandonadoenunHOGAR #"+valuesO[0]+"#amigo"+valuesO[0]+"#animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "¡Haz la diferencia en la vida de "+valuesO[1]+"! Apadrina a uno de los adorables animalistos de Omeyocan, un refugio dedicado a cuidar y proteger a los animales." 
         " Tu apadrinamiento ayudará a cubrir los costos de alimentación, atención médica y cuidado diario de estos animalitos mientras esperan encontrar un hogar amoroso y permanente." 
         " ¡Únete a nosotros en nuestra misión de brindar una vida mejor a estos animalitos necesitados!"
         " Para más información comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx"
-        " #apadrina #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan",
+        " #apadrina #"+valuesO[0]+"#amigo"+valuesO[0]+"#animalitos #Omeyocan",
         #--------------------------------------------------------------------------------------------------------------------
         "🚫"+valuesO[1]+" NO ES ADOPTABLE🚫\n"
         " Lleva con nosotros desde "+valuesO[13]+", necesita de tu apoyo para salir adelante,"
         " aunque 🚫NO ES ADOPTABLE🚫 puedes #Apadrinar para ayudar a su cuidado.\n"
         " Para más información comunícate a: adopcionesvirtualesomeyocan@yahoo.com.mx"
-        " #apadrina #amigoperruno #amigogatuno #perritos #gatitos #animalitos #Omeyocan"
+        " #apadrina #"+valuesO[0]+"#amigo"+valuesO[0]+"#animalitos #Omeyocan"
     ]
 
     def copy_to_clipboard():
