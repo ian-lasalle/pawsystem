@@ -682,7 +682,7 @@ def ventana_buscarP():
                 lbl_busqueda_formato.config(text="escriba sí o no")
                 selCbp = "ESTERILIZACION"
             case "Notas":
-                lbl_busqueda_formato.config(text="escriba sí o no")
+                lbl_busqueda_formato.config(text="escriba las notas")
                 selCbp = "DISCAPACIDAD"
             case "Adoptable":
                 lbl_busqueda_formato.config(text="escriba sí o no")
@@ -2271,7 +2271,7 @@ def ventana_buscarGa():
                 lbl_busqueda_formato.config(text="escriba sí o no")
                 selCbGa = "ESTERILIZACION"
             case "Notas":
-                lbl_busqueda_formato.config(text="escriba sí o no")
+                lbl_busqueda_formato.config(text="escriba las notas")
                 selCbGa = "DISCAPACIDAD"
             case "Adoptable":
                 lbl_busqueda_formato.config(text="escriba sí o no")
@@ -2347,7 +2347,7 @@ def ventana_buscarG():
                 lbl_busqueda_formato.config(text="escriba sí o no")
                 selCbG = "ESTERILIZACION"
             case "Notas":
-                lbl_busqueda_formato.config(text="escriba sí o no")
+                lbl_busqueda_formato.config(text="escriba las notas")
                 selCbG = "DISCAPACIDAD"
             case "Adoptable":
                 lbl_busqueda_formato.config(text="escriba sí o no")
@@ -3938,7 +3938,7 @@ def ventana_buscarOt():
                 lbl_busqueda_formato.config(text="escriba sí o no")
                 selCbOt = "ESTERILIZACION"
             case "Notas":
-                lbl_busqueda_formato.config(text="escriba sí o no")
+                lbl_busqueda_formato.config(text="escriba las notas")
                 selCbOt = "DISCAPACIDAD"
             case "Adoptable":
                 lbl_busqueda_formato.config(text="escriba sí o no")
@@ -4017,7 +4017,7 @@ def ventana_buscarO():
                 lbl_busqueda_formato.config(text="escriba sí o no")
                 selCbO = "ESTERILIZACION"
             case "Notas":
-                lbl_busqueda_formato.config(text="escriba sí o no")
+                lbl_busqueda_formato.config(text="escriba las notas")
                 selCbO = "DISCAPACIDAD"
             case "Adoptable":
                 lbl_busqueda_formato.config(text="escriba sí o no")
