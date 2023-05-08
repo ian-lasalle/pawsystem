@@ -560,7 +560,7 @@ def ventana_buscarPa():
     ventana_buscar_perros_arch.resizable(False, False)
     lbl_opcion = Label(ventana_buscar_perros_arch, text="Opción:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_opcion.grid(column=0, row=0, sticky=W, padx=5, pady=(10,5))
-    combo = ttk.Combobox(ventana_buscar_perros_arch,state="readonly", font='Helvetica 10', values=["Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Discapacidad","Adoptable","Fecha de esterilización","Fecha de ingreso","Estado"])
+    combo = ttk.Combobox(ventana_buscar_perros_arch,state="readonly", font='Helvetica 10', values=["Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Notas","Adoptable","Fecha de esterilización","Fecha de ingreso","Estado"])
     combo.grid(column=1, row=0, sticky=W, padx=10, pady=(10,5))
     lbl_busqueda = Label(ventana_buscar_perros_arch, text="Búsqueda:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_busqueda.grid(column=0, row=1, sticky=W, padx=5, pady=5)
@@ -605,8 +605,8 @@ def ventana_buscarPa():
             case "Esterilización":
                 lbl_busqueda_formato.config(text="escriba sí o no")
                 selCbpa = "ESTERILIZACION"
-            case "Discapacidad":
-                lbl_busqueda_formato.config(text="escriba sí o no")
+            case "Notas":
+                lbl_busqueda_formato.config(text="escriba las notas")
                 selCbpa = "DISCAPACIDAD"
             case "Adoptable":
                 lbl_busqueda_formato.config(text="escriba sí o no")
@@ -636,7 +636,7 @@ def ventana_buscarP():
     ventana_buscar_perros.resizable(False, False)
     lbl_opcion = Label(ventana_buscar_perros, text="Opción:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_opcion.grid(column=0, row=0, sticky=W, padx=5, pady=(10,5))
-    combo = ttk.Combobox(ventana_buscar_perros,state="readonly", font='Helvetica 10', values=["Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Discapacidad","Adoptable","Fecha de esterilización","Fecha de ingreso"])
+    combo = ttk.Combobox(ventana_buscar_perros,state="readonly", font='Helvetica 10', values=["Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Notas","Adoptable","Fecha de esterilización","Fecha de ingreso"])
     combo.grid(column=1, row=0, sticky=W, padx=10, pady=(10,5))
     lbl_busqueda = Label(ventana_buscar_perros, text="Búsqueda:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_busqueda.grid(column=0, row=1, sticky=W, padx=5, pady=5)
@@ -681,8 +681,8 @@ def ventana_buscarP():
             case "Esterilización":
                 lbl_busqueda_formato.config(text="escriba sí o no")
                 selCbp = "ESTERILIZACION"
-            case "Discapacidad":
-                lbl_busqueda_formato.config(text="escriba sí o no")
+            case "Notas":
+                lbl_busqueda_formato.config(text="escriba las notas")
                 selCbp = "DISCAPACIDAD"
             case "Adoptable":
                 lbl_busqueda_formato.config(text="escriba sí o no")
@@ -954,7 +954,7 @@ def abrir_ventana_perros():
         lbl_temperamento.grid(row=8,column=0,sticky=W,padx=20,pady=7)
         lbl_esterilizacion=tk.Label(fagregar_p,text="Esterilización",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_esterilizacion.grid(row=9,column=0,sticky=W,padx=20,pady=7)
-        lbl_discapacidad=tk.Label(fagregar_p,text="Discapacidad",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_discapacidad=tk.Label(fagregar_p,text="Notas",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_discapacidad.grid(row=10,column=0,sticky=W,padx=20,pady=7)
         lbl_adoptable=tk.Label(fagregar_p,text="Adoptable",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_adoptable.grid(row=11,column=0,sticky=W,padx=20,pady=7)
@@ -962,8 +962,6 @@ def abrir_ventana_perros():
         lbl_fecha_esterilizacion.grid(row=9,column=1,sticky=W,padx=(267,0),pady=7)
         lbl_fecha_ingreso=tk.Label(fagregar_p,text="Fecha de ingreso",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_fecha_ingreso.grid(row=2,column=0,sticky=W,padx=20,pady=7)
-        lbl_na_discapacidad=tk.Label(fagregar_p,text="(escribir N/A si no aplica)",font='Helvetica 14',bg='#0a4369',fg="white")
-        lbl_na_discapacidad.grid(row=10,column=1,sticky=W,padx=(270,0),pady=7)
 
 def scrollbar_perros(fContents_vp, treeVP):
     scrollbar1 = ttk.Scrollbar(fContents_vp, orient=tk.VERTICAL, command=treeVP.yview)
@@ -984,7 +982,7 @@ def headings_perros(treeVP):
     treeVP.heading("talla", text="Talla")
     treeVP.heading("temperamento", text="Temperamento")
     treeVP.heading("esterilizacion", text="Esterilización")
-    treeVP.heading("discapacidad", text="Discapacidad")
+    treeVP.heading("discapacidad", text="Notas")
     treeVP.heading("adoptable", text="Adoptable")
     treeVP.heading("fechaesterilizacion", text="Fecha de esterilización")
     treeVP.heading("fechaingreso", text="Fecha de ingreso")
@@ -2227,7 +2225,7 @@ def ventana_buscarGa():
     ventana_buscar_Gatos_arch.resizable(False, False)
     lbl_opcion = Label(ventana_buscar_Gatos_arch, text="Opción:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_opcion.grid(column=0, row=0, sticky=W, padx=5, pady=(10,5))
-    combo = ttk.Combobox(ventana_buscar_Gatos_arch,state="readonly", font='Helvetica 10', values=["Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Discapacidad","Adoptable","Fecha de esterilización","Fecha de ingreso","Estado"])
+    combo = ttk.Combobox(ventana_buscar_Gatos_arch,state="readonly", font='Helvetica 10', values=["Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Notas","Adoptable","Fecha de esterilización","Fecha de ingreso","Estado"])
     combo.grid(column=1, row=0, sticky=W, padx=10, pady=(10,5))
     lbl_busqueda = Label(ventana_buscar_Gatos_arch, text="Búsqueda:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_busqueda.grid(column=0, row=1, sticky=W, padx=5, pady=5)
@@ -2272,8 +2270,8 @@ def ventana_buscarGa():
             case "Esterilización":
                 lbl_busqueda_formato.config(text="escriba sí o no")
                 selCbGa = "ESTERILIZACION"
-            case "Discapacidad":
-                lbl_busqueda_formato.config(text="escriba sí o no")
+            case "Notas":
+                lbl_busqueda_formato.config(text="escriba las notas")
                 selCbGa = "DISCAPACIDAD"
             case "Adoptable":
                 lbl_busqueda_formato.config(text="escriba sí o no")
@@ -2303,7 +2301,7 @@ def ventana_buscarG():
     ventana_buscar_Gatos.resizable(False, False)
     lbl_opcion = Label(ventana_buscar_Gatos, text="Opción:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_opcion.grid(column=0, row=0, sticky=W, padx=5, pady=(10,5))
-    combo = ttk.Combobox(ventana_buscar_Gatos,state="readonly", font='Helvetica 10', values=["Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Discapacidad","Adoptable","Fecha de esterilización","Fecha de ingreso"])
+    combo = ttk.Combobox(ventana_buscar_Gatos,state="readonly", font='Helvetica 10', values=["Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Notas","Adoptable","Fecha de esterilización","Fecha de ingreso"])
     combo.grid(column=1, row=0, sticky=W, padx=10, pady=(10,5))
     lbl_busqueda = Label(ventana_buscar_Gatos, text="Búsqueda:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_busqueda.grid(column=0, row=1, sticky=W, padx=5, pady=5)
@@ -2348,8 +2346,8 @@ def ventana_buscarG():
             case "Esterilización":
                 lbl_busqueda_formato.config(text="escriba sí o no")
                 selCbG = "ESTERILIZACION"
-            case "Discapacidad":
-                lbl_busqueda_formato.config(text="escriba sí o no")
+            case "Notas":
+                lbl_busqueda_formato.config(text="escriba las notas")
                 selCbG = "DISCAPACIDAD"
             case "Adoptable":
                 lbl_busqueda_formato.config(text="escriba sí o no")
@@ -2623,7 +2621,7 @@ def abrir_ventana_Gatos():
         lbl_temperamento.grid(row=8,column=0,sticky=W,padx=20,pady=7)
         lbl_esterilizacion=tk.Label(fagregar_G,text="Esterilización",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_esterilizacion.grid(row=9,column=0,sticky=W,padx=20,pady=7)
-        lbl_discapacidad=tk.Label(fagregar_G,text="Discapacidad",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_discapacidad=tk.Label(fagregar_G,text="Notas",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_discapacidad.grid(row=10,column=0,sticky=W,padx=20,pady=7)
         lbl_adoptable=tk.Label(fagregar_G,text="Adoptable",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_adoptable.grid(row=11,column=0,sticky=W,padx=20,pady=7)
@@ -2631,8 +2629,6 @@ def abrir_ventana_Gatos():
         lbl_fecha_esterilizacion.grid(row=9,column=1,sticky=W,padx=(267,0),pady=7)
         lbl_fecha_ingreso=tk.Label(fagregar_G,text="Fecha de ingreso",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_fecha_ingreso.grid(row=2,column=0,sticky=W,padx=20,pady=7)
-        lbl_na_discapacidad=tk.Label(fagregar_G,text="(escribir N/A si no aplica)",font='Helvetica 14',bg='#0a4369',fg="white")
-        lbl_na_discapacidad.grid(row=10,column=1,sticky=W,padx=(270,0),pady=7)
 
 def scrollbar_Gatos(fContents_vG, treeVG):
     scrollbar1 = ttk.Scrollbar(fContents_vG, orient=tk.VERTICAL, command=treeVG.yview)
@@ -2653,7 +2649,7 @@ def headings_Gatos(treeVG):
     treeVG.heading("talla", text="Talla")
     treeVG.heading("temperamento", text="Temperamento")
     treeVG.heading("esterilizacion", text="Esterilización")
-    treeVG.heading("discapacidad", text="Discapacidad")
+    treeVG.heading("discapacidad", text="Notas")
     treeVG.heading("adoptable", text="Adoptable")
     treeVG.heading("fechaesterilizacion", text="Fecha de esterilización")
     treeVG.heading("fechaingreso", text="Fecha de ingreso")
@@ -3893,7 +3889,7 @@ def ventana_buscarOt():
     ventana_buscar_Otros_arch.resizable(False, False)
     lbl_opcion = Label(ventana_buscar_Otros_arch, text="Opción:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_opcion.grid(column=0, row=0, sticky=W, padx=5, pady=(10,5))
-    combo = ttk.Combobox(ventana_buscar_Otros_arch,state="readonly", font='Helvetica 10', values=["Tipo","Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Discapacidad","Adoptable","Fecha de esterilización","Fecha de ingreso","Estado"])
+    combo = ttk.Combobox(ventana_buscar_Otros_arch,state="readonly", font='Helvetica 10', values=["Tipo","Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Notas","Adoptable","Fecha de esterilización","Fecha de ingreso","Estado"])
     combo.grid(column=1, row=0, sticky=W, padx=10, pady=(10,5))
     lbl_busqueda = Label(ventana_buscar_Otros_arch, text="Búsqueda:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_busqueda.grid(column=0, row=1, sticky=W, padx=5, pady=5)
@@ -3941,8 +3937,8 @@ def ventana_buscarOt():
             case "Esterilización":
                 lbl_busqueda_formato.config(text="escriba sí o no")
                 selCbOt = "ESTERILIZACION"
-            case "Discapacidad":
-                lbl_busqueda_formato.config(text="escriba sí o no")
+            case "Notas":
+                lbl_busqueda_formato.config(text="escriba las notas")
                 selCbOt = "DISCAPACIDAD"
             case "Adoptable":
                 lbl_busqueda_formato.config(text="escriba sí o no")
@@ -3972,7 +3968,7 @@ def ventana_buscarO():
     ventana_buscar_Otros.resizable(False, False)
     lbl_opcion = Label(ventana_buscar_Otros, text="Opción:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_opcion.grid(column=0, row=0, sticky=W, padx=5, pady=(10,5))
-    combo = ttk.Combobox(ventana_buscar_Otros,state="readonly", font='Helvetica 10', values=["Tipo","Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Discapacidad","Adoptable","Fecha de esterilización","Fecha de ingreso"])
+    combo = ttk.Combobox(ventana_buscar_Otros,state="readonly", font='Helvetica 10', values=["Tipo","Nombre", "Fecha de nacimiento", "Sexo", "Raza", "Color", "Pelo","Talla","Temperamento","Esterilización","Notas","Adoptable","Fecha de esterilización","Fecha de ingreso"])
     combo.grid(column=1, row=0, sticky=W, padx=10, pady=(10,5))
     lbl_busqueda = Label(ventana_buscar_Otros, text="Búsqueda:", bg='#0a4369', fg="white",font='Helvetica 14')
     lbl_busqueda.grid(column=0, row=1, sticky=W, padx=5, pady=5)
@@ -4020,8 +4016,8 @@ def ventana_buscarO():
             case "Esterilización":
                 lbl_busqueda_formato.config(text="escriba sí o no")
                 selCbO = "ESTERILIZACION"
-            case "Discapacidad":
-                lbl_busqueda_formato.config(text="escriba sí o no")
+            case "Notas":
+                lbl_busqueda_formato.config(text="escriba las notas")
                 selCbO = "DISCAPACIDAD"
             case "Adoptable":
                 lbl_busqueda_formato.config(text="escriba sí o no")
@@ -4299,7 +4295,7 @@ def abrir_ventana_Otros():
         lbl_temperamento.grid(row=8,column=0,sticky=W,padx=20,pady=7)
         lbl_esterilizacion=tk.Label(fagregar_O,text="Esterilización",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_esterilizacion.grid(row=9,column=0,sticky=W,padx=20,pady=7)
-        lbl_discapacidad=tk.Label(fagregar_O,text="Discapacidad",font='Helvetica 18',bg='#0a4369',fg="white")
+        lbl_discapacidad=tk.Label(fagregar_O,text="Notas",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_discapacidad.grid(row=10,column=0,sticky=W,padx=20,pady=7)
         lbl_adoptable=tk.Label(fagregar_O,text="Adoptable",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_adoptable.grid(row=11,column=0,sticky=W,padx=20,pady=7)
@@ -4307,8 +4303,6 @@ def abrir_ventana_Otros():
         lbl_fecha_esterilizacion.grid(row=9,column=1,sticky=W,padx=(267,0),pady=7)
         lbl_fecha_ingreso=tk.Label(fagregar_O,text="Fecha de ingreso",font='Helvetica 18',bg='#0a4369',fg="white")
         lbl_fecha_ingreso.grid(row=2,column=0,sticky=W,padx=20,pady=7)
-        lbl_na_discapacidad=tk.Label(fagregar_O,text="(escribir N/A si no aplica)",font='Helvetica 14',bg='#0a4369',fg="white")
-        lbl_na_discapacidad.grid(row=10,column=1,sticky=W,padx=(270,0),pady=7)
         lbl_tipo = Label(frameOtro,text="Tipo de animalito: ",font='Helvetica 20 bold',bg='#0a4369',fg="white")
         lbl_tipo.grid(row=0,column=0,sticky=W)
 
@@ -4332,7 +4326,7 @@ def headings_Otros(treeVO):
     treeVO.heading("talla", text="Talla")
     treeVO.heading("temperamento", text="Temperamento")
     treeVO.heading("esterilizacion", text="Esterilización")
-    treeVO.heading("discapacidad", text="Discapacidad")
+    treeVO.heading("discapacidad", text="Notas")
     treeVO.heading("adoptable", text="Adoptable")
     treeVO.heading("fechaesterilizacion", text="Fecha de esterilización")
     treeVO.heading("fechaingreso", text="Fecha de ingreso")
