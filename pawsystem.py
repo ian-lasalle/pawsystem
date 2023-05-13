@@ -23,34 +23,30 @@ conexion = sqlite3.connect("dbomeyocan.db")
 cursor = conexion.cursor()
 
 def descargarexcel():
-    # Establecer la conexión con la base de datos
-    conn = sqlite3.connect('dbomeyocan.db')
-
-    # Obtener un cursor para ejecutar consultas
-    cursor = conn.cursor()
-
-    # Lista de nombres de las tablas a exportar
-    tabla_nombres = ['perros', 'perrosarchivados', 'gatos', 'gatosarchivados', 'otros', 'otrosarchivados']
-
-    # Crear un libro de Excel
-    workbook = Workbook()
-
-    # Eliminar la hoja en blanco llamada Sheet
-    workbook.remove(workbook['Sheet'])
-
-    # Para cada tabla, crear una hoja en el libro y escribir los datos
-    for tabla in tabla_nombres:
-        sheet = workbook.create_sheet(tabla)
-        cursor.execute(f"SELECT * FROM {tabla}")
-        sheet.append([i[0] for i in cursor.description])
-        for row in cursor:
-            sheet.append(row)
-
-    # Guardar el libro en un archivo Excel
-    workbook.save('Omeyocan.xlsx')
-
-    # Cerrar la conexión con la base de datos
-    conn.close()
+    if messagebox.askyesno(message="¿Desea exportar la base de datos? Se guardará un archivo de Excel en el escritorio. Se sobreescribirá cualquier archivo llamado Omeyocan.xlsx", title="Exportar"):
+        # Establecer la conexión con la base de datos
+        conn = sqlite3.connect('dbomeyocan.db')
+        # Obtener un cursor para ejecutar consultas
+        cursor = conn.cursor()
+        # Lista de nombres de las tablas a exportar
+        tabla_nombres = ['perros', 'perrosarchivados', 'gatos', 'gatosarchivados', 'otros', 'otrosarchivados']
+        # Crear un libro de Excel
+        workbook = Workbook()
+        # Eliminar la hoja en blanco llamada Sheet
+        workbook.remove(workbook['Sheet'])
+        # Para cada tabla, crear una hoja en el libro y escribir los datos
+        for tabla in tabla_nombres:
+            sheet = workbook.create_sheet(tabla)
+            cursor.execute(f"SELECT * FROM {tabla}")
+            sheet.append([i[0] for i in cursor.description])
+            for row in cursor:
+                sheet.append(row)
+        desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+        # Guardar el libro en un archivo Excel
+        file_path = os.path.join(desktop_path, 'Omeyocan.xlsx')
+        workbook.save(file_path)
+        # Cerrar la conexión con la base de datos
+        conn.close()
 
 ##### PERROS ##### ----------------===============------------------===============------------------================--------------
 
