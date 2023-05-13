@@ -5210,6 +5210,6 @@ btnPerros = tk.Button(ventana, text="Perros", width=20, font='Helvetica 18 bold'
 btnGatos = tk.Button(ventana, text="Gatos", width=20, font='Helvetica 18 bold', bg='#33ff6d', command=lambda: [crear_ventana_Gatos(), abrir_ventana_Gatos(), ventana.iconify()]).pack(pady=30)
 btnOtros = tk.Button(ventana, text="Otros", width=20, font='Helvetica 18 bold', bg='#33ff6d', command=lambda: [crear_ventana_Otros(), abrir_ventana_Otros(), ventana.iconify()]).pack(pady=30)
 btnCerrar = tk.Button(ventana, text="Salir", width=5, font='Helvetica 13 bold', bg='#33ff6d', command=ventana.destroy).place(relx=0.935, rely=0.015)
-btnDescargar = tk.Button(ventana, text="Descargar", width=9, font='Helvetica 13 bold', bg='#33ff6d', command=descargarexcel).place(relx=0.905, rely=0.9)
+btnDescargar = tk.Button(ventana, text="Descargar", width=9, font='Helvetica 13 bold', bg='#33ff6d', command=descargarexcel).place(relx=0.89, rely=0.9)
 
 ventana.mainloop()
