@@ -219,97 +219,6 @@ def mostrarCamposP():
     except:
         pass
 
-def monthToNum(monthName):
-    if monthName == '01' or monthName == '02' or monthName == '03' or monthName == '04' or monthName == '05' or monthName == '06' or monthName == '07' or monthName == '08' or monthName == '09' or monthName == '10' or monthName == '11' or monthName == '12':
-        return monthName
-    else:
-        return {
-                'enero': "01",
-                'febrero': "02",
-                'marzo': "03",
-                'abril': "04",
-                'mayo': "05",
-                'junio': "06",
-                'julio': "07",
-                'agosto': "08",
-                'septiembre': "09", 
-                'octubre': "10",
-                'noviembre': "11",
-                'diciembre': "12",
-                'Enero': "01",
-                'Febrero': "02",
-                'Marzo': "03",
-                'Abril': "04",
-                'Mayo': "05",
-                'Junio': "06",
-                'Julio': "07",
-                'Agosto': "08",
-                'Septiembre': "09", 
-                'Octubre': "10",
-                'Noviembre': "11",
-                'Diciembre': "12",
-                '1': "01",
-                '2': "02",
-                '3': "03",
-                '4': "04",
-                '5': "05",
-                '6': "06",
-                '7': "07",
-                '8': "08",
-                '9': "09", 
-                '10': "10",
-                '11': "11",
-                '12': "12",
-                'ENERO': "01",
-                'FEBRERO': "02",
-                'MARZO': "03",
-                'ABRIL': "04",
-                'MAYO': "05",
-                'JUNIO': "06",
-                'JULIO': "07",
-                'AGOSTO': "08",
-                'SEPTIEMBRE': "09", 
-                'OCTUBRE': "10",
-                'NOVIEMBRE': "11",
-                'DICIEMBRE': "12",
-                'ENE': "01",
-                'FEB': "02",
-                'MAR': "03",
-                'ABR': "04",
-                'MAY': "05",
-                'JUN': "06",
-                'JUL': "07",
-                'AGO': "08",
-                'SEP': "09", 
-                'OCT': "10",
-                'NOV': "11",
-                'DIC': "12",
-                'ene': "01",
-                'feb': "02",
-                'mar': "03",
-                'abr': "04",
-                'may': "05",
-                'jun': "06",
-                'jul': "07",
-                'ago': "08",
-                'sep': "09", 
-                'oct': "10",
-                'nov': "11",
-                'dic': "12",
-                'Ene': "01",
-                'Feb': "02",
-                'Mar': "03",
-                'Abr': "04",
-                'May': "05",
-                'Jun': "06",
-                'Jul': "07",
-                'Ago': "08",
-                'Sep': "09", 
-                'Oct': "10",
-                'Nov': "11",
-                'Dic': "12"
-        }[monthName]
-
 def seleccionarUsandoClickP(treeVP):
     global selectedp
     global valuesp
@@ -461,6 +370,7 @@ def clear_entradas_perros():
     e_discapacidadp.delete(0,END)
 
 def insertar_editables_perros():
+    global mesNacP
     #0 nombre
     e_nombrep.insert(0,valuesp[0])
     #1 fecha nacimiento
@@ -473,7 +383,8 @@ def insertar_editables_perros():
             e_anoNacP.insert(0,split_fnp[0])
             comboP.set(split_fnp[1])
         except:
-            comboP.set(valuesp[1])
+            comboP.current(newindex=12)
+            mesNacP = "N/A"
     #2 sexo
     if valuesp[2] == 'Hembra':
         RBsexop.set(1)
@@ -559,7 +470,7 @@ def ventana_archivar_estadoP():
 def ventana_buscarPa():
     global ventana_buscar_perros_arch
     ventana_buscar_perros_arch = tk.Toplevel()
-    ventana_buscar_perros_arch.geometry("475x230")
+    ventana_buscar_perros_arch.geometry("700x300")
     ventana_buscar_perros_arch.title("PawSystem Perros Búsqueda")
     ventana_buscar_perros_arch.iconbitmap('paw-icon.ico')
     ventana_buscar_perros_arch.configure(bg='#0a4369')
@@ -635,7 +546,7 @@ def ventana_buscarPa():
 def ventana_buscarP():
     global ventana_buscar_perros
     ventana_buscar_perros = tk.Toplevel()
-    ventana_buscar_perros.geometry("475x230")
+    ventana_buscar_perros.geometry("700x300")
     ventana_buscar_perros.title("PawSystem Perros Búsqueda")
     ventana_buscar_perros.iconbitmap('paw-icon.ico')
     ventana_buscar_perros.configure(bg='#0a4369')
@@ -1862,12 +1773,12 @@ def crearG(fMainframe2):
     #Conversiones 
     fechaesterilizacionG = date_fecha_esterilizacionG.get_date()
     fechaingresoG = date_fecha_ingresoG.get_date()
-    try:
-        mesConvG = monthToNum(mesNacG.get())
-        fechanacimientoG = anoNacG.get() + "-" + mesConvG
-    except:
-        messagebox.showwarning("ADVERTENCIA","Ocurrió un error al crear el registro")
-        return
+    if(mesNacG=="01" or mesNacG=="02" or mesNacG=="03" or mesNacG=="04" or mesNacG=="05" or mesNacG=="06" or mesNacG=="07" or mesNacG=="08" or mesNacG=="09" or mesNacG=="10" or mesNacG=="11" or mesNacG=="12"):
+        fechanacimientoG = anoNacG.get() + "-" + mesNacG
+    elif(mesNacG=="N/A"):
+        fechanacimientoG = anoNacG.get()
+    else:
+        fechanacimientoG = mesNacG
     sexoGato = RBsexoG.get()
     if sexoGato == 1:
         sexoG = "Hembra"
@@ -1937,12 +1848,12 @@ def crearG(fMainframe2):
 def editarG(fMainframe2):
     fechaesterilizacionG = date_fecha_esterilizacionG.get_date()
     fechaingresoG = date_fecha_ingresoG.get_date()
-    try:
-        mesConvG = monthToNum(mesNacG.get())
-        fechanacimientoG = anoNacG.get() + "-" + mesConvG
-    except:
-        messagebox.showwarning("ADVERTENCIA","Ocurrió un error al editar el registro")
-        return
+    if(mesNacG=="01" or mesNacG=="02" or mesNacG=="03" or mesNacG=="04" or mesNacG=="05" or mesNacG=="06" or mesNacG=="07" or mesNacG=="08" or mesNacG=="09" or mesNacG=="10" or mesNacG=="11" or mesNacG=="12"):
+        fechanacimientoG = anoNacG.get() + "-" + mesNacG
+    elif(mesNacG=="N/A"):
+        fechanacimientoG = anoNacG.get()
+    else:
+        fechanacimientoG = mesNacG
     sexoGato = RBsexoG.get()
     if sexoGato == 1:
         sexoG = "Hembra"
@@ -2165,7 +2076,6 @@ def buscarG():
 def clear_entradas_Gatos():
     e_nombreG.delete(0,END)
     e_anoNacG.delete(0,END)
-    e_mesNacG.delete(0,END)
     e_razaG.delete(0,END)
     e_colorG.delete(0,END)
     e_peloG.delete(0,END)
@@ -2173,12 +2083,21 @@ def clear_entradas_Gatos():
     e_discapacidadG.delete(0,END)
 
 def insertar_editables_Gatos():
+    global mesNacG
     #0 nombre
     e_nombreG.insert(0,valuesG[0])
     #1 fecha nacimiento
-    split_fng = valuesG[1].split('-')
-    e_anoNacG.insert(0,split_fng[0])
-    e_mesNacG.insert(0,split_fng[1])
+    if(valuesG[1]=="Cachorro" or valuesG[1]=="Joven" or valuesG[1]=="Adulto" or valuesG[1]=="Viejito"):
+        comboG.set(valuesG[1])
+    else:
+        try:
+            split_fng = valuesG[1].split('-')
+            print(split_fng)
+            e_anoNacG.insert(0,split_fng[0])
+            comboG.set(split_fng[1])
+        except:
+            comboG.current(newindex=12)
+            mesNacG = "N/A"
     #2 sexo
     if valuesG[2] == 'Hembra':
         RBsexoG.set(1)
@@ -2264,7 +2183,7 @@ def ventana_archivar_estadoG():
 def ventana_buscarGa():
     global ventana_buscar_Gatos_arch
     ventana_buscar_Gatos_arch = tk.Toplevel()
-    ventana_buscar_Gatos_arch.geometry("475x230")
+    ventana_buscar_Gatos_arch.geometry("700x300")
     ventana_buscar_Gatos_arch.title("PawSystem Gatos Búsqueda")
     ventana_buscar_Gatos_arch.iconbitmap('paw-icon.ico')
     ventana_buscar_Gatos_arch.configure(bg='#0a4369')
@@ -2293,7 +2212,7 @@ def ventana_buscarGa():
                 lbl_busqueda_formato.config(text="escriba el nombre del gato")
                 selCbGa = "NOMBRE"
             case "Fecha de nacimiento":
-                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm")
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm\no bien escriba N/A, Cachorro, Joven, Adulto o Viejito")
                 selCbGa = "FECHANACIMIENTO"
             case "Sexo":
                 lbl_busqueda_formato.config(text="escriba hembra o macho")
@@ -2340,7 +2259,7 @@ def ventana_buscarGa():
 def ventana_buscarG():
     global ventana_buscar_Gatos
     ventana_buscar_Gatos = tk.Toplevel()
-    ventana_buscar_Gatos.geometry("475x230")
+    ventana_buscar_Gatos.geometry("700x300")
     ventana_buscar_Gatos.title("PawSystem Gatos Búsqueda")
     ventana_buscar_Gatos.iconbitmap('paw-icon.ico')
     ventana_buscar_Gatos.configure(bg='#0a4369')
@@ -2369,7 +2288,7 @@ def ventana_buscarG():
                 lbl_busqueda_formato.config(text="escriba el nombre del gato")
                 selCbG = "NOMBRE"
             case "Fecha de nacimiento":
-                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm")
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm\no bien escriba N/A, Cachorro, Joven, Adulto o Viejito")
                 selCbG = "FECHANACIMIENTO"
             case "Sexo":
                 lbl_busqueda_formato.config(text="escriba hembra o macho")
@@ -2544,6 +2463,50 @@ def abrir_ventana_Gatos():
         #Radio Buttons de las categorias
         radiobtns_formulario_Gatos(fagregar_G)
 
+        def selectionComboG(event):
+            global mesNacG
+            mesNacG = StringVar()
+            mesNacG = comboG.get()
+            match mesNacG:
+                case "Enero":
+                    mesNacG = "01"
+                case "Febrero":
+                    mesNacG = "02"
+                case "Marzo":
+                    mesNacG = "03"
+                case "Abril":
+                    mesNacG = "04"
+                case "Mayo":
+                    mesNacG = "05"
+                case "Junio":
+                    mesNacG = "06"
+                case "Julio":
+                    mesNacG = "07"
+                case "Agosto":
+                    mesNacG = "08"
+                case "Septiembre":
+                    mesNacG = "09"
+                case "Octubre":
+                    mesNacG = "10"
+                case "Noviembre":
+                    mesNacG = "11"
+                case "Diciembre":
+                    mesNacG = "12"
+                case "No aplica":
+                    mesNacG = "N/A"
+                case "Cachorro":
+                    mesNacG = "Cachorro"
+                case "Joven":
+                    mesNacG = "Joven"
+                case "Adulto":
+                    mesNacG = "Adulto"
+                case "Viejito":
+                    mesNacG = "Viejito"
+
+        global comboG
+        comboG = ttk.Combobox(fagregar_G,state="readonly", font='Helvetica 10', values=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre","No aplica","Cachorro", "Joven", "Adulto", "Viejito"])
+        comboG.grid(row=1,column=1,padx=70,sticky=W)
+        comboG.bind("<<ComboboxSelected>>", selectionComboG)
         
         if add == True:
             btn_Vagregar_Agregar = tk.Button(fagregar_G_header, text="Agregar", font='Helvetica 20 bold', bg='#33ff6d', command=lambda:[crearG(fMainFrame2)]).pack(side='right', padx=10)
@@ -2625,11 +2588,6 @@ def abrir_ventana_Gatos():
         global e_discapacidadG
         e_discapacidadG=tk.Entry(fagregar_G, textvariable=discapacidadG,font=('Helvetica 14'))
         e_discapacidadG.grid(row=10,column=1,sticky=W)
-        global mesNacG
-        mesNacG = StringVar()
-        global e_mesNacG
-        e_mesNacG = tk.Entry(fagregar_G, textvariable=mesNacG,font=('Helvetica 14'))
-        e_mesNacG.grid(row=1,column=1,padx=70,sticky=W)
         global anoNacG
         anoNacG = StringVar()
         global e_anoNacG
@@ -3522,12 +3480,12 @@ def crearO(fMainframe2):
     #Conversiones 
     fechaesterilizacionO = date_fecha_esterilizacionO.get_date()
     fechaingresoO = date_fecha_ingresoO.get_date()
-    try:
-        mesConvO = monthToNum(mesNacO.get())
-        fechanacimientoO = anoNacO.get() + "-" + mesConvO
-    except:
-        messagebox.showwarning("ADVERTENCIA","Ocurrió un error al crear el registro")
-        return
+    if(mesNacO=="01" or mesNacO=="02" or mesNacO=="03" or mesNacO=="04" or mesNacO=="05" or mesNacO=="06" or mesNacO=="07" or mesNacO=="08" or mesNacO=="09" or mesNacO=="10" or mesNacO=="11" or mesNacO=="12"):
+        fechanacimientoO = anoNacO.get() + "-" + mesNacO
+    elif(mesNacO=="N/A"):
+        fechanacimientoO = anoNacO.get()
+    else:
+        fechanacimientoO = mesNacO
     sexoOtro = RBsexoO.get()
     if sexoOtro == 1:
         sexoO = "Hembra"
@@ -3597,12 +3555,12 @@ def crearO(fMainframe2):
 def editarO(fMainframe2):
     fechaesterilizacionO = date_fecha_esterilizacionO.get_date()
     fechaingresoO = date_fecha_ingresoO.get_date()
-    try:
-        mesConvO = monthToNum(mesNacO.get())
-        fechanacimientoO = anoNacO.get() + "-" + mesConvO
-    except:
-        messagebox.showwarning("ADVERTENCIA","Ocurrió un error al editar el registro")
-        return
+    if(mesNacO=="01" or mesNacO=="02" or mesNacO=="03" or mesNacO=="04" or mesNacO=="05" or mesNacO=="06" or mesNacO=="07" or mesNacO=="08" or mesNacO=="09" or mesNacO=="10" or mesNacO=="11" or mesNacO=="12"):
+        fechanacimientoO = anoNacO.get() + "-" + mesNacO
+    elif(mesNacO=="N/A"):
+        fechanacimientoO = anoNacO.get()
+    else:
+        fechanacimientoO = mesNacO
     sexoOtro = RBsexoO.get()
     if sexoOtro == 1:
         sexoO = "Hembra"
@@ -3827,7 +3785,6 @@ def clear_entradas_Otros():
     e_tipoO.delete(0,END)
     e_nombreO.delete(0,END)
     e_anoNacO.delete(0,END)
-    e_mesNacO.delete(0,END)
     e_razaO.delete(0,END)
     e_colorO.delete(0,END)
     e_peloO.delete(0,END)
@@ -3835,14 +3792,23 @@ def clear_entradas_Otros():
     e_discapacidadO.delete(0,END)
 
 def insertar_editables_Otros():
+    global mesNacO
     #0 tipo
     e_tipoO.insert(0,valuesO[0])
     #1 nombre
     e_nombreO.insert(0,valuesO[1])
     #2 fecha nacimiento
-    split_fno = valuesO[2].split('-')
-    e_anoNacO.insert(0,split_fno[0])
-    e_mesNacO.insert(0,split_fno[1])
+    if(valuesO[2]=="Cachorro" or valuesO[2]=="Joven" or valuesO[2]=="Adulto" or valuesO[2]=="Viejito"):
+        comboO.set(valuesO[2])
+    else:
+        try:
+            split_fno = valuesO[2].split('-')
+            print(split_fno)
+            e_anoNacO.insert(0,split_fno[0])
+            comboO.set(split_fno[1])
+        except:
+            comboO.current(newindex=12)
+            mesNacO = "N/A"
     #3 sexo
     if valuesO[3] == 'Hembra':
         RBsexoO.set(1)
@@ -3889,7 +3855,7 @@ def insertar_editables_Otros():
         RBadoptableO.set(2)
     #12 fecha esterilizacion
     if not valuesO[12] == "N/A":
-        split_feo = valuesO[11].split('-')
+        split_feo = valuesO[12].split('-')
         feo_date = date(int(split_feo[0]),int(split_feo[1]),int(split_feo[2]))
         date_fecha_esterilizacionO.set_date(feo_date)
     #13 fecha ingreso
@@ -3928,7 +3894,7 @@ def ventana_archivar_estadoO():
 def ventana_buscarOt():
     global ventana_buscar_Otros_arch
     ventana_buscar_Otros_arch = tk.Toplevel()
-    ventana_buscar_Otros_arch.geometry("475x230")
+    ventana_buscar_Otros_arch.geometry("700x300")
     ventana_buscar_Otros_arch.title("PawSystem Otros Búsqueda")
     ventana_buscar_Otros_arch.iconbitmap('paw-icon.ico')
     ventana_buscar_Otros_arch.configure(bg='#0a4369')
@@ -3960,7 +3926,7 @@ def ventana_buscarOt():
                 lbl_busqueda_formato.config(text="escriba el nombre del animal")
                 selCbOt = "NOMBRE"
             case "Fecha de nacimiento":
-                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm")
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm\no bien escriba N/A, Cachorro, Joven, Adulto o Viejito")
                 selCbOt = "FECHANACIMIENTO"
             case "Sexo":
                 lbl_busqueda_formato.config(text="escriba hembra o macho")
@@ -4007,7 +3973,7 @@ def ventana_buscarOt():
 def ventana_buscarO():
     global ventana_buscar_Otros
     ventana_buscar_Otros = tk.Toplevel()
-    ventana_buscar_Otros.geometry("475x230")
+    ventana_buscar_Otros.geometry("700x300")
     ventana_buscar_Otros.title("PawSystem Otros Búsqueda")
     ventana_buscar_Otros.iconbitmap('paw-icon.ico')
     ventana_buscar_Otros.configure(bg='#0a4369')
@@ -4039,7 +4005,7 @@ def ventana_buscarO():
                 lbl_busqueda_formato.config(text="escriba el nombre del animal")
                 selCbO = "NOMBRE"
             case "Fecha de nacimiento":
-                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm")
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm\no bien escriba N/A, Cachorro, Joven, Adulto o Viejito")
                 selCbO = "FECHANACIMIENTO"
             case "Sexo":
                 lbl_busqueda_formato.config(text="escriba hembra o macho")
@@ -4217,6 +4183,51 @@ def abrir_ventana_Otros():
         #Radio Buttons de las categorias
         radiobtns_formulario_Otros(fagregar_O)
 
+        def selectionComboO(event):
+            global mesNacO
+            mesNacO = StringVar()
+            mesNacO = comboO.get()
+            match mesNacO:
+                case "Enero":
+                    mesNacO = "01"
+                case "Febrero":
+                    mesNacO = "02"
+                case "Marzo":
+                    mesNacO = "03"
+                case "Abril":
+                    mesNacO = "04"
+                case "Mayo":
+                    mesNacO = "05"
+                case "Junio":
+                    mesNacO = "06"
+                case "Julio":
+                    mesNacO = "07"
+                case "Agosto":
+                    mesNacO = "08"
+                case "Septiembre":
+                    mesNacO = "09"
+                case "Octubre":
+                    mesNacO = "10"
+                case "Noviembre":
+                    mesNacO = "11"
+                case "Diciembre":
+                    mesNacO = "12"
+                case "No aplica":
+                    mesNacO = "N/A"
+                case "Cachorro":
+                    mesNacO = "Cachorro"
+                case "Joven":
+                    mesNacO = "Joven"
+                case "Adulto":
+                    mesNacO = "Adulto"
+                case "Viejito":
+                    mesNacO = "Viejito"
+
+        global comboO
+        comboO = ttk.Combobox(fagregar_O,state="readonly", font='Helvetica 10', values=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre","No aplica","Cachorro", "Joven", "Adulto", "Viejito"])
+        comboO.grid(row=1,column=1,padx=70,sticky=W)
+        comboO.bind("<<ComboboxSelected>>", selectionComboO)
+
         if add == True:
             btn_Vagregar_Agregar = tk.Button(fagregar_O_header, text="Agregar", font='Helvetica 20 bold', bg='#33ff6d', command=lambda:[crearO(fMainFrame2)]).pack(side='right', padx=10)
         elif add == False:
@@ -4299,11 +4310,6 @@ def abrir_ventana_Otros():
         global e_discapacidadO
         e_discapacidadO=tk.Entry(fagregar_O, textvariable=discapacidadO,font=('Helvetica 14'))
         e_discapacidadO.grid(row=10,column=1,sticky=W)
-        global mesNacO
-        mesNacO = StringVar()
-        global e_mesNacO
-        e_mesNacO = tk.Entry(fagregar_O, textvariable=mesNacO,font=('Helvetica 14'))
-        e_mesNacO.grid(row=1,column=1,padx=70,sticky=W)
         global anoNacO
         anoNacO = StringVar()
         global e_anoNacO
