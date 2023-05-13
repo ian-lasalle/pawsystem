@@ -1,4 +1,5 @@
 import tkinter as tk
+from openpyxl import Workbook
 from tkinter import *
 from tkinter import StringVar, ttk, messagebox, filedialog
 from PIL import ImageTk, Image
@@ -20,6 +21,36 @@ ventana.configure(bg='#0a4369')
 
 conexion = sqlite3.connect("dbomeyocan.db")
 cursor = conexion.cursor()
+
+def descargarexcel():
+    # Establecer la conexión con la base de datos
+    conn = sqlite3.connect('dbomeyocan.db')
+
+    # Obtener un cursor para ejecutar consultas
+    cursor = conn.cursor()
+
+    # Lista de nombres de las tablas a exportar
+    tabla_nombres = ['perros', 'perrosarchivados', 'gatos', 'gatosarchivados', 'otros', 'otrosarchivados']
+
+    # Crear un libro de Excel
+    workbook = Workbook()
+
+    # Eliminar la hoja en blanco llamada Sheet
+    workbook.remove(workbook['Sheet'])
+
+    # Para cada tabla, crear una hoja en el libro y escribir los datos
+    for tabla in tabla_nombres:
+        sheet = workbook.create_sheet(tabla)
+        cursor.execute(f"SELECT * FROM {tabla}")
+        sheet.append([i[0] for i in cursor.description])
+        for row in cursor:
+            sheet.append(row)
+
+    # Guardar el libro en un archivo Excel
+    workbook.save('Omeyocan.xlsx')
+
+    # Cerrar la conexión con la base de datos
+    conn.close()
 
 ##### PERROS ##### ----------------===============------------------===============------------------================--------------
 
@@ -5176,5 +5207,6 @@ btnPerros = tk.Button(ventana, text="Perros", width=20, font='Helvetica 18 bold'
 btnGatos = tk.Button(ventana, text="Gatos", width=20, font='Helvetica 18 bold', bg='#33ff6d', command=lambda: [crear_ventana_Gatos(), abrir_ventana_Gatos(), ventana.iconify()]).pack(pady=30)
 btnOtros = tk.Button(ventana, text="Otros", width=20, font='Helvetica 18 bold', bg='#33ff6d', command=lambda: [crear_ventana_Otros(), abrir_ventana_Otros(), ventana.iconify()]).pack(pady=30)
 btnCerrar = tk.Button(ventana, text="Salir", width=5, font='Helvetica 13 bold', bg='#33ff6d', command=ventana.destroy).place(relx=0.935, rely=0.015)
+btnDescargar = tk.Button(ventana, text="Descargar", width=9, font='Helvetica 13 bold', bg='#33ff6d', command=descargarexcel).place(relx=0.905, rely=0.9)
 
 ventana.mainloop()
