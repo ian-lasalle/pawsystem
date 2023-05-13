@@ -376,12 +376,13 @@ def insertar_editables_perros():
     #1 fecha nacimiento
     if(valuesp[1]=="Cachorro" or valuesp[1]=="Joven" or valuesp[1]=="Adulto" or valuesp[1]=="Viejito"):
         comboP.set(valuesp[1])
+        mesNacP = valuesp[1]
     else:
         try:
             split_fnp = valuesp[1].split('-')
-            print(split_fnp)
             e_anoNacP.insert(0,split_fnp[0])
-            comboP.set(split_fnp[1])
+            comboP.current(newindex=int(split_fnp[1])-1)
+            mesNacP = split_fnp[1]
         except:
             comboP.current(newindex=12)
             mesNacP = "N/A"
@@ -2089,12 +2090,13 @@ def insertar_editables_Gatos():
     #1 fecha nacimiento
     if(valuesG[1]=="Cachorro" or valuesG[1]=="Joven" or valuesG[1]=="Adulto" or valuesG[1]=="Viejito"):
         comboG.set(valuesG[1])
+        mesNacG = valuesG[1]
     else:
         try:
             split_fng = valuesG[1].split('-')
-            print(split_fng)
             e_anoNacG.insert(0,split_fng[0])
-            comboG.set(split_fng[1])
+            comboG.current(newindex=int(split_fng[1])-1)
+            mesNacG = split_fng[1]
         except:
             comboG.current(newindex=12)
             mesNacG = "N/A"
@@ -3800,12 +3802,13 @@ def insertar_editables_Otros():
     #2 fecha nacimiento
     if(valuesO[2]=="Cachorro" or valuesO[2]=="Joven" or valuesO[2]=="Adulto" or valuesO[2]=="Viejito"):
         comboO.set(valuesO[2])
+        mesNacO = valuesO[1]
     else:
         try:
             split_fno = valuesO[2].split('-')
-            print(split_fno)
             e_anoNacO.insert(0,split_fno[0])
-            comboO.set(split_fno[1])
+            comboO.current(newindex=int(split_fno[1])-1)
+            mesNacO = split_fno[1]
         except:
             comboO.current(newindex=12)
             mesNacO = "N/A"
