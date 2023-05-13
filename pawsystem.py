@@ -61,12 +61,12 @@ def crearP(fMainframe2):
     #Conversiones 
     fechaesterilizacionP = date_fecha_esterilizacionp.get_date()
     fechaingresoP = date_fecha_ingresop.get_date()
-    try:
-        mesConvP = monthToNum(mesNacP.get())
-        fechanacimientoP = anoNacP.get() + "-" + mesConvP
-    except:
-        messagebox.showwarning("ADVERTENCIA","Ocurrió un error al crear el registro")
-        return
+    if(mesNacP=="01" or mesNacP=="02" or mesNacP=="03" or mesNacP=="04" or mesNacP=="05" or mesNacP=="06" or mesNacP=="07" or mesNacP=="08" or mesNacP=="09" or mesNacP=="10" or mesNacP=="11" or mesNacP=="12"):
+        fechanacimientoP = anoNacP.get() + "-" + mesNacP
+    elif(mesNacP=="N/A"):
+        fechanacimientoP = anoNacP.get()
+    else:
+        fechanacimientoP = mesNacP
     sexoPerro = RBsexop.get()
     if sexoPerro == 1:
         sexoP = "Hembra"
@@ -135,12 +135,12 @@ def crearP(fMainframe2):
 def editarP(fMainframe2):
     fechaesterilizacionP = date_fecha_esterilizacionp.get_date()
     fechaingresoP = date_fecha_ingresop.get_date()
-    try:
-        mesConvP = monthToNum(mesNacP.get())
-        fechanacimientoP = anoNacP.get() + "-" + mesConvP
-    except:
-        messagebox.showwarning("ADVERTENCIA","Ocurrió un error al editar el registro")
-        return
+    if(mesNacP=="01" or mesNacP=="02" or mesNacP=="03" or mesNacP=="04" or mesNacP=="05" or mesNacP=="06" or mesNacP=="07" or mesNacP=="08" or mesNacP=="09" or mesNacP=="10" or mesNacP=="11" or mesNacP=="12"):
+        fechanacimientoP = anoNacP.get() + "-" + mesNacP
+    elif(mesNacP=="N/A"):
+        fechanacimientoP = anoNacP.get()
+    else:
+        fechanacimientoP = mesNacP
     sexoPerro = RBsexop.get()
     if sexoPerro == 1:
         sexoP = "Hembra"
@@ -454,7 +454,6 @@ def buscarP():
 def clear_entradas_perros():
     e_nombrep.delete(0,END)
     e_anoNacP.delete(0,END)
-    e_mesNacP.delete(0,END)
     e_razap.delete(0,END)
     e_colorp.delete(0,END)
     e_pelop.delete(0,END)
@@ -465,9 +464,16 @@ def insertar_editables_perros():
     #0 nombre
     e_nombrep.insert(0,valuesp[0])
     #1 fecha nacimiento
-    split_fnp = valuesp[1].split('-')
-    e_anoNacP.insert(0,split_fnp[0])
-    e_mesNacP.insert(0,split_fnp[1])
+    if(valuesp[1]=="Cachorro" or valuesp[1]=="Joven" or valuesp[1]=="Adulto" or valuesp[1]=="Viejito"):
+        comboP.set(valuesp[1])
+    else:
+        try:
+            split_fnp = valuesp[1].split('-')
+            print(split_fnp)
+            e_anoNacP.insert(0,split_fnp[0])
+            comboP.set(split_fnp[1])
+        except:
+            comboP.set(valuesp[1])
     #2 sexo
     if valuesp[2] == 'Hembra':
         RBsexop.set(1)
@@ -582,7 +588,7 @@ def ventana_buscarPa():
                 lbl_busqueda_formato.config(text="escriba el nombre del perro")
                 selCbpa = "NOMBRE"
             case "Fecha de nacimiento":
-                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm")
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm\no bien escriba N/A, Cachorro, Joven, Adulto o Viejito")
                 selCbpa = "FECHANACIMIENTO"
             case "Sexo":
                 lbl_busqueda_formato.config(text="escriba hembra o macho")
@@ -658,7 +664,7 @@ def ventana_buscarP():
                 lbl_busqueda_formato.config(text="escriba el nombre del perro")
                 selCbp = "NOMBRE"
             case "Fecha de nacimiento":
-                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm")
+                lbl_busqueda_formato.config(text="escriba en formato aaaa-mm\no bien escriba N/A, Cachorro, Joven, Adulto o Viejito")
                 selCbp = "FECHANACIMIENTO"
             case "Sexo":
                 lbl_busqueda_formato.config(text="escriba hembra o macho")
@@ -833,6 +839,51 @@ def abrir_ventana_perros():
         #Radio Buttons de las categorias
         radiobtns_formulario_perros(fagregar_p)
 
+        def selectionComboP(event):
+            global mesNacP
+            mesNacP = StringVar()
+            mesNacP = comboP.get()
+            match mesNacP:
+                case "Enero":
+                    mesNacP = "01"
+                case "Febrero":
+                    mesNacP = "02"
+                case "Marzo":
+                    mesNacP = "03"
+                case "Abril":
+                    mesNacP = "04"
+                case "Mayo":
+                    mesNacP = "05"
+                case "Junio":
+                    mesNacP = "06"
+                case "Julio":
+                    mesNacP = "07"
+                case "Agosto":
+                    mesNacP = "08"
+                case "Septiembre":
+                    mesNacP = "09"
+                case "Octubre":
+                    mesNacP = "10"
+                case "Noviembre":
+                    mesNacP = "11"
+                case "Diciembre":
+                    mesNacP = "12"
+                case "No aplica":
+                    mesNacP = "N/A"
+                case "Cachorro":
+                    mesNacP = "Cachorro"
+                case "Joven":
+                    mesNacP = "Joven"
+                case "Adulto":
+                    mesNacP = "Adulto"
+                case "Viejito":
+                    mesNacP = "Viejito"
+
+        global comboP
+        comboP = ttk.Combobox(fagregar_p,state="readonly", font='Helvetica 10', values=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre","No aplica","Cachorro", "Joven", "Adulto", "Viejito"])
+        comboP.grid(row=1,column=1,padx=70,sticky=W)
+        comboP.bind("<<ComboboxSelected>>", selectionComboP)
+
         if add == True:
             btn_Vagregar_Agregar = tk.Button(fagregar_p_header, text="Agregar", font='Helvetica 20 bold', bg='#33ff6d', command=lambda:[crearP(fMainFrame2)]).pack(side='right', padx=10)
         elif add == False:
@@ -912,11 +963,6 @@ def abrir_ventana_perros():
         global e_discapacidadp
         e_discapacidadp=tk.Entry(fagregar_p, textvariable=discapacidadP,font=('Helvetica 14'))
         e_discapacidadp.grid(row=10,column=1,sticky=W)
-        global mesNacP
-        mesNacP = StringVar()
-        global e_mesNacP
-        e_mesNacP = tk.Entry(fagregar_p, textvariable=mesNacP,font=('Helvetica 14'))
-        e_mesNacP.grid(row=1,column=1,padx=70,sticky=W)
         global anoNacP
         anoNacP = StringVar()
         global e_anoNacP
